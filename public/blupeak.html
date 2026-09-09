@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Grind Media × BluPeak Federal Credit Union — Creative Production Partnership</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600&family=Barlow:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#080808;--card:#111111;--border:#1E1E1E;--border-mid:#2A2A2A;
+  --copper:#BB725A;--copper-light:#D4937D;--copper-dark:#8A4F3B;
+  --white:#F5F3F0;--muted:#777777;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;position:relative;-webkit-font-smoothing:antialiased;}
+
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.04;mix-blend-mode:overlay;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,64px);}
+section{padding:clamp(56px,9vw,120px) 0;position:relative;}
+
+h1,h2,h3,.bebas{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:0.02em;line-height:0.98;}
+
+.eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.42em;font-size:clamp(0.62rem,1.3vw,0.74rem);color:var(--copper);margin-bottom:clamp(18px,3vw,28px);display:flex;align-items:center;gap:14px;}
+.eyebrow::before{content:"";width:32px;height:1px;background:var(--copper);display:inline-block;flex:none;}
+.sec-num{font-family:'Barlow Condensed',sans-serif;font-weight:300;letter-spacing:0.4em;color:var(--copper-dark);font-size:0.7rem;text-transform:uppercase;}
+
+h2.section-title{font-size:clamp(2.4rem,7vw,4.6rem);color:var(--white);margin-bottom:clamp(28px,4vw,48px);text-transform:uppercase;}
+.lead{font-family:'Barlow',sans-serif;font-weight:300;font-size:clamp(1rem,2vw,1.18rem);color:#cfccc6;max-width:64ch;}
+p{font-weight:300;color:#bdbab4;}
+p strong{color:var(--white);font-weight:500;}
+.serif{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--copper-light);}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--copper-dark) 18%,var(--copper) 50%,var(--copper-dark) 82%,transparent);border:none;margin:0 auto;width:100%;opacity:0.55;}
+.divider-block{padding:0;}
+.divider-block .wrap{padding-top:0;padding-bottom:0;}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+
+/* ---- Lockup ---- */
+.lockup{display:flex;align-items:center;gap:14px;z-index:2;}
+.lockup-mark{display:flex;gap:3px;align-items:flex-end;height:26px;}
+.lockup-mark span{display:block;width:3px;background:var(--copper);border-radius:1px;animation:grind 2.2s ease-in-out infinite;}
+.lockup-mark span:nth-child(1){height:40%;animation-delay:0s;}
+.lockup-mark span:nth-child(2){height:75%;animation-delay:.2s;}
+.lockup-mark span:nth-child(3){height:55%;animation-delay:.4s;}
+.lockup-mark span:nth-child(4){height:100%;animation-delay:.6s;}
+@keyframes grind{0%,100%{transform:scaleY(1);opacity:0.85;}50%{transform:scaleY(0.45);opacity:1;}}
+.lockup-name{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.34em;font-size:0.82rem;color:var(--white);}
+
+/* ---- Progress rail ---- */
+.progress-rail{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--copper-dark),var(--copper));z-index:9998;transition:width .1s linear;}
+
+/* ---- Icon chip ---- */
+.icon-chip{width:50px;height:50px;border-radius:13px;background:radial-gradient(circle at 50% 30%,rgba(187,114,90,0.16),rgba(8,8,8,0.4));border:1px solid var(--copper-dark);display:flex;align-items:center;justify-content:center;flex:none;}
+.icon-chip svg{width:25px;height:25px;stroke:var(--copper);fill:none;stroke-width:1.6;}
+
+/* ---- Cards ---- */
+.card{background:var(--card);border:1px solid var(--border);padding:clamp(26px,3.4vw,38px);transition:border-color .5s ease,transform .5s ease;}
+.card:hover{border-color:var(--border-mid);transform:translateY(-3px);}
+.card h3{font-size:clamp(1.5rem,3vw,1.9rem);color:var(--white);margin-bottom:14px;text-transform:uppercase;}
+.card .micro{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.24em;font-size:0.64rem;color:var(--copper);margin-bottom:16px;}
+.card-grid{display:grid;gap:clamp(14px,2vw,22px);grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+.accent-card{position:relative;overflow:hidden;}
+.accent-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--copper),var(--copper-dark));}
+
+/* ---- Tick list ---- */
+.tick-list{list-style:none;}
+.tick-list li{font-size:0.9rem;color:#bdbab4;padding:8px 0 8px 16px;position:relative;border-top:1px solid var(--border);}
+.tick-list li:first-child{border-top:none;}
+.tick-list li::before{content:"";position:absolute;left:0;top:15px;width:6px;height:1px;background:var(--copper);}
+
+/* ---- Chip ---- */
+.chip{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;font-size:0.68rem;color:var(--black);background:var(--copper);display:inline-block;padding:4px 12px;}
+.chip-outline{color:var(--copper-light);background:transparent;border:1px solid var(--copper-dark);}
+
+/* ---- Statement ---- */
+.statement{border-left:2px solid var(--copper);padding:clamp(28px,4vw,52px) clamp(24px,4vw,56px);background:linear-gradient(100deg,rgba(187,114,90,0.06),transparent 60%);}
+.statement p{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:clamp(1.15rem,2.6vw,1.6rem);line-height:1.4;color:var(--white);letter-spacing:0.01em;}
+.statement .accent{color:var(--copper-light);}
+
+/* ---- Panel ---- */
+.panel{border:1px solid var(--copper-dark);background:linear-gradient(120deg,rgba(187,114,90,0.10),transparent 60%);padding:clamp(30px,4.5vw,52px);}
+
+/* ---- Cols ---- */
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);background:var(--card);}
+.cols > div{padding:clamp(26px,3.4vw,40px);position:relative;}
+.cols > div:not(:last-child){border-right:1px solid var(--border);}
+@media(max-width:900px){.cols{grid-template-columns:1fr;}.cols > div:not(:last-child){border-right:none;border-bottom:1px solid var(--border);}}
+
+/* =========================================================
+   HERO
+========================================================= */
+header.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding-top:clamp(36px,6vw,56px);padding-bottom:clamp(44px,6vw,64px);position:relative;overflow:hidden;}
+header.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:45%;background:radial-gradient(ellipse at 28% 100%,rgba(187,114,90,0.12),transparent 70%);pointer-events:none;}
+.hero-top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.hero-doc-tag{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.3em;font-size:0.68rem;color:var(--muted);}
+.hero-mid{position:relative;z-index:2;}
+.hero-client{font-family:'Barlow Condensed',sans-serif;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--copper);font-size:clamp(0.72rem,1.7vw,0.95rem);margin-bottom:clamp(24px,3vw,34px);}
+.hero-client .x{color:var(--muted);margin:0 10px;}
+.hero-title{font-size:clamp(2.9rem,10vw,7.4rem);text-transform:uppercase;color:var(--white);line-height:0.86;}
+.hero-title .row2{color:var(--copper);display:block;}
+.hero-sub{font-family:'Barlow',sans-serif;font-weight:300;color:#cfccc6;font-size:clamp(1rem,2vw,1.24rem);margin-top:clamp(24px,3vw,34px);max-width:60ch;line-height:1.6;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:clamp(16px,3vw,42px);margin-top:clamp(32px,4vw,48px);font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.18em;font-size:0.76rem;color:var(--muted);z-index:2;position:relative;}
+.hero-meta span strong{color:var(--white);font-weight:500;}
+.hero-rule{width:100%;height:1px;background:linear-gradient(90deg,var(--copper-dark),transparent);position:relative;z-index:2;}
+
+/* =========================================================
+   SUMMARY — needs + pillars
+========================================================= */
+.needs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:clamp(30px,4vw,50px);}
+.need{background:var(--card);padding:clamp(26px,3vw,34px);transition:background .4s ease;}
+.need:hover{background:#0f0d0c;}
+.need .n-idx{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.7rem,3vw,2.2rem);color:var(--copper-dark);line-height:0.8;margin-bottom:14px;}
+.need h3{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;font-size:clamp(0.95rem,1.8vw,1.1rem);color:var(--white);line-height:1.15;}
+.pillar-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);background:var(--card);margin-top:clamp(20px,3vw,30px);}
+.pillar-strip > div{padding:clamp(24px,3vw,36px);border-right:1px solid var(--border);}
+.pillar-strip > div:last-child{border-right:none;}
+.pillar-strip .p-l{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.16em;font-size:clamp(0.95rem,1.9vw,1.15rem);color:var(--copper-light);font-weight:600;margin-bottom:10px;}
+.pillar-strip p{font-size:0.88rem;color:#bdbab4;}
+@media(max-width:760px){.pillar-strip{grid-template-columns:1fr;}.pillar-strip > div{border-right:none;border-bottom:1px solid var(--border);}.pillar-strip > div:last-child{border-bottom:none;}}
+.secondary-note{margin-top:clamp(24px,3vw,34px);display:flex;gap:18px;align-items:flex-start;padding:clamp(20px,3vw,28px);border:1px solid var(--border);background:var(--card);}
+.secondary-note .tag{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.2em;font-size:0.6rem;color:var(--copper);margin-bottom:8px;}
+.secondary-note p{font-size:0.9rem;color:#c5c2bc;}
+
+/* =========================================================
+   PARTNERSHIP MODEL — equation
+========================================================= */
+.equation{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(14px,2.4vw,28px);align-items:stretch;margin-top:clamp(30px,4vw,50px);}
+.eq-block{border:1px solid var(--border);background:var(--card);padding:clamp(28px,3.4vw,40px);position:relative;overflow:hidden;}
+.eq-block.dgm{border-color:var(--copper-dark);background:linear-gradient(150deg,rgba(187,114,90,0.09),transparent 65%);}
+.eq-label{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.28em;font-size:0.66rem;color:var(--copper);margin-bottom:8px;}
+.eq-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.7rem,3.4vw,2.3rem);color:var(--white);text-transform:uppercase;line-height:0.9;margin-bottom:6px;}
+.eq-role{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.16em;font-size:0.64rem;color:var(--muted);margin-bottom:22px;}
+.eq-list{list-style:none;}
+.eq-list li{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.1em;font-size:0.82rem;color:#bdbab4;padding:9px 0;border-top:1px solid var(--border);}
+.eq-list li:first-child{border-top:none;}
+.eq-op{display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3rem);color:var(--copper);}
+.eq-result{margin-top:clamp(14px,2vw,22px);border:1px solid var(--copper-dark);background:linear-gradient(120deg,rgba(187,114,90,0.12),transparent 60%);padding:clamp(26px,3.4vw,38px);text-align:center;}
+.eq-result .r-label{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.3em;font-size:0.62rem;color:var(--copper);margin-bottom:14px;}
+.eq-result .r-value{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.6rem);color:var(--white);text-transform:uppercase;line-height:0.9;}
+@media(max-width:820px){.equation{grid-template-columns:1fr;}.eq-op{padding:6px 0;}}
+
+/* =========================================================
+   CAPABILITIES
+========================================================= */
+.cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(14px,2vw,22px);}
+.cap{background:var(--card);border:1px solid var(--border);padding:clamp(28px,3.4vw,38px);position:relative;overflow:hidden;transition:border-color .5s ease,transform .5s ease;}
+.cap:hover{border-color:var(--border-mid);transform:translateY(-3px);}
+.cap::before{content:"";position:absolute;top:0;left:0;width:40px;height:2px;background:var(--copper);}
+.cap-head{display:flex;align-items:baseline;gap:14px;margin-bottom:20px;}
+.cap-head .c-n{font-family:'Barlow Condensed',sans-serif;letter-spacing:0.3em;font-size:0.6rem;color:var(--copper-dark);text-transform:uppercase;}
+.cap-head h3{font-size:clamp(1.2rem,2.3vw,1.5rem);color:var(--white);text-transform:uppercase;line-height:0.95;}
+
+/* Adaptation fan-out */
+.adapt{margin-top:clamp(14px,2vw,22px);border:1px solid var(--copper-dark);background:linear-gradient(120deg,rgba(187,114,90,0.08),transparent 60%);padding:clamp(30px,4vw,48px);}
+.adapt-source{text-align:center;margin-bottom:clamp(24px,3vw,34px);}
+.adapt-source .as-label{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.3em;font-size:0.6rem;color:var(--copper);margin-bottom:12px;}
+.adapt-source .as-value{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.9rem,5vw,3rem);color:var(--white);text-transform:uppercase;}
+.adapt-arrow{text-align:center;color:var(--copper-dark);font-size:1.4rem;margin-bottom:clamp(22px,3vw,30px);}
+.fan{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:1px;background:var(--border);}
+.fan div{background:var(--card);padding:clamp(15px,2vw,20px) 12px;text-align:center;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.14em;font-size:0.72rem;color:#bdbab4;transition:background .4s ease,color .4s ease;}
+.fan div:hover{background:#151110;color:var(--copper-light);}
+
+/* =========================================================
+   CAPACITY RATIONALE
+========================================================= */
+.rationale{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,54px);align-items:center;margin-top:clamp(30px,4vw,50px);}
+@media(max-width:860px){.rationale{grid-template-columns:1fr;}}
+.rationale-workload{list-style:none;border-top:1px solid var(--border);}
+.rationale-workload li{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.08em;font-size:clamp(0.9rem,1.8vw,1.05rem);color:#bdbab4;padding:16px 0 16px 22px;position:relative;border-bottom:1px solid var(--border);}
+.rationale-workload li::before{content:"";position:absolute;left:0;top:24px;width:10px;height:1px;background:var(--copper);}
+.rationale-workload li strong{color:var(--white);font-weight:500;}
+.rationale-arrow{text-align:center;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.3em;font-size:0.62rem;color:var(--copper);margin:clamp(20px,3vw,28px) 0;}
+
+/* =========================================================
+   PROCESS / SYSTEM
+========================================================= */
+.process{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:clamp(20px,3vw,34px);}
+.pstep{background:var(--card);padding:clamp(26px,3vw,36px);position:relative;transition:background .4s ease;}
+.pstep:hover{background:#0f0d0c;}
+.pstep .ps-n{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.7rem,3vw,2.2rem);color:var(--copper-dark);line-height:0.8;margin-bottom:16px;}
+.pstep h3{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;font-size:0.92rem;color:var(--copper-light);margin-bottom:12px;}
+.pstep p{font-size:0.85rem;color:#bdbab4;line-height:1.6;}
+
+/* Horizontal flow (integration) */
+.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(8px,1.4vw,16px);margin-top:clamp(24px,3vw,38px);border:1px solid var(--border);background:var(--card);padding:clamp(26px,3.6vw,42px);}
+.flow .node{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.16em;font-size:clamp(0.78rem,1.5vw,0.95rem);color:var(--white);transition:transform .4s ease,color .4s ease;}
+.flow .node:hover{color:var(--copper-light);transform:translateX(3px);}
+.flow .fa{color:var(--copper-dark);}
+@media(max-width:680px){.flow{flex-direction:column;}.flow .fa{transform:rotate(90deg);}}
+.ops-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:clamp(20px,3vw,30px);}
+.ops-grid div{background:var(--card);padding:clamp(16px,2vw,22px);font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.12em;font-size:0.78rem;color:#bdbab4;transition:background .4s ease,color .4s ease;}
+.ops-grid div:hover{background:#151110;color:var(--copper-light);}
+
+/* =========================================================
+   PRICING
+========================================================= */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,22px);margin-top:clamp(30px,4vw,50px);align-items:start;}
+@media(max-width:960px){.price-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto;}}
+.price{background:var(--card);border:1px solid var(--border);padding:clamp(30px,3.4vw,42px) clamp(26px,3vw,36px);position:relative;overflow:hidden;transition:border-color .5s ease,transform .5s ease;display:flex;flex-direction:column;}
+.price:hover{border-color:var(--border-mid);transform:translateY(-4px);}
+.price.featured{border-color:var(--copper);background:linear-gradient(170deg,rgba(187,114,90,0.10),transparent 55%);transform:translateY(-10px);}
+.price.featured:hover{transform:translateY(-14px);}
+@media(max-width:960px){.price.featured{transform:none;}.price.featured:hover{transform:translateY(-4px);}}
+.price::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--copper-dark),transparent);}
+.price.featured::before{background:linear-gradient(90deg,var(--copper),var(--copper-dark));height:3px;}
+.price-badge{position:absolute;top:0;right:0;background:var(--copper);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;font-size:0.6rem;padding:6px 14px;}
+.price .opt-num{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.3em;font-size:0.6rem;color:var(--copper-dark);margin-bottom:16px;}
+.price h3{font-size:clamp(1.5rem,2.8vw,1.95rem);color:var(--white);text-transform:uppercase;line-height:0.95;margin-bottom:6px;}
+.price .positioning{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.14em;font-size:0.66rem;color:var(--copper);margin-bottom:20px;min-height:2.4em;}
+.price .amount{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,3.8rem);color:var(--white);line-height:0.85;}
+.price .amount .cur{color:var(--copper);font-size:0.55em;vertical-align:top;}
+.price .per{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.24em;font-size:0.66rem;color:var(--muted);margin-top:8px;margin-bottom:22px;}
+.price .desc{font-size:0.9rem;color:#c5c2bc;margin-bottom:22px;line-height:1.6;}
+.price .incl-label{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.2em;font-size:0.58rem;color:var(--copper);margin-bottom:12px;}
+.price .tick-list{margin-bottom:24px;}
+.price .tick-list li{font-size:0.85rem;}
+.price .suited{margin-top:auto;padding-top:20px;border-top:1px solid var(--border);}
+.price .suited .s-l{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.2em;font-size:0.56rem;color:var(--muted);margin-bottom:8px;}
+.price .suited p{font-size:0.85rem;color:#bdbab4;}
+.capacity-note{margin-top:clamp(28px,4vw,42px);border-left:2px solid var(--copper);background:linear-gradient(100deg,rgba(187,114,90,0.06),transparent 60%);padding:clamp(22px,3vw,32px) clamp(24px,3.4vw,40px);}
+.capacity-note p{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:clamp(0.95rem,1.9vw,1.15rem);color:#cfccc6;line-height:1.55;letter-spacing:0.01em;}
+.capacity-note p strong{color:var(--white);font-weight:500;}
+
+/* =========================================================
+   ADDITIONAL SERVICES
+========================================================= */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(14px,2vw,22px);}
+
+/* =========================================================
+   RECOMMENDED STARTING POINT
+========================================================= */
+.rec-hero{border:1px solid var(--copper-dark);background:linear-gradient(135deg,rgba(187,114,90,0.12),transparent 62%);padding:clamp(34px,5vw,60px);text-align:center;margin-bottom:clamp(24px,3vw,38px);}
+.rec-hero .rh-label{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.3em;font-size:0.62rem;color:var(--copper);margin-bottom:18px;}
+.rec-hero .rh-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,6vw,4rem);color:var(--white);text-transform:uppercase;line-height:0.9;}
+.rec-hero .rh-price{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,3.4vw,2.2rem);color:var(--copper);margin-top:12px;}
+.calib-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,3.4vw,2.2rem);color:var(--white);text-transform:uppercase;margin-bottom:8px;}
+.calib-chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:clamp(20px,3vw,30px);}
+.calib-chips div{background:var(--card);padding:clamp(18px,2.4vw,26px);text-align:center;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.16em;font-size:0.78rem;color:#bdbab4;transition:background .4s ease,color .4s ease;}
+.calib-chips div:hover{background:#151110;color:var(--copper-light);}
+
+/* =========================================================
+   NEXT STEPS
+========================================================= */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(14px,2vw,22px);margin-top:clamp(20px,3vw,34px);}
+.nstep{background:var(--card);border:1px solid var(--border);padding:clamp(28px,3.4vw,38px);transition:border-color .5s ease,transform .5s ease;}
+.nstep:hover{border-color:var(--border-mid);transform:translateY(-3px);}
+.nstep .ns-n{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,3.2rem);color:var(--copper-dark);line-height:0.8;margin-bottom:18px;display:block;}
+.nstep p{font-size:0.92rem;color:#c5c2bc;}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer{padding:clamp(56px,8vw,100px) 0 clamp(40px,5vw,60px);text-align:center;position:relative;overflow:hidden;}
+footer::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60%;background:radial-gradient(ellipse at 50% 100%,rgba(187,114,90,0.10),transparent 70%);pointer-events:none;}
+footer .lockup{justify-content:center;position:relative;z-index:2;}
+.footer-mark{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,5vw,3.2rem);color:var(--white);text-transform:uppercase;letter-spacing:0.04em;margin-top:clamp(30px,4vw,46px);position:relative;z-index:2;}
+.footer-mark .x{color:var(--copper);}
+.footer-chain{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);text-transform:uppercase;letter-spacing:0.08em;margin-top:clamp(24px,3vw,34px);position:relative;z-index:2;line-height:0.95;}
+.footer-chain span{color:var(--white);}
+.footer-chain span.c{color:var(--copper);}
+.footer-meta{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.3em;font-size:0.64rem;color:var(--muted);margin-top:26px;position:relative;z-index:2;}
+
+/* =========================================================
+   PRINT
+========================================================= */
+@media print{
+  body{background:#fff;color:#000;}
+  .grain,.progress-rail,header.hero::after,footer::after{display:none;}
+  .reveal{opacity:1!important;transform:none!important;}
+  .card,.price,.cap,.eq-block,.pstep,.need,.panel,.nstep,.tile{break-inside:avoid;}
+  section{padding:24px 0;}
+  header.hero,.rec-hero{min-height:auto;}
+  .hero-title,h2.section-title,.card h3,.price h3,.cap-head h3,.eq-name,.rh-name{color:#111;}
+  p,.lead{color:#333;}
+  .divider{opacity:1;}
+  .reveal,.lockup-mark span{animation:none!important;opacity:1!important;}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+  html{scroll-behavior:auto;}
+  .lockup-mark span{animation:none!important;}
+}
+</style>
+</head>
+<body>
+<svg class="grain"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+<div class="progress-rail" id="rail"></div>
+
+<!-- ============================================================
+     01 — COVER
+============================================================ -->
+<header class="hero">
+  <div class="wrap hero-top">
+    <div class="lockup">
+      <div class="lockup-mark"><span></span><span></span><span></span><span></span></div>
+      <div class="lockup-name">Daily Grind Media</div>
+    </div>
+    <div class="hero-doc-tag">Creative Production Partnership</div>
+  </div>
+
+  <div class="wrap hero-mid">
+    <div class="hero-client reveal">Daily Grind Media <span class="x">×</span> BluPeak Federal Credit Union</div>
+    <h1 class="hero-title reveal">Creative<br>Production<span class="row2">Partnership</span></h1>
+    <p class="hero-sub reveal">A flexible creative partnership designed to extend BluPeak's internal marketing capabilities across digital advertising, design, video, motion, and cross-channel campaign production.</p>
+    <div class="hero-meta reveal">
+      <span>Prepared for <strong>BluPeak Federal Credit Union</strong></span>
+      <span>Prepared by <strong>Daily Grind Media</strong></span>
+      <span>Scope <strong>Creative &amp; Production</strong></span>
+    </div>
+  </div>
+
+  <div class="wrap"><div class="hero-rule reveal"></div></div>
+</header>
+
+<!-- ============================================================
+     02 — EXECUTIVE SUMMARY / WHAT WE HEARD
+============================================================ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="summary">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">02</span> Executive Summary</div>
+    <h2 class="section-title reveal">Creative Capacity.<br>Without Building It All In-House.</h2>
+    <p class="lead reveal">BluPeak is looking for a flexible creative partner that extends its internal marketing department—providing access to design, video, motion, and production capabilities without building each discipline internally. Across our conversations, four primary needs emerged.</p>
+
+    <div class="needs reveal">
+      <div class="need"><div class="n-idx">01</div><h3>Digital Advertising Creative</h3></div>
+      <div class="need"><div class="n-idx">02</div><h3>Video Production + Editing</h3></div>
+      <div class="need"><div class="n-idx">03</div><h3>Graphic Design</h3></div>
+      <div class="need"><div class="n-idx">04</div><h3>Creative Adaptation + Production</h3></div>
+    </div>
+
+    <div class="pillar-strip reveal">
+      <div><div class="p-l">Creative Capacity</div><p>Reliable access to a multidisciplinary creative team.</p></div>
+      <div><div class="p-l">Execution at Scale</div><p>Efficient production and adaptation across formats and channels.</p></div>
+      <div><div class="p-l">Flexible Support</div><p>Support that can scale between recurring work and project-based needs.</p></div>
+    </div>
+
+    <div class="secondary-note reveal">
+      <div class="icon-chip"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+      <div>
+        <div class="tag">Secondary · Project-Based</div>
+        <p>BluPeak also identified interest in <strong>HubSpot journey implementation</strong>—supported as a distinct, project-based scope rather than part of monthly creative capacity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 — PARTNERSHIP MODEL
+============================================================ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="model">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">03</span> Partnership Model</div>
+    <h2 class="section-title reveal">Your Marketing Team.<br>Extended.</h2>
+    <p class="lead reveal">BluPeak maintains full strategic and compliance ownership. Daily Grind Media extends execution capacity—together forming a single, scalable creative engine.</p>
+
+    <div class="equation">
+      <div class="eq-block reveal">
+        <div class="eq-label">Retained by</div>
+        <div class="eq-name">BluPeak</div>
+        <div class="eq-role">Strategy &amp; Ownership</div>
+        <ul class="eq-list">
+          <li>Brand &amp; Marketing Strategy</li>
+          <li>Product Direction</li>
+          <li>Campaign Priorities</li>
+          <li>Core Messaging</li>
+          <li>Compliance Approval</li>
+          <li>Final Approval</li>
+        </ul>
+      </div>
+
+      <div class="eq-op reveal">+</div>
+
+      <div class="eq-block dgm reveal">
+        <div class="eq-label">Delivered by</div>
+        <div class="eq-name">Daily Grind Media</div>
+        <div class="eq-role">Creative &amp; Execution</div>
+        <ul class="eq-list">
+          <li>Creative Development</li>
+          <li>Design</li>
+          <li>Video</li>
+          <li>Motion</li>
+          <li>Adaptation</li>
+          <li>Production</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="eq-result reveal">
+      <div class="r-label">The Result</div>
+      <div class="r-value">Scalable Creative Execution</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 — CREATIVE CAPABILITIES
+============================================================ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="capabilities">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">04</span> Creative Capabilities</div>
+    <h2 class="section-title reveal">A Full Creative<br>Discipline Set.</h2>
+    <p class="lead reveal">Four connected capability areas—from campaign design to multi-format adaptation—accessed through one coordinated team.</p>
+
+    <div class="cap-grid" style="margin-top:clamp(30px,4vw,50px);">
+      <div class="cap reveal">
+        <div class="cap-head"><span class="c-n">01</span><h3>Digital Campaign Creative</h3></div>
+        <ul class="tick-list">
+          <li>Paid advertising creative</li>
+          <li>Static campaign design</li>
+          <li>Display creative</li>
+          <li>Animated digital creative</li>
+          <li>Campaign visual development</li>
+          <li>Creative variations</li>
+        </ul>
+      </div>
+
+      <div class="cap reveal">
+        <div class="cap-head"><span class="c-n">02</span><h3>Design + Collateral</h3></div>
+        <ul class="tick-list">
+          <li>Digital collateral</li>
+          <li>Print collateral</li>
+          <li>Brochures &amp; flyers</li>
+          <li>Presentations</li>
+          <li>Signage</li>
+          <li>Campaign graphics</li>
+        </ul>
+      </div>
+
+      <div class="cap reveal">
+        <div class="cap-head"><span class="c-n">03</span><h3>Video + Motion</h3></div>
+        <ul class="tick-list">
+          <li>Short-form advertising</li>
+          <li>Product / service videos</li>
+          <li>:06 / :15 / :30 adaptations</li>
+          <li>Video editing</li>
+          <li>Motion graphics</li>
+          <li>Animated display &amp; cutdowns</li>
+        </ul>
+      </div>
+
+      <div class="cap reveal">
+        <div class="cap-head"><span class="c-n">04</span><h3>Creative Adaptation</h3></div>
+        <p style="font-size:0.9rem;color:#c5c2bc;">One approved campaign, efficiently translated across the sizes, placements, and formats required for distribution.</p>
+      </div>
+    </div>
+
+    <div class="adapt reveal">
+      <div class="adapt-source">
+        <div class="as-label">Start From</div>
+        <div class="as-value">One Approved Campaign</div>
+      </div>
+      <div class="adapt-arrow">↓</div>
+      <div class="fan">
+        <div>Size</div>
+        <div>Placement</div>
+        <div>Platform</div>
+        <div>Format</div>
+        <div>Aspect Ratio</div>
+        <div>Motion</div>
+        <div>Video</div>
+        <div>Print</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05 — WHY RESERVED CAPACITY
+============================================================ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="capacity">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">05</span> Why Reserved Capacity</div>
+    <h2 class="section-title reveal">Capacity Built<br>Around Real Demand.</h2>
+    <p class="lead reveal">BluPeak described a variable, multidisciplinary creative workload. Rather than forcing those needs into a rigid deliverables package, DGM reserves creative capacity that can be directed toward the highest-priority initiatives each month.</p>
+
+    <div class="rationale">
+      <div class="reveal">
+        <ul class="rationale-workload">
+          <li><strong>5–8</strong> digital advertising initiatives</li>
+          <li>Multi-size campaign adaptations</li>
+          <li>Short-form video</li>
+          <li>Cross-sale creative</li>
+          <li>Ongoing collateral needs</li>
+        </ul>
+        <div class="rationale-arrow">Allocated flexibly against priority ↓</div>
+      </div>
+      <div class="statement reveal">
+        <p>Reserved capacity means the <span class="accent">right mix of disciplines</span> is available each month—directed toward what matters most, without paying for a fixed package that rarely matches real demand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 — CAMPAIGN PRODUCTION SYSTEM
+============================================================ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="system">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">06</span> Campaign Production System</div>
+    <h2 class="section-title reveal">From Master Creative<br>To Multi-Channel Execution.</h2>
+    <p class="lead reveal">A structured flow keeps every campaign organized, approved, and consistently deployed across channels.</p>
+
+    <div class="process reveal">
+      <div class="pstep"><div class="ps-n">01</div><h3>Brief</h3><p>Objectives, messaging, audience, channels, required disclosures, and deliverables.</p></div>
+      <div class="pstep"><div class="ps-n">02</div><h3>Create</h3><p>DGM develops or executes the approved creative direction.</p></div>
+      <div class="pstep"><div class="ps-n">03</div><h3>Approve</h3><p>Master creative is reviewed and approved by BluPeak.</p></div>
+      <div class="pstep"><div class="ps-n">04</div><h3>Adapt</h3><p>Approved creative is translated into required sizes, placements, and formats.</p></div>
+      <div class="pstep"><div class="ps-n">05</div><h3>Deliver</h3><p>Final assets are organized, versioned, and prepared for deployment.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     07 — HOW DGM INTEGRATES / REGULATED WORKFLOW
+============================================================ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="integrate">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">07</span> How DGM Integrates</div>
+    <h2 class="section-title reveal">One Creative Partner.<br>Built To Work Within Your Process.</h2>
+    <p class="lead reveal">Instead of coordinating a designer, editor, motion designer, production company, and freelancer separately, BluPeak works with one coordinated team—operating cleanly inside your existing compliance and approval process.</p>
+
+    <div class="flow reveal">
+      <span class="node">Request</span><span class="fa">→</span>
+      <span class="node">Prioritize</span><span class="fa">→</span>
+      <span class="node">Produce</span><span class="fa">→</span>
+      <span class="node">Review</span><span class="fa">→</span>
+      <span class="node">Adapt</span><span class="fa">→</span>
+      <span class="node">Deliver</span>
+    </div>
+
+    <div class="ops-grid reveal">
+      <div>Briefs</div>
+      <div>Priorities</div>
+      <div>Feedback</div>
+      <div>Approvals</div>
+      <div>Asset Delivery</div>
+      <div>Version Control</div>
+      <div>Approved Disclosure Language</div>
+      <div>Structured Revision Cycles</div>
+      <div>Campaign-Specific Organization</div>
+      <div>Multi-Format Consistency</div>
+      <div>Final Approval Checkpoints</div>
+      <div>Archived Deliverables</div>
+    </div>
+
+    <div class="statement reveal" style="margin-top:clamp(28px,4vw,42px);">
+      <p>BluPeak retains final responsibility for <span class="accent">product claims, rates, disclosures, regulatory requirements, and compliance approval.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     08 — PARTNERSHIP OPTIONS
+============================================================ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="options">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">08</span> Partnership Options</div>
+    <h2 class="section-title reveal">Reserved Creative<br>Capacity.</h2>
+    <p class="lead reveal">Three engagement levels, each built around reserved creative capacity that scales with how much production BluPeak assigns to DGM.</p>
+
+    <div class="price-grid">
+      <!-- Option 1 -->
+      <div class="price reveal">
+        <div class="opt-num">Option 01</div>
+        <h3>Creative Support</h3>
+        <div class="positioning">Execution-Focused Overflow Support</div>
+        <div class="amount"><span class="cur">$</span>5,000</div>
+        <div class="per">Per Month</div>
+        <p class="desc">Best when BluPeak's strategy and creative direction are already established, and DGM executes, adapts, and produces against approved concepts.</p>
+        <div class="incl-label">Includes</div>
+        <ul class="tick-list">
+          <li>Execution of established campaign concepts</li>
+          <li>Graphic design production</li>
+          <li>Standard creative adaptations</li>
+          <li>Existing-footage video editing</li>
+          <li>Existing campaign support</li>
+          <li>Collateral production</li>
+          <li>DGM project coordination</li>
+          <li>Defined monthly creative capacity</li>
+        </ul>
+        <div class="suited">
+          <div class="s-l">Best Suited For</div>
+          <p>Controlled, prioritized overflow when direction is set internally.</p>
+        </div>
+      </div>
+
+      <!-- Option 2 — FEATURED -->
+      <div class="price featured reveal">
+        <div class="price-badge">Recommended</div>
+        <div class="opt-num">Option 02</div>
+        <h3>Embedded Creative Partner</h3>
+        <div class="positioning">Execution + Creative Development</div>
+        <div class="amount"><span class="cur">$</span>7,500</div>
+        <div class="per">Per Month</div>
+        <p class="desc">Where DGM begins functioning as a meaningful extension of BluPeak's internal team—developing concepts, not only executing them.</p>
+        <div class="incl-label">Expanded capacity for</div>
+        <ul class="tick-list">
+          <li>Concurrent campaigns</li>
+          <li>Creative concept development</li>
+          <li>Multi-format campaign production</li>
+          <li>Short-form video</li>
+          <li>Motion creative</li>
+          <li>Cross-sale / product campaign support</li>
+          <li>Higher adaptation volume</li>
+          <li>Ongoing collateral needs</li>
+          <li>Priority production scheduling</li>
+          <li>More complex monthly production mix</li>
+        </ul>
+        <div class="suited">
+          <div class="s-l">Best Suited For</div>
+          <p>An ongoing extension of BluPeak's internal marketing department.</p>
+        </div>
+      </div>
+
+      <!-- Option 3 -->
+      <div class="price reveal">
+        <div class="opt-num">Option 03</div>
+        <h3>Priority Creative Studio</h3>
+        <div class="positioning">Highest Throughput + Deepest Integration</div>
+        <div class="amount"><span class="cur">$</span>10,000</div>
+        <div class="per">Per Month</div>
+        <p class="desc">For higher campaign volume and multiple concurrent initiatives, with senior oversight and priority access to DGM's production resources.</p>
+        <div class="incl-label">Includes</div>
+        <ul class="tick-list">
+          <li>Highest monthly production capacity</li>
+          <li>Priority campaign scheduling</li>
+          <li>Multiple concurrent initiatives</li>
+          <li>Expanded creative development</li>
+          <li>Increased video + motion capacity</li>
+          <li>Higher adaptation volume</li>
+          <li>Increased collateral support</li>
+          <li>Senior creative oversight</li>
+          <li>Priority access to DGM production resources</li>
+          <li>Greater flexibility during high-volume months</li>
+        </ul>
+        <div class="suited">
+          <div class="s-l">Best Suited For</div>
+          <p>Assigning a larger share of BluPeak's ongoing creative workload to DGM.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="capacity-note reveal">
+      <p>Monthly engagement levels represent <strong>reserved creative capacity—not unlimited production.</strong> Final capacity allocations and anticipated monthly production mix will be established based on BluPeak's campaign requirements and priorities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     09 — ADDITIONAL / PROJECT-BASED SERVICES
+============================================================ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="additional">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">09</span> Additional Services</div>
+    <h2 class="section-title reveal">Scoped Beyond<br>Monthly Capacity.</h2>
+    <p class="lead reveal">Larger or specialized initiatives are scoped independently, keeping monthly creative capacity focused and predictable.</p>
+
+    <div class="svc-grid" style="margin-top:clamp(30px,4vw,50px);">
+      <div class="card reveal accent-card">
+        <div class="micro">Project-Based</div>
+        <h3>Original Video<br>Production</h3>
+        <p style="font-size:0.9rem;color:#c5c2bc;">Original on-location productions requiring DGM crew, equipment, significant pre-production, locations, talent, or specialized production are scoped independently based on campaign requirements.</p>
+      </div>
+
+      <div class="card reveal accent-card">
+        <div class="micro">Implementation</div>
+        <h3>HubSpot Journey<br>Implementation</h3>
+        <p style="font-size:0.9rem;color:#c5c2bc;margin-bottom:16px;">DGM can support implementation of approved journeys and automations within BluPeak's existing HubSpot environment.</p>
+        <ul class="tick-list">
+          <li>Workflow configuration</li>
+          <li>Journey construction</li>
+          <li>Branching / automation logic</li>
+          <li>List / segmentation implementation</li>
+          <li>Testing &amp; QA</li>
+          <li>Deployment support</li>
+        </ul>
+        <p style="font-size:0.82rem;color:var(--muted);margin-top:16px;">BluPeak provides approved strategy, messaging, content, and campaign logic. Project pricing is determined by journey complexity.</p>
+      </div>
+
+      <div class="card reveal accent-card">
+        <div class="micro">Larger Initiatives</div>
+        <h3>Expanded<br>Campaign Projects</h3>
+        <p style="font-size:0.9rem;color:#c5c2bc;">Large campaign launches, major concept development, advanced motion / animation, extensive production, or work exceeding reserved capacity can be separately scoped.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10 — RECOMMENDED STARTING POINT + NEXT STEPS
+============================================================ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="recommended">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">10</span> Recommended Starting Point</div>
+    <h2 class="section-title reveal">Where We Suggest<br>Beginning.</h2>
+
+    <div class="rec-hero reveal">
+      <div class="rh-label">Recommended Engagement</div>
+      <div class="rh-name">Embedded Creative Partner</div>
+      <div class="rh-price">$7,500 / Month</div>
+    </div>
+
+    <p class="lead reveal">Based on BluPeak's current needs, we recommend beginning with the Embedded Creative Partner engagement. It supports recurring campaign production, design, adaptation, video, and creative development—while both teams establish a real-world understanding of monthly production volume.</p>
+
+    <div class="panel reveal" style="margin-top:clamp(24px,3vw,36px);">
+      <div class="rh-label" style="font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.3em;font-size:0.62rem;color:var(--copper);margin-bottom:14px;">Operational Calibration</div>
+      <div class="calib-title">90-Day Calibration Period</div>
+      <p style="font-size:0.95rem;color:#c5c2bc;max-width:64ch;">During the first 90 days, DGM and BluPeak will evaluate real production patterns together, allowing both teams to align creative capacity with actual campaign volume, workflow, and production demand.</p>
+      <div class="calib-chips">
+        <div>Campaign Volume</div>
+        <div>Creative Mix</div>
+        <div>Adaptation Volume</div>
+        <div>Video Requirements</div>
+        <div>Approval Cycles</div>
+        <div>Production Demand</div>
+        <div>Turnaround Requirements</div>
+      </div>
+      <p style="font-size:0.9rem;color:#bdbab4;margin-top:22px;">Following this period, both teams confirm whether the selected capacity level appropriately supports BluPeak's ongoing needs.</p>
+    </div>
+
+    <h2 class="section-title reveal" style="margin-top:clamp(56px,8vw,90px);font-size:clamp(1.8rem,4.5vw,3rem);">Next Steps.</h2>
+    <div class="steps-grid">
+      <div class="nstep reveal"><span class="ns-n">01</span><p>Finalize anticipated monthly production mix and campaign requirements.</p></div>
+      <div class="nstep reveal"><span class="ns-n">02</span><p>Select initial creative capacity level.</p></div>
+      <div class="nstep reveal"><span class="ns-n">03</span><p>Establish workflow, communication, intake, approvals, and asset management.</p></div>
+      <div class="nstep reveal"><span class="ns-n">04</span><p>Launch the partnership and begin the 90-day calibration period.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<footer>
+  <div class="wrap">
+    <div class="lockup">
+      <div class="lockup-mark"><span></span><span></span><span></span><span></span></div>
+      <div class="lockup-name">Daily Grind Media</div>
+    </div>
+    <div class="footer-mark reveal">Daily Grind Media <span class="x">×</span> BluPeak Federal Credit Union</div>
+    <div class="footer-chain reveal">
+      <span class="c">Creative.</span> <span>Production.</span> <span>Execution.</span>
+    </div>
+    <div class="footer-meta reveal">Creative Production Partnership</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});}
+  else{
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e){io.observe(e);});
+  }
+  var rail=document.getElementById('rail');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    var pct=max>0?(h.scrollTop||document.body.scrollTop)/max*100:0;
+    rail.style.width=pct+'%';
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>
