@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Grind Media — Content System Proposal for Chance Dyck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600&family=Barlow:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#080808;--card:#111111;--border:#1E1E1E;--border-mid:#2A2A2A;
+  --copper:#BB725A;--copper-light:#D4937D;--copper-dark:#8A4F3B;
+  --white:#F5F3F0;--muted:#777777;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;position:relative;-webkit-font-smoothing:antialiased;}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.04;mix-blend-mode:overlay;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,64px);}
+section{padding:clamp(56px,9vw,120px) 0;position:relative;}
+h1,h2,h3{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:0.02em;line-height:0.98;}
+
+/* eyebrow / section number */
+.eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.42em;font-size:clamp(0.62rem,1.3vw,0.74rem);color:var(--copper);margin-bottom:clamp(18px,3vw,28px);display:flex;align-items:center;gap:14px;}
+.eyebrow::before{content:"";width:32px;height:1px;background:var(--copper);display:inline-block;flex:none;}
+.sec-num{font-family:'Barlow Condensed',sans-serif;font-weight:300;letter-spacing:0.4em;color:var(--copper-dark);font-size:0.7rem;text-transform:uppercase;}
+h2.section-title{font-size:clamp(2.4rem,7vw,4.6rem);color:var(--white);margin-bottom:clamp(28px,4vw,40px);text-transform:uppercase;}
+.lead{font-family:'Barlow',sans-serif;font-weight:300;font-size:clamp(1rem,2vw,1.18rem);color:#cfccc6;max-width:64ch;}
+p{font-weight:300;color:#bdbab4;}
+p strong{color:var(--white);font-weight:500;}
+.serif{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--copper-light);}
+
+/* divider */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--copper-dark) 18%,var(--copper) 50%,var(--copper-dark) 82%,transparent);border:none;margin:0 auto;width:100%;opacity:0.55;}
+.divider-block{padding:0;}
+.divider-block .wrap{padding-top:0;padding-bottom:0;}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+
+/* lockup */
+.lockup{display:flex;align-items:center;gap:14px;z-index:2;}
+.lockup-mark{display:flex;gap:3px;align-items:flex-end;height:26px;}
+.lockup-mark span{display:block;width:3px;background:var(--copper);border-radius:1px;animation:grind 2.2s ease-in-out infinite;}
+.lockup-mark span:nth-child(1){height:40%;animation-delay:0s;}
+.lockup-mark span:nth-child(2){height:75%;animation-delay:.2s;}
+.lockup-mark span:nth-child(3){height:55%;animation-delay:.4s;}
+.lockup-mark span:nth-child(4){height:100%;animation-delay:.6s;}
+@keyframes grind{0%,100%{transform:scaleY(1);opacity:0.85;}50%{transform:scaleY(0.45);opacity:1;}}
+.lockup-name{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.34em;font-size:0.82rem;color:var(--white);}
+
+/* ===== HERO ===== */
+header.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding-top:clamp(36px,6vw,56px);padding-bottom:clamp(36px,6vw,56px);position:relative;}
+header.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:46%;background:radial-gradient(ellipse at 28% 100%,rgba(187,114,90,0.12),transparent 70%);pointer-events:none;}
+.hero-mid{position:relative;z-index:2;}
+.hero-client{font-family:'Barlow Condensed',sans-serif;font-weight:400;letter-spacing:0.34em;text-transform:uppercase;color:var(--copper);font-size:clamp(0.72rem,1.6vw,0.9rem);margin-bottom:clamp(20px,3vw,30px);}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.7rem,8vw,6.4rem);text-transform:uppercase;color:var(--white);line-height:0.9;}
+.hero-title .row2{color:var(--copper);display:block;font-size:clamp(1.5rem,4.4vw,3.4rem);margin-top:clamp(10px,1.4vw,18px);letter-spacing:0.01em;}
+.hero-sub{font-family:'Barlow',sans-serif;font-weight:300;color:#cfccc6;font-size:clamp(1rem,1.7vw,1.14rem);margin-top:clamp(26px,3.4vw,38px);max-width:58ch;line-height:1.72;}
+.hero-sub strong{color:var(--white);font-weight:500;}
+.hero-foot{position:relative;z-index:2;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:clamp(24px,4vw,48px);}
+.hero-meta{display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,52px);font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.18em;font-size:0.78rem;color:var(--muted);}
+.hero-meta .mlbl{display:block;font-size:0.62rem;letter-spacing:0.3em;margin-bottom:6px;color:var(--copper-dark);}
+.hero-meta strong{color:var(--white);font-weight:500;font-size:0.92rem;}
+/* hero offer chip */
+.hero-offer{border:1px solid var(--copper-dark);background:linear-gradient(120deg,rgba(187,114,90,0.12),transparent 62%);padding:clamp(22px,2.6vw,30px) clamp(26px,3vw,38px);min-width:min(320px,100%);}
+.hero-offer .badge{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;font-size:0.62rem;color:var(--black);background:var(--copper);display:inline-block;padding:4px 12px;margin-bottom:16px;}
+.hero-offer .oname{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.7rem,3vw,2.2rem);color:var(--white);text-transform:uppercase;line-height:0.95;}
+.hero-offer .oprice{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,2.9rem);color:var(--copper);line-height:1;margin-top:6px;}
+.hero-offer .oprice .u{font-size:0.42em;color:var(--copper-light);letter-spacing:0.08em;}
+
+/* ===== card grids ===== */
+.card-grid{display:grid;gap:clamp(14px,2vw,22px);grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+.card{background:var(--card);border:1px solid var(--border);padding:clamp(24px,3vw,34px);transition:border-color .5s ease,transform .5s ease;position:relative;}
+.card:hover{border-color:var(--copper-dark);transform:translateY(-3px);}
+.card .micro{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.24em;font-size:0.62rem;color:var(--copper);margin-bottom:14px;}
+.card h3{font-size:clamp(1.4rem,2.6vw,1.8rem);color:var(--white);margin-bottom:12px;text-transform:uppercase;}
+.card p{font-size:0.94rem;line-height:1.62;}
+
+/* accent-card */
+.accent-card{overflow:hidden;}
+.accent-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--copper),var(--copper-dark));}
+
+/* objective statement */
+.mini-statement{margin-top:clamp(34px,4vw,52px);border-left:2px solid var(--copper);padding:clamp(22px,3vw,34px) clamp(22px,3.4vw,40px);background:linear-gradient(100deg,rgba(187,114,90,0.06),transparent 60%);}
+.mini-statement p{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(1.25rem,3vw,1.9rem);line-height:1.34;color:var(--white);}
+.mini-statement .accent{color:var(--copper-light);}
+
+/* ===== process flow (vertical) ===== */
+.flow{display:flex;flex-direction:column;align-items:stretch;gap:0;max-width:640px;margin:clamp(10px,2vw,20px) auto 0;}
+.flow-node{background:var(--card);border:1px solid var(--border);border-left:2px solid var(--copper-dark);padding:clamp(16px,2.2vw,22px) clamp(20px,3vw,30px);display:flex;align-items:center;gap:18px;transition:border-color .5s ease,transform .5s ease;}
+.flow-node:hover{border-left-color:var(--copper);transform:translateX(4px);}
+.flow-node .fn{font-family:'Barlow Condensed',sans-serif;font-weight:300;letter-spacing:0.3em;font-size:0.72rem;color:var(--copper-dark);flex:none;width:34px;}
+.flow-node .ft{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.15rem,2.4vw,1.6rem);color:var(--white);text-transform:uppercase;letter-spacing:0.02em;line-height:1;}
+.flow-node.final{border-left-color:var(--copper);background:linear-gradient(100deg,rgba(187,114,90,0.08),transparent 60%);}
+.flow-node.final .ft{color:var(--copper);}
+.flow-arrow{color:var(--copper-dark);text-align:center;font-size:1.1rem;line-height:1;padding:8px 0;}
+
+/* time equation block */
+.equation{margin-top:clamp(40px,5vw,64px);border:1px solid var(--copper-dark);background:linear-gradient(120deg,rgba(187,114,90,0.10),transparent 62%);padding:clamp(30px,4.5vw,56px);text-align:center;}
+.equation .eq-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(14px,3vw,34px);}
+.equation .eq-item{font-family:'Bebas Neue',sans-serif;text-transform:uppercase;line-height:0.92;}
+.equation .eq-item .big{display:block;font-size:clamp(2rem,5.5vw,3.6rem);color:var(--white);}
+.equation .eq-item .big.copper{color:var(--copper);}
+.equation .eq-item .sm{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:0.72rem;letter-spacing:0.24em;color:var(--muted);margin-top:8px;}
+.equation .eq-arrow{color:var(--copper-dark);font-size:clamp(1.4rem,3vw,2.2rem);}
+@media(max-width:640px){.equation .eq-row{flex-direction:column;}.equation .eq-arrow{transform:rotate(90deg);}}
+
+/* ===== AUTHORITY FLYWHEEL ===== */
+.flywheel-wrap{margin-top:clamp(40px,6vw,72px);display:flex;justify-content:center;position:relative;}
+.flywheel-stage{position:relative;width:min(680px,100%);}
+/* radial glow behind the wheel */
+.flywheel-stage::before{content:"";position:absolute;inset:-8%;
+  background:radial-gradient(circle at 50% 50%,rgba(187,114,90,0.14),rgba(187,114,90,0.04) 42%,transparent 68%);
+  pointer-events:none;z-index:0;}
+.fw-svg{display:block;width:100%;height:auto;position:relative;z-index:1;overflow:visible;}
+
+/* orbital rings */
+.fw-orbit{fill:none;stroke:var(--copper-dark);stroke-width:1;opacity:0.35;}
+.fw-orbit-inner{fill:none;stroke:var(--border-mid);stroke-width:1;opacity:0.6;}
+.fw-spoke{stroke:var(--border-mid);stroke-width:1;opacity:0;transition:opacity .6s ease,stroke .5s ease;}
+.fw-svg.in .fw-spoke{opacity:0.45;}
+
+/* comet dot travelling the orbit */
+.fw-comet-grp{pointer-events:none;}
+.fw-comet{fill:var(--copper);filter:drop-shadow(0 0 6px rgba(187,114,90,0.9));}
+.fw-comet-tail{fill:none;stroke:var(--copper);stroke-width:2;stroke-linecap:round;opacity:0.5;}
+.fw-orbit,.fw-orbit-inner,.fw-core-ring,.fw-core-ring2,.fw-core-sub,.fw-core-title{pointer-events:none;}
+
+/* center core */
+.fw-core-ring{fill:rgba(17,17,17,0.9);stroke:var(--copper);stroke-width:1.4;}
+.fw-core-ring2{fill:none;stroke:var(--copper-dark);stroke-width:1;opacity:0.7;}
+.fw-core-sub{font-family:'Barlow Condensed',sans-serif;font-weight:500;letter-spacing:0.32em;
+  fill:var(--copper);text-transform:uppercase;}
+.fw-core-title{font-family:'Bebas Neue',sans-serif;fill:var(--white);letter-spacing:0.02em;}
+
+/* node groups */
+.fw-node{cursor:default;opacity:0;transform:scale(0.6);transform-box:fill-box;transform-origin:center;
+  transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
+.fw-svg.in .fw-node{opacity:1;transform:scale(1);}
+.fw-node-dot{fill:var(--card);stroke:var(--copper-dark);stroke-width:1.4;transition:stroke .4s ease,fill .4s ease,r .4s ease;}
+.fw-node-num{font-family:'Barlow Condensed',sans-serif;font-weight:500;letter-spacing:0.06em;
+  fill:var(--copper);text-anchor:middle;transition:fill .4s ease;}
+.fw-node.active .fw-node-dot,.fw-node:hover .fw-node-dot{fill:rgba(187,114,90,0.16);stroke:var(--copper);}
+.fw-node.active .fw-node-num,.fw-node:hover .fw-node-num{fill:var(--copper-light);}
+/* node label ring text */
+.fw-node-label{font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;fill:var(--white);transition:fill .4s ease;}
+.fw-node.active .fw-node-label,.fw-node:hover .fw-node-label{fill:var(--copper);}
+
+/* connector spoke that lights when node active */
+.fw-node-spoke{stroke:var(--copper-dark);stroke-width:1;opacity:0.4;transition:opacity .4s ease,stroke .4s ease;}
+.fw-node.active .fw-node-spoke,.fw-node:hover .fw-node-spoke{opacity:0.9;stroke:var(--copper);}
+
+/* explanation panel below wheel */
+.fw-detail{margin-top:clamp(26px,3.4vw,40px);min-height:96px;border:1px solid var(--border);
+  border-left:2px solid var(--copper);background:linear-gradient(100deg,rgba(187,114,90,0.06),transparent 60%);
+  padding:clamp(22px,3vw,30px) clamp(24px,3.4vw,38px);transition:border-color .4s ease;}
+.fw-detail .fd-item{display:none;}
+.fw-detail .fd-item.show{display:block;animation:fdFade .5s cubic-bezier(.2,.7,.2,1);}
+@keyframes fdFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.fw-detail .fd-num{font-family:'Barlow Condensed',sans-serif;font-weight:300;letter-spacing:0.3em;
+  font-size:0.64rem;color:var(--copper-dark);text-transform:uppercase;margin-bottom:8px;display:block;}
+.fw-detail .fd-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,3vw,2rem);color:var(--white);
+  text-transform:uppercase;letter-spacing:0.02em;line-height:1;margin-bottom:10px;}
+.fw-detail .fd-name .arrow-back{color:var(--copper);font-size:0.7em;letter-spacing:0.1em;margin-left:10px;}
+.fw-detail .fd-desc{font-family:'Barlow',sans-serif;font-weight:300;font-size:clamp(0.94rem,1.6vw,1.05rem);
+  color:#cfccc6;line-height:1.62;max-width:64ch;}
+.fw-hint{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.26em;
+  font-size:0.6rem;color:var(--muted);text-align:center;margin-top:clamp(16px,2vw,22px);}
+
+/* mobile fallback list — hidden by default, shown on small screens */
+.fw-mobile{display:none;}
+
+@media(max-width:640px){
+  .fw-hint{display:none;}
+  .fw-detail{display:none;}
+  /* keep the wheel visible but let the readable stacked list carry the content */
+  .fw-mobile{display:grid;gap:1px;background:var(--border);margin-top:clamp(28px,5vw,40px);}
+  .fw-mobile .fwm{background:var(--card);border-left:2px solid var(--copper-dark);
+    padding:clamp(18px,4vw,22px) clamp(18px,5vw,24px);}
+  .fw-mobile .fwm .n{font-family:'Barlow Condensed',sans-serif;font-weight:300;letter-spacing:0.3em;
+    font-size:0.58rem;color:var(--copper-dark);text-transform:uppercase;margin-bottom:6px;display:block;}
+  .fw-mobile .fwm h4{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;color:var(--white);
+    text-transform:uppercase;letter-spacing:0.02em;margin-bottom:6px;}
+  .fw-mobile .fwm.loop{border-left-color:var(--copper);}
+  .fw-mobile .fwm p{font-size:0.9rem;line-height:1.56;color:#bdbab4;}
+  .fw-mobile .fwm.loop .n{color:var(--copper);}
+}
+
+/* compounding statement */
+.compound{margin-top:clamp(48px,7vw,84px);text-align:center;}
+.compound p{font-family:'Bebas Neue',sans-serif;text-transform:uppercase;line-height:1.02;
+  font-size:clamp(1.8rem,6vw,3.8rem);color:var(--white);letter-spacing:0.01em;}
+.compound p .cop{color:var(--copper);}
+.compound p span{display:block;}
+
+@media (prefers-reduced-motion:reduce){
+  .fw-node{opacity:1!important;transform:none!important;transition:none!important;}
+  .fw-spoke{opacity:0.45!important;}
+  .fw-comet,.fw-comet-tail,.fw-comet-grp{animation:none!important;}
+  .fw-detail .fd-item.show{animation:none!important;}
+}
+@media print{
+  .fw-node{opacity:1!important;transform:none!important;}
+  .fw-spoke{opacity:0.45!important;}
+  .fw-comet-grp{display:none!important;}
+  .fw-detail{display:none!important;}
+  .fw-mobile{display:grid!important;background:#ddd;}
+  .fw-mobile .fwm h4{color:#111;}
+  .compound p{color:#111;}.compound p .cop{color:#8A4F3B;}
+}
+
+/* ===== Authority System — two levels ===== */
+.price-band{margin-top:clamp(30px,4vw,44px);border:1px solid var(--copper-dark);background:linear-gradient(135deg,rgba(187,114,90,0.12),transparent 60%);padding:clamp(24px,3.4vw,38px) clamp(26px,4vw,44px);position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;}
+.price-band::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--copper),var(--copper-dark));}
+.price-band .pb-left .pb-lab{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.3em;font-size:0.64rem;color:var(--copper);margin-bottom:8px;}
+.price-band .pb-left .pb-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.9rem,4vw,2.8rem);color:var(--white);text-transform:uppercase;line-height:0.95;}
+.price-band .pb-right{text-align:right;}
+.price-band .pb-price{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.4rem);color:var(--copper);line-height:1;}
+.price-band .pb-price .u{font-size:0.4em;color:var(--copper-light);letter-spacing:0.08em;}
+.price-band .pb-note{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.2em;font-size:0.6rem;color:var(--muted);margin-top:8px;}
+@media(max-width:560px){.price-band{flex-direction:column;align-items:flex-start;}.price-band .pb-right{text-align:left;}}
+.levels{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,22px);margin-top:clamp(20px,2.6vw,28px);align-items:stretch;}
+@media(max-width:820px){.levels{grid-template-columns:1fr;}}
+.level{background:var(--card);border:1px solid var(--border);position:relative;overflow:hidden;padding:clamp(28px,3.4vw,40px);transition:border-color .5s ease,transform .5s ease;}
+.level:hover{border-color:var(--copper-dark);transform:translateY(-3px);}
+.level::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--copper),var(--copper-dark));}
+.level .lv-lab{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.3em;font-size:0.64rem;color:var(--copper-dark);margin-bottom:8px;}
+.level .lv-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.7rem,3.4vw,2.4rem);color:var(--white);text-transform:uppercase;line-height:0.95;}
+.level .lv-value{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.3rem,2.6vw,1.7rem);color:var(--copper);margin-top:4px;letter-spacing:0.04em;}
+.level .lv-purpose{font-family:'Barlow',sans-serif;font-weight:300;font-size:0.94rem;line-height:1.6;color:#cfccc6;margin:16px 0 20px;border-top:1px solid var(--border);padding-top:18px;}
+.level .lv-block{margin-top:18px;}
+.level .lv-block h5{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.05rem,2vw,1.25rem);color:var(--white);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:4px;}
+.level .lv-block .lv-desc{font-size:0.88rem;line-height:1.56;color:#bdbab4;margin-bottom:8px;}
+.level .lv-sum{margin-top:22px;border:1px solid var(--copper-dark);background:linear-gradient(120deg,rgba(187,114,90,0.10),transparent 62%);padding:clamp(16px,2.2vw,22px);text-align:center;}
+.level .lv-sum .ls-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;}
+.level .lv-sum .ls-item{font-family:'Bebas Neue',sans-serif;font-size:clamp(1rem,2vw,1.35rem);color:var(--white);text-transform:uppercase;line-height:0.95;}
+.level .lv-sum .ls-item.cop{color:var(--copper);}
+.level .lv-sum .ls-op{color:var(--copper-dark);font-size:0.9em;}
+
+/* system equation — the major visual moment */
+.sys-eq{margin-top:clamp(34px,4.5vw,56px);border:1px solid var(--copper-dark);background:linear-gradient(135deg,rgba(187,114,90,0.12),transparent 60%);padding:clamp(34px,5vw,60px) clamp(24px,4vw,52px);text-align:center;position:relative;overflow:hidden;}
+.sys-eq::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--copper),var(--copper-dark));}
+.sys-eq .se-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(14px,3vw,32px);}
+.sys-eq .se-item{font-family:'Bebas Neue',sans-serif;text-transform:uppercase;line-height:0.9;}
+.sys-eq .se-item .big{display:block;font-size:clamp(1.7rem,4.4vw,3rem);color:var(--white);}
+.sys-eq .se-item .big.cop{color:var(--copper);}
+.sys-eq .se-item .sm{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:0.7rem;letter-spacing:0.24em;color:var(--muted);margin-top:8px;}
+.sys-eq .se-op{color:var(--copper-dark);font-size:clamp(1.4rem,3vw,2.2rem);}
+.sys-eq .se-price{margin-top:clamp(24px,3vw,34px);font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.2rem);color:var(--white);letter-spacing:0.02em;}
+.sys-eq .se-price .cop{color:var(--copper);}
+.sys-eq .se-kick{margin-top:clamp(20px,2.6vw,28px);font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.24em;font-size:clamp(0.72rem,1.6vw,0.86rem);color:var(--copper-light);line-height:2;}
+@media(max-width:640px){.sys-eq .se-row{flex-direction:column;}.sys-eq .se-op{transform:rotate(90deg);}}
+
+/* ===== GHL / client journey flow ===== */
+.journey{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:clamp(8px,1.2vw,12px);margin-top:clamp(34px,4vw,52px);}
+.journey .jn{background:var(--card);border:1px solid var(--border);border-top:2px solid var(--copper-dark);padding:clamp(14px,1.8vw,20px) clamp(14px,2vw,22px);display:flex;flex-direction:column;justify-content:center;min-width:120px;flex:1 1 120px;max-width:180px;transition:border-color .5s ease,transform .5s ease;}
+.journey .jn:hover{border-top-color:var(--copper);transform:translateY(-3px);}
+.journey .jn.ghl{border-top-color:var(--copper);background:linear-gradient(150deg,rgba(187,114,90,0.10),transparent 60%);}
+.journey .jn .jt{font-family:'Bebas Neue',sans-serif;font-size:clamp(1rem,1.9vw,1.25rem);color:var(--white);text-transform:uppercase;letter-spacing:0.02em;line-height:1.02;}
+.journey .jn.ghl .jt{color:var(--copper);}
+.journey .jarrow{display:flex;align-items:center;color:var(--copper-dark);font-size:1.1rem;}
+@media(max-width:760px){.journey{flex-direction:column;}.journey .jn{max-width:none;}.journey .jarrow{transform:rotate(90deg);justify-content:center;}}
+
+/* ===== primary package panel ===== */
+.pkg{border:1px solid var(--copper-dark);background:linear-gradient(150deg,rgba(187,114,90,0.09),transparent 55%);position:relative;overflow:hidden;}
+.pkg::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--copper),var(--copper-dark));}
+.pkg-head{padding:clamp(28px,4vw,44px) clamp(26px,4vw,48px) clamp(20px,3vw,30px);border-bottom:1px solid var(--border);}
+.pkg-badge{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;font-size:0.62rem;color:var(--black);background:var(--copper);display:inline-block;padding:4px 12px;margin-bottom:18px;}
+.pkg-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.4rem);color:var(--white);text-transform:uppercase;line-height:0.92;}
+.pkg-price{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,3.4rem);color:var(--copper);line-height:1;margin-top:4px;}
+.pkg-price .u{font-size:0.4em;color:var(--copper-light);letter-spacing:0.08em;}
+.pkg-desc{font-family:'Barlow',sans-serif;font-weight:300;color:#cfccc6;font-size:clamp(0.98rem,1.6vw,1.1rem);max-width:60ch;margin-top:18px;}
+.pkg-body{padding:clamp(24px,3.4vw,40px) clamp(26px,4vw,48px) clamp(30px,4vw,48px);}
+.deliver-grid{display:grid;gap:1px;background:var(--border);grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.deliver{background:var(--card);padding:clamp(20px,2.6vw,26px);}
+.deliver .dnum{font-family:'Barlow Condensed',sans-serif;font-weight:300;letter-spacing:0.3em;font-size:0.62rem;color:var(--copper-dark);margin-bottom:10px;}
+.deliver h4{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.15rem,2.2vw,1.4rem);color:var(--white);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:8px;}
+.deliver p{font-size:0.88rem;line-height:1.58;color:#bdbab4;}
+
+/* ===== month 1 flow (horizontal chain) ===== */
+.chain{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(8px,1.4vw,16px);margin-top:clamp(24px,3vw,38px);}
+.chain .item{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.05rem,2.4vw,1.7rem);color:var(--white);text-transform:uppercase;line-height:0.9;}
+.chain .item.final{color:var(--copper);}
+.chain .arrow{color:var(--copper-dark);font-size:clamp(1rem,2.2vw,1.5rem);}
+@media(max-width:760px){.chain{flex-direction:column;gap:6px;}.chain .arrow{transform:rotate(90deg);}}
+
+/* tick list */
+.tick-list{list-style:none;margin-top:6px;}
+.tick-list li{font-size:0.92rem;color:#bdbab4;padding:9px 0 9px 18px;position:relative;border-top:1px solid var(--border);}
+.tick-list li:first-child{border-top:none;}
+.tick-list li::before{content:"";position:absolute;left:0;top:16px;width:7px;height:1px;background:var(--copper);}
+
+/* two-col split (Chance vs DGM) */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);background:var(--card);}
+.split > div{padding:clamp(26px,3.4vw,42px);position:relative;}
+.split > div:first-child{border-right:1px solid var(--border);}
+.split .col-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,3.4vw,2.4rem);text-transform:uppercase;color:var(--white);line-height:0.95;margin-bottom:6px;}
+.split .col-sub{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.24em;font-size:0.6rem;color:var(--copper);margin-bottom:20px;}
+.split .dgm-col .col-head{color:var(--copper);}
+@media(max-width:760px){.split{grid-template-columns:1fr;}.split > div:first-child{border-right:none;border-bottom:1px solid var(--border);}}
+
+/* full statement */
+.statement{border-left:2px solid var(--copper);padding:clamp(28px,4vw,52px) clamp(24px,4vw,56px);background:linear-gradient(100deg,rgba(187,114,90,0.06),transparent 60%);margin-top:clamp(34px,4vw,52px);}
+.statement p{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(1.5rem,3.8vw,2.4rem);line-height:1.3;color:var(--white);}
+.statement .accent{color:var(--copper-light);}
+
+/* act break */
+.act-break{background:linear-gradient(180deg,var(--black),#0c0a09 55%,var(--black));border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.act-break::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 70% 0%,rgba(187,114,90,0.12),transparent 60%);pointer-events:none;}
+.ab-inner{position:relative;z-index:2;}
+
+/* secondary (next tier) card */
+.next-card{border:1px solid var(--border-mid);background:var(--card);padding:clamp(30px,4vw,48px);position:relative;overflow:hidden;margin-top:clamp(30px,4vw,44px);}
+.next-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--copper-dark),transparent 70%);}
+.next-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:1px solid var(--border);padding-bottom:clamp(20px,3vw,28px);margin-bottom:clamp(22px,3vw,30px);}
+.next-tag{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.24em;font-size:0.6rem;color:var(--copper);margin-bottom:12px;}
+.next-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.9rem,4vw,2.8rem);color:var(--white);text-transform:uppercase;line-height:0.95;}
+.next-price{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,2.8rem);color:var(--copper-light);line-height:1;}
+.next-price .u{font-size:0.4em;color:var(--muted);letter-spacing:0.08em;}
+.next-list{columns:2;column-gap:clamp(24px,4vw,48px);}
+.next-list li{break-inside:avoid;}
+@media(max-width:620px){.next-list{columns:1;}}
+.not-required{margin-top:clamp(24px,3vw,32px);font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.2em;font-size:0.72rem;color:var(--copper);}
+
+/* prominent asset total inside next-card */
+.asset-total{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,6vw,4rem);color:var(--copper);line-height:0.9;margin-bottom:clamp(20px,3vw,28px);}
+.asset-total .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:0.24em;letter-spacing:0.24em;color:var(--muted);text-transform:uppercase;margin-left:10px;vertical-align:middle;}
+
+/* upgrade band */
+.upgrade-band{margin-top:clamp(30px,4vw,44px);border:1px solid var(--copper-dark);background:linear-gradient(120deg,rgba(187,114,90,0.10),transparent 62%);padding:clamp(26px,3.6vw,40px);text-align:center;}
+.upgrade-band .ub-lead{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.24em;font-size:0.72rem;color:var(--muted);margin-bottom:clamp(18px,2.4vw,26px);}
+.upgrade-band .ub-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(10px,1.8vw,20px);}
+.upgrade-band .ub-item{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.3rem,3.2vw,2.2rem);color:var(--white);text-transform:uppercase;letter-spacing:0.02em;line-height:0.9;}
+.upgrade-band .ub-item.cop{color:var(--copper);}
+.upgrade-band .ub-plus{color:var(--copper-dark);font-size:clamp(1.1rem,2.4vw,1.7rem);}
+@media(max-width:640px){.upgrade-band .ub-row{flex-direction:column;gap:6px;}}
+
+/* comparison columns */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:clamp(30px,4vw,44px);border:1px solid var(--border);}
+.compare .cmp-col{background:var(--card);padding:clamp(26px,3.4vw,40px);}
+.compare .cmp-col.featured{background:linear-gradient(155deg,rgba(187,114,90,0.09),transparent 55%);position:relative;overflow:hidden;}
+.compare .cmp-col.featured::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--copper),var(--copper-dark));}
+.cmp-tag{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.24em;font-size:0.62rem;color:var(--copper);margin-bottom:10px;}
+.cmp-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);color:var(--white);text-transform:uppercase;line-height:0.95;margin-bottom:16px;}
+.cmp-assets{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,3.4rem);color:var(--copper);line-height:0.85;margin-bottom:16px;}
+.cmp-assets span{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:0.26em;letter-spacing:0.22em;color:var(--muted);text-transform:uppercase;margin-left:8px;vertical-align:middle;}
+.compare .cmp-col .tick-list{margin-bottom:18px;}
+.cmp-kick{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;font-size:0.72rem;color:var(--copper-light);border-top:1px solid var(--border);padding-top:16px;margin-bottom:12px;}
+.cmp-desc{font-family:'Barlow',sans-serif;font-weight:300;font-size:0.9rem;line-height:1.6;color:#bdbab4;}
+@media(max-width:680px){.compare{grid-template-columns:1fr;}}
+
+/* roadmap */
+.road{display:grid;gap:clamp(14px,2vw,22px);grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.month{background:var(--card);border:1px solid var(--border);padding:clamp(26px,3vw,36px);position:relative;overflow:hidden;transition:border-color .5s ease,transform .5s ease;}
+.month:hover{border-color:var(--copper-dark);transform:translateY(-3px);}
+.month::before{content:"";position:absolute;top:0;left:0;width:40px;height:2px;background:var(--copper);}
+.month .mlab{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.3em;font-size:0.62rem;color:var(--copper-dark);margin-bottom:6px;}
+.month .mname{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.9rem,3.6vw,2.6rem);color:var(--white);text-transform:uppercase;line-height:0.92;margin-bottom:18px;}
+.month.mid-note{border-top:1px solid var(--border);}
+.decision-note{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--copper-light);font-size:clamp(1.05rem,2.4vw,1.35rem);line-height:1.4;text-align:center;max-width:60ch;margin:clamp(30px,4vw,44px) auto 0;}
+.path-block{padding:14px 0;border-top:1px solid var(--border);}
+.path-block:first-of-type{border-top:none;}
+.path-tag{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;font-size:0.64rem;color:var(--muted);margin-bottom:8px;}
+.path-tag.cop{color:var(--copper);}
+.path-desc{font-size:0.88rem;line-height:1.55;color:#bdbab4;}
+
+/* ===== final CTA ===== */
+.cta-panel{border:1px solid var(--copper-dark);background:linear-gradient(150deg,rgba(187,114,90,0.12),transparent 55%);padding:clamp(34px,5vw,64px);text-align:center;position:relative;overflow:hidden;}
+.cta-panel::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--copper),var(--copper-dark));}
+.cta-name{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.34em;font-size:0.8rem;color:var(--copper);margin-bottom:14px;}
+.cta-price{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.4rem,10vw,6rem);color:var(--white);line-height:0.9;}
+.cta-price .u{font-size:0.28em;color:var(--copper);letter-spacing:0.06em;vertical-align:middle;}
+.cta-commit{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.24em;font-size:0.72rem;color:var(--muted);margin-top:16px;}
+.cta-commit strong{color:var(--white);font-weight:500;}
+.cta-summary{list-style:none;max-width:520px;margin:clamp(30px,4vw,42px) auto;text-align:left;}
+.cta-summary li{font-size:0.94rem;color:#bdbab4;padding:9px 0 9px 20px;position:relative;border-top:1px solid var(--border);}
+.cta-summary li:first-child{border-top:none;}
+.cta-summary li::before{content:"";position:absolute;left:0;top:16px;width:8px;height:1px;background:var(--copper);}
+.cta-summary li.launch{color:var(--copper-light);}
+.cta-btn{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.24em;font-size:0.9rem;color:var(--black);background:var(--copper);padding:16px 42px;margin-top:8px;transition:background .4s ease,transform .4s ease;text-decoration:none;}
+.cta-btn:hover{background:var(--copper-light);transform:translateY(-2px);}
+.cta-foot{font-family:'Barlow',sans-serif;font-weight:300;color:#bdbab4;font-size:clamp(0.98rem,1.6vw,1.08rem);max-width:62ch;margin:clamp(30px,4vw,42px) auto 0;line-height:1.7;}
+
+/* CTA level breakdown */
+.cta-levels{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:clamp(10px,1.6vw,16px);margin:clamp(28px,3.4vw,38px) auto 0;max-width:640px;}
+.cta-levels .ctl{flex:1 1 150px;border:1px solid var(--border);background:rgba(17,17,17,0.6);padding:clamp(16px,2vw,22px);display:flex;flex-direction:column;gap:4px;min-width:140px;}
+.cta-levels .ctl.total{border-color:var(--copper-dark);background:linear-gradient(140deg,rgba(187,114,90,0.12),transparent 62%);}
+.cta-levels .ctl-lab{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.28em;font-size:0.56rem;color:var(--copper-dark);}
+.cta-levels .ctl-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.05rem,2vw,1.3rem);color:var(--white);text-transform:uppercase;letter-spacing:0.02em;line-height:1;}
+.cta-levels .ctl-val{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--copper-light);margin-top:2px;}
+.cta-levels .ctl-val.cop{color:var(--copper);}
+.cta-levels .ctl-op{display:flex;align-items:center;color:var(--copper-dark);font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,2.6vw,2rem);}
+@media(max-width:640px){.cta-levels{flex-direction:column;}.cta-levels .ctl-op{justify-content:center;}}
+
+/* secondary upgrade callout */
+.upgrade-callout{margin-top:clamp(24px,3vw,34px);border:1px solid var(--border-mid);background:var(--card);position:relative;overflow:hidden;padding:clamp(22px,3vw,32px) clamp(24px,3.4vw,40px);}
+.upgrade-callout::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--copper-dark),transparent 70%);}
+.upgrade-callout .uc-tag{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.28em;font-size:0.66rem;color:var(--copper);margin-bottom:14px;}
+.upgrade-callout .uc-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;}
+.upgrade-callout .uc-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);color:var(--white);text-transform:uppercase;line-height:0.95;}
+.upgrade-callout .uc-price{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:0.6rem;letter-spacing:0.2em;color:var(--copper-light);margin-top:8px;}
+.upgrade-callout .uc-eq{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.14em;font-size:clamp(0.72rem,1.5vw,0.86rem);color:#bdbab4;}
+.upgrade-callout .uc-eq .cop{color:var(--copper);font-weight:600;}
+
+/* footer */
+footer{padding:clamp(50px,7vw,80px) 0 clamp(40px,5vw,60px);text-align:center;position:relative;border-top:1px solid var(--border);}
+footer .lockup{justify-content:center;}
+.footer-mark{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.6rem);color:var(--white);text-transform:uppercase;letter-spacing:0.04em;margin-top:clamp(24px,3vw,36px);}
+.footer-tag{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--copper-light);font-size:clamp(1.05rem,3vw,1.4rem);margin-top:10px;}
+.footer-meta{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.3em;font-size:0.64rem;color:var(--muted);margin-top:24px;}
+.disclaimer{max-width:640px;margin:clamp(24px,3vw,32px) auto 0;font-family:'Barlow',sans-serif;font-weight:300;font-size:0.72rem;line-height:1.6;color:#5c5c5c;}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+  html{scroll-behavior:auto;}
+  .lockup-mark span{animation:none !important;}
+}
+@media print{
+  body{background:#fff;color:#000;}
+  .grain,header.hero::after,.act-break::after{display:none;}
+  .reveal{opacity:1!important;transform:none!important;}
+  .card,.deliver,.month,.next-card,.flow-node,.pkg,.split,.cta-panel,.equation{break-inside:avoid;}
+  section{padding:24px 0;}
+  header.hero,.act-break{min-height:auto;}
+  .hero-title,h2.section-title,.card h3,.pkg-name,.next-name,.month .mname{color:#111;}
+  p,.lead{color:#333;}
+  .divider{opacity:1;}
+}
+</style>
+</head>
+<body>
+<svg class="grain"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+<!-- ============ 01 HERO ============ -->
+<header class="hero">
+  <div class="wrap" style="width:100%;">
+    <div class="lockup reveal">
+      <div class="lockup-mark"><span></span><span></span><span></span><span></span></div>
+      <div class="lockup-name">Daily Grind Media</div>
+    </div>
+  </div>
+
+  <div class="wrap hero-mid" style="width:100%;">
+    <div class="hero-client reveal">Content System Proposal</div>
+    <h1 class="hero-title reveal">
+      Build Your Presence.
+      <span class="row2">Without Building Your Schedule Around Content.</span>
+    </h1>
+    <p class="hero-sub reveal">
+      Chance already has the <strong>expertise.</strong> The hard part is consistently turning it into content, organizing it into a strategy, and knowing what to post throughout the month.
+      <br><br>
+      Daily Grind Media's Authority System combines professional content production with a structured monthly strategy — so Chance can consistently build authority without having to create the system himself.
+    </p>
+  </div>
+
+  <div class="wrap hero-foot" style="width:100%;">
+    <div class="hero-meta reveal">
+      <span><span class="mlbl">Prepared For</span><strong>Chance Dyck</strong></span>
+      <span><span class="mlbl">Prepared By</span><strong>Daily Grind Media</strong></span>
+    </div>
+    <div class="hero-offer reveal">
+      <span class="badge">Recommended Starting Point</span>
+      <div class="oname">Authority System</div>
+      <div class="oprice">$1,000 <span class="u">/ Month</span></div>
+      <div style="font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.24em;font-size:0.62rem;color:var(--copper-light);margin-top:10px;">Production + Strategy</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 THE OBJECTIVE ============ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="objective">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">02</span> The Objective</div>
+    <h2 class="section-title reveal">What We're<br>Actually Solving</h2>
+    <p class="lead reveal">Not more noise. A deliberate, consistent presence that does real work — building recognition, credibility, and trust while you stay focused on coaching.</p>
+
+    <div class="card-grid" style="margin-top:clamp(34px,4vw,52px);">
+      <div class="card accent-card reveal">
+        <div class="micro">01</div>
+        <h3>Consistency</h3>
+        <p>Establish a reliable content rhythm instead of posting sporadically.</p>
+      </div>
+      <div class="card accent-card reveal">
+        <div class="micro">02</div>
+        <h3>Strategy</h3>
+        <p>A clear monthly plan for what content should be created and how it should be used.</p>
+      </div>
+      <div class="card accent-card reveal">
+        <div class="micro">03</div>
+        <h3>Authority</h3>
+        <p>Turn Chance's expertise, philosophies, client experience, and coaching knowledge into content that builds trust.</p>
+      </div>
+      <div class="card accent-card reveal">
+        <div class="micro">04</div>
+        <h3>Opportunity</h3>
+        <p>Connect that authority content to clear calls-to-action and existing infrastructure that can create coaching conversations and inquiries.</p>
+      </div>
+    </div>
+
+    <div class="mini-statement reveal">
+      <p>The goal isn't simply to post more. It's to build a consistent presence that makes Chance more <span class="accent">recognizable, credible, and easier to trust.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 THE AUTHORITY FLYWHEEL ============ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="system">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">03</span> The Authority Flywheel</div>
+    <h2 class="section-title reveal">A System That<br>Compounds.</h2>
+    <p class="lead reveal">Chance's expertise is captured once, transformed into strategic content, distributed consistently, and used to build familiarity, trust, and future opportunity — a system that compounds month over month.</p>
+
+    <div class="flywheel-wrap reveal">
+      <div class="flywheel-stage">
+        <svg class="fw-svg" viewBox="0 0 680 680" role="img" aria-label="The Authority Flywheel: expertise, strategy, authority session, content extraction, distribution, trust, and opportunity looping back to expertise.">
+          <!-- orbital rings -->
+          <circle class="fw-orbit" cx="340" cy="340" r="250"/>
+          <circle class="fw-orbit-inner" cx="340" cy="340" r="150"/>
+
+          <!-- comet travelling the orbit -->
+          <g class="fw-comet-grp">
+            <circle class="fw-comet-tail" cx="340" cy="340" r="250"
+              stroke-dasharray="70 1500" stroke-dashoffset="0"/>
+            <circle class="fw-comet" r="4">
+              <animateMotion dur="14s" repeatCount="indefinite"
+                path="M 340 90 A 250 250 0 1 1 339.9 90 Z"/>
+            </circle>
+          </g>
+
+          <!-- center core -->
+          <circle class="fw-core-ring2" cx="340" cy="340" r="104"/>
+          <circle class="fw-core-ring" cx="340" cy="340" r="92"/>
+          <text class="fw-core-sub" x="340" y="312" text-anchor="middle" font-size="12">The Source</text>
+          <text class="fw-core-title" x="340" y="348" text-anchor="middle" font-size="40">CHANCE'S</text>
+          <text class="fw-core-title" x="340" y="384" text-anchor="middle" font-size="40" fill="#BB725A">AUTHORITY</text>
+
+          <!-- nodes -->
+  <g class="fw-node" data-i="0" tabindex="0">
+    <line class="fw-node-spoke" x1="340.0" y1="244.0" x2="340.0" y2="112.0"/>
+    <circle class="fw-node-dot" cx="340.0" cy="90.0" r="26"/>
+    <text class="fw-node-num" x="340.0" y="95.0" font-size="15">01</text>
+    <text class="fw-node-label" x="340.0" y="60.0" text-anchor="middle" font-size="15">EXPERTISE</text>
+  </g>
+  <g class="fw-node" data-i="1" tabindex="0">
+    <line class="fw-node-spoke" x1="415.1" y1="280.1" x2="518.3" y2="197.8"/>
+    <circle class="fw-node-dot" cx="535.5" cy="184.1" r="26"/>
+    <text class="fw-node-num" x="535.5" y="189.1" font-size="15">02</text>
+    <text class="fw-node-label" x="558.9" y="169.4" text-anchor="start" font-size="15">STRATEGY</text>
+  </g>
+  <g class="fw-node" data-i="2" tabindex="0">
+    <line class="fw-node-spoke" x1="433.6" y1="361.4" x2="562.3" y2="390.7"/>
+    <circle class="fw-node-dot" cx="583.7" cy="395.6" r="26"/>
+    <text class="fw-node-num" x="583.7" y="400.6" font-size="15">03</text>
+    <text class="fw-node-label" x="613.0" y="406.3" text-anchor="start" font-size="15">AUTHORITY</text>
+  </g>
+  <g class="fw-node" data-i="3" tabindex="0">
+    <line class="fw-node-spoke" x1="381.7" y1="426.5" x2="438.9" y2="545.4"/>
+    <circle class="fw-node-dot" cx="448.5" cy="565.2" r="26"/>
+    <text class="fw-node-num" x="448.5" y="570.2" font-size="15">04</text>
+    <text class="fw-node-label" x="461.5" y="596.3" text-anchor="start" font-size="15">EXTRACTION</text>
+  </g>
+  <g class="fw-node" data-i="4" tabindex="0">
+    <line class="fw-node-spoke" x1="298.3" y1="426.5" x2="241.1" y2="545.4"/>
+    <circle class="fw-node-dot" cx="231.5" cy="565.2" r="26"/>
+    <text class="fw-node-num" x="231.5" y="570.2" font-size="15">05</text>
+    <text class="fw-node-label" x="218.5" y="596.3" text-anchor="end" font-size="15">DISTRIBUTION</text>
+  </g>
+  <g class="fw-node" data-i="5" tabindex="0">
+    <line class="fw-node-spoke" x1="246.4" y1="361.4" x2="117.7" y2="390.7"/>
+    <circle class="fw-node-dot" cx="96.3" cy="395.6" r="26"/>
+    <text class="fw-node-num" x="96.3" y="400.6" font-size="15">06</text>
+    <text class="fw-node-label" x="67.0" y="406.3" text-anchor="end" font-size="15">TRUST</text>
+  </g>
+  <g class="fw-node" data-i="6" tabindex="0">
+    <line class="fw-node-spoke" x1="264.9" y1="280.1" x2="161.7" y2="197.8"/>
+    <circle class="fw-node-dot" cx="144.5" cy="184.1" r="26"/>
+    <text class="fw-node-num" x="144.5" y="189.1" font-size="15">07</text>
+    <text class="fw-node-label" x="121.1" y="169.4" text-anchor="end" font-size="15">OPPORTUNITY</text>
+  </g>
+        </svg>
+
+        <!-- explanation panel (desktop / tablet) -->
+        <div class="fw-detail" aria-live="polite">
+          <div class="fd-item show" data-i="0"><span class="fd-num">01 — Expertise</span><div class="fd-name">Expertise</div><p class="fd-desc">Chance's knowledge, experience, philosophies, stories, and coaching perspective.</p></div>
+          <div class="fd-item" data-i="1"><span class="fd-num">02 — Strategy</span><div class="fd-name">Strategy</div><p class="fd-desc">DGM identifies the strongest topics, audience problems, hooks, and monthly content direction.</p></div>
+          <div class="fd-item" data-i="2"><span class="fd-num">03 — Authority Session</span><div class="fd-name">Authority Session</div><p class="fd-desc">A guided authority / podcast-style conversation captures the source material in a single monthly session.</p></div>
+          <div class="fd-item" data-i="3"><span class="fd-num">04 — Content Extraction</span><div class="fd-name">Content Extraction</div><p class="fd-desc">The conversation becomes premium reels, static posts, carousels, quotes, and supporting content.</p></div>
+          <div class="fd-item" data-i="4"><span class="fd-num">05 — Distribution</span><div class="fd-name">Distribution</div><p class="fd-desc">Content is organized into a clear rollout plan and mapped to the right pillars — ready for Chance to post consistently across his channels.</p></div>
+          <div class="fd-item" data-i="5"><span class="fd-num">06 — Trust</span><div class="fd-name">Trust</div><p class="fd-desc">Repeated exposure to Chance's expertise builds recognition, familiarity, credibility, and authority.</p></div>
+          <div class="fd-item" data-i="6"><span class="fd-num">07 — Opportunity</span><div class="fd-name">Opportunity <span class="arrow-back">↺ loops back to Expertise</span></div><p class="fd-desc">Stronger trust creates more opportunities for conversations, inquiries, and potential coaching clients — feeding the next month's content and compounding over time.</p></div>
+        </div>
+        <div class="fw-hint">Hover or tap a stage to explore it</div>
+
+        <!-- stacked list (mobile) -->
+        <div class="fw-mobile">
+          <div class="fwm"><span class="n">01</span><h4>Expertise</h4><p>Chance's knowledge, experience, philosophies, stories, and coaching perspective.</p></div>
+          <div class="fwm"><span class="n">02</span><h4>Strategy</h4><p>DGM identifies the strongest topics, audience problems, hooks, and monthly content direction.</p></div>
+          <div class="fwm"><span class="n">03</span><h4>Authority Session</h4><p>A guided authority / podcast-style conversation captures the source material in a single monthly session.</p></div>
+          <div class="fwm"><span class="n">04</span><h4>Content Extraction</h4><p>The conversation becomes premium reels, static posts, carousels, quotes, and supporting content.</p></div>
+          <div class="fwm"><span class="n">05</span><h4>Distribution</h4><p>Content is organized into a clear rollout plan and mapped to the right pillars — ready for Chance to post consistently across his channels.</p></div>
+          <div class="fwm"><span class="n">06</span><h4>Trust</h4><p>Repeated exposure to Chance's expertise builds recognition, familiarity, credibility, and authority.</p></div>
+          <div class="fwm loop"><span class="n">07 ↺</span><h4>Opportunity</h4><p>Stronger trust creates more opportunities for conversations, inquiries, and potential coaching clients — then loops back to expertise and compounds.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="compound reveal">
+      <p><span>Consistency Creates Familiarity.</span><span>Familiarity Builds <span class="cop">Trust.</span></span><span><span class="cop">Trust</span> Creates <span class="cop">Opportunity.</span></span></p>
+    </div>
+
+    <div class="equation reveal">
+      <div class="eq-row">
+        <div class="eq-item"><span class="big copper">One Authority Session</span><span class="sm">Recorded With Chance</span></div>
+        <div class="eq-arrow">→</div>
+        <div class="eq-item"><span class="big">A Month Of</span><span class="sm">Content + Strategy</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 THE AUTHORITY SYSTEM ============ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="foundation">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">04</span> The Offer</div>
+    <h2 class="section-title reveal">The Authority<br>System</h2>
+    <p class="lead reveal">One complete system at one monthly price. It works on two sides at once — professional authority content production, and the strategic layer that tells Chance exactly what to post and when. Together they solve the real problem: showing up consistently without having to build the system himself.</p>
+
+    <div class="price-band reveal">
+      <div class="pb-left">
+        <div class="pb-lab">Level 01 — Recommended Starting Point</div>
+        <div class="pb-name">Authority System</div>
+      </div>
+      <div class="pb-right">
+        <div class="pb-price">$1,000 <span class="u">/ Month</span></div>
+        <div class="pb-note">One Complete System</div>
+      </div>
+    </div>
+
+    <div class="levels reveal">
+      <!-- PRODUCE -->
+      <div class="level">
+        <div class="lv-lab">Produce</div>
+        <div class="lv-name">Authority Content</div>
+        <p class="lv-purpose">Capture Chance's expertise and turn it into professional authority content.</p>
+
+        <div class="lv-block">
+          <h5>1 Monthly Authority Session</h5>
+          <p class="lv-desc">Up to ~60 minutes of guided podcast-style / authority capture — long-form conversation, coaching philosophies, educational topics, common client problems, personal stories, training methodologies, client success, and offer/CTA discussion.</p>
+        </div>
+        <div class="lv-block">
+          <h5>Long-Form Authority Content</h5>
+          <p class="lv-desc">A professionally edited long-form authority/podcast episode produced from the session, with audio-only delivery where applicable.</p>
+        </div>
+        <div class="lv-block">
+          <h5>5 Premium Reels</h5>
+          <p class="lv-desc">5 professionally edited short-form authority reels drawn from the monthly content — education, authority, expertise, personality, misconceptions, client problems, coaching philosophy, and offers.</p>
+        </div>
+        <div class="lv-block">
+          <h5>Testimonial / Proof Flexibility</h5>
+          <p class="lv-desc">When applicable, production can incorporate client testimonials, success stories, or proof-driven content. The mix stays strategically flexible month to month.</p>
+        </div>
+
+        <div class="lv-sum">
+          <div class="ls-row">
+            <span class="ls-item">1 Authority Session</span>
+            <span class="ls-op">→</span>
+            <span class="ls-item cop">1 Long-Form Asset</span>
+            <span class="ls-op">+</span>
+            <span class="ls-item cop">5 Premium Reels</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STRATEGIZE -->
+      <div class="level">
+        <div class="lv-lab">Strategize</div>
+        <div class="lv-name">Authority Strategy</div>
+        <p class="lv-purpose">Give that content a structured system so Chance always knows what to post and when.</p>
+
+        <div class="lv-block">
+          <h5>Authority Blueprint</h5>
+          <p class="lv-desc">Establish and continually refine positioning, authority topics, content pillars, audience problems, messaging angles, proof opportunities, and offer opportunities.</p>
+        </div>
+        <div class="lv-block">
+          <h5>Monthly Content Strategy</h5>
+          <p class="lv-desc">Determine what Chance should be talking about each month, and why.</p>
+        </div>
+        <div class="lv-block">
+          <h5>Structured 30-Day Content Calendar</h5>
+          <p class="lv-desc">A clear monthly posting structure: what to post, when, which pillar it supports, what objective it serves, and what CTA should accompany it where appropriate.</p>
+        </div>
+        <div class="lv-block">
+          <h5>Hook + CTA Direction</h5>
+          <p class="lv-desc">Strategic hooks, talking points, and CTA directions for current and future content.</p>
+        </div>
+        <div class="lv-block">
+          <h5>Future Content Ideas</h5>
+          <p class="lv-desc">Future reel concepts, podcast topics, educational angles, testimonial opportunities, client questions, story ideas, and offer content.</p>
+        </div>
+        <div class="lv-block">
+          <h5>Monthly Strategic Review</h5>
+          <p class="lv-desc">Review what's resonating and use those insights to guide the next month's strategy.</p>
+        </div>
+
+        <div class="lv-sum">
+          <div class="ls-row">
+            <span class="ls-item">Blueprint</span>
+            <span class="ls-op">+</span>
+            <span class="ls-item">Calendar</span>
+            <span class="ls-op">+</span>
+            <span class="ls-item cop">Consistent Direction</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SYSTEM EQUATION -->
+    <div class="sys-eq reveal">
+      <div class="se-row">
+        <div class="se-item"><span class="big">Produce</span><span class="sm">Authority Content</span></div>
+        <div class="se-op">+</div>
+        <div class="se-item"><span class="big">Strategize</span><span class="sm">The Monthly System</span></div>
+        <div class="se-op">=</div>
+        <div class="se-item"><span class="big cop">Consistent Authority</span><span class="sm">Every Month</span></div>
+      </div>
+      <div class="se-price">One Complete System — <span class="cop">$1,000</span> <span style="font-size:0.5em;color:var(--copper-light);letter-spacing:0.06em;">/ Month</span></div>
+      <div class="se-kick">Produce The Content. Build The Strategy. Stay Consistent.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 MONTH 1: AUTHORITY LAUNCH (act break) ============ -->
+<section class="act-break" id="launch">
+  <div class="wrap ab-inner">
+    <div class="eyebrow reveal"><span class="sec-num">05</span> Onboarding Experience</div>
+    <h2 class="section-title reveal">Month 1:<br>Authority Launch</h2>
+    <p class="serif reveal" style="font-size:clamp(1.2rem,3vw,1.7rem);margin-bottom:clamp(24px,3vw,34px);">Building the engine before it compounds.</p>
+    <p class="lead reveal">
+      Month 1 is where the system is built. DGM establishes Chance's <strong style="color:var(--white);font-weight:500;">Authority Blueprint</strong> for the first time — positioning, topics, and angles — then runs the first authority session and turns it into the first month of content and calendar. Every month after refines what's already in motion.
+    </p>
+
+    <div class="chain reveal">
+      <span class="item">Expertise</span><span class="arrow">→</span>
+      <span class="item">Talking Points</span><span class="arrow">→</span>
+      <span class="item">Hooks</span><span class="arrow">→</span>
+      <span class="item">Recording</span><span class="arrow">→</span>
+      <span class="item">Short-Form</span><span class="arrow">→</span>
+      <span class="item">Supporting</span><span class="arrow">→</span>
+      <span class="item final">Strategic CTA</span>
+    </div>
+
+    <div class="card-grid reveal" style="margin-top:clamp(40px,5vw,60px);grid-template-columns:repeat(auto-fit,minmax(210px,1fr));">
+      <div class="card"><p>Strongest <strong>authority topics</strong></p></div>
+      <div class="card"><p>Key <strong>audience problems</strong></p></div>
+      <div class="card"><p>Best <strong>content angles</strong></p></div>
+      <div class="card"><p>Effective <strong>hooks</strong></p></div>
+      <div class="card"><p><strong>Proof opportunities</strong></p></div>
+      <div class="card"><p>Potential <strong>CTA directions</strong></p></div>
+      <div class="card"><p>Formats <strong>worth expanding</strong></p></div>
+    </div>
+
+    <div class="statement reveal">
+      <p>Month 1 builds the system. <span class="accent">Every month after makes it sharper.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 CONTENT PILLARS ============ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="pillars">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">06</span> Content Pillars</div>
+    <h2 class="section-title reveal">What The<br>Presence Looks Like</h2>
+    <p class="lead reveal">The structured monthly calendar intentionally rotates between these five pillars, so the presence stays balanced rather than one-note. The exact mix evolves based on what's resonating.</p>
+
+    <div class="card-grid reveal" style="margin-top:clamp(34px,4vw,52px);">
+      <div class="card accent-card"><div class="micro">Pillar 01</div><h3>Education</h3><p>Training, nutrition, habits, common mistakes, misconceptions.</p></div>
+      <div class="card accent-card"><div class="micro">Pillar 02</div><h3>Authority</h3><p>Chance's philosophies, methodologies, coaching perspective, and experience.</p></div>
+      <div class="card accent-card"><div class="micro">Pillar 03</div><h3>Trust</h3><p>Stories, personality, behind-the-scenes insight, and why he coaches the way he does.</p></div>
+      <div class="card accent-card"><div class="micro">Pillar 04</div><h3>Proof</h3><p>Client wins, testimonials, transformations, and real-world outcomes when available.</p></div>
+      <div class="card accent-card"><div class="micro">Pillar 05</div><h3>Conversion</h3><p>Offers, coaching opportunities, and calls-to-action that move interested followers toward becoming clients.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 FROM CONTENT TO OPPORTUNITY (GHL) ============ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="journey">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">07</span> From Content To Opportunity</div>
+    <h2 class="section-title reveal">The Infrastructure<br>Already Exists.</h2>
+    <p class="lead reveal">Chance already has GoHighLevel set up. That matters — it means the Authority System isn't creating content with nowhere for interested people to go. We can connect content and CTAs to a destination that's already in place.</p>
+
+    <div class="journey reveal">
+      <div class="jn"><span class="jt">Authority Content</span></div>
+      <div class="jarrow">→</div>
+      <div class="jn"><span class="jt">Attention</span></div>
+      <div class="jarrow">→</div>
+      <div class="jn"><span class="jt">CTA</span></div>
+      <div class="jarrow">→</div>
+      <div class="jn"><span class="jt">Coaching Inquiry</span></div>
+      <div class="jarrow">→</div>
+      <div class="jn ghl"><span class="jt">GHL</span></div>
+      <div class="jarrow">→</div>
+      <div class="jn"><span class="jt">Follow-Up</span></div>
+      <div class="jarrow">→</div>
+      <div class="jn ghl"><span class="jt">Booking Opportunity</span></div>
+    </div>
+
+    <div class="card-grid reveal" style="margin-top:clamp(40px,5vw,58px);grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
+      <div class="card"><p>Coaching <strong>inquiry forms</strong></p></div>
+      <div class="card"><p>Consultation <strong>booking</strong></p></div>
+      <div class="card"><p><strong>Lead capture</strong></p></div>
+      <div class="card"><p>Automated <strong>follow-up</strong></p></div>
+      <div class="card"><p>Existing <strong>nurture workflows</strong></p></div>
+      <div class="card"><p>Testimonial <strong>follow-up</strong></p></div>
+      <div class="card"><p>Future <strong>lead magnets</strong></p></div>
+    </div>
+
+    <div class="statement reveal">
+      <p>The infrastructure exists. <span class="accent">The Authority System gives us content to start using it more intentionally.</span></p>
+    </div>
+
+    <p class="lead reveal" style="margin-top:clamp(24px,3vw,32px);">
+      Deeper acquisition infrastructure — new funnels, landing pages, CRM builds, automation, or paid media — sits outside this system as a future opportunity. For now, the priority is producing authority content and pointing it at what's already built.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 08 HOW WE WORK TOGETHER ============ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="roles">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">08</span> How We Work Together</div>
+    <h2 class="section-title reveal">How We<br>Work Together</h2>
+
+    <div class="split reveal">
+      <div class="chance-col">
+        <div class="col-head">Chance</div>
+        <div class="col-sub">The Expert</div>
+        <ul class="tick-list">
+          <li>Show up for the monthly authority session</li>
+          <li>Share expertise</li>
+          <li>Provide client stories / testimonials when available</li>
+          <li>Review and approve content</li>
+          <li>Execute the monthly posting calendar</li>
+          <li>Engage with his audience</li>
+          <li>Continue coaching clients</li>
+        </ul>
+      </div>
+      <div class="dgm-col">
+        <div class="col-head">DGM</div>
+        <div class="col-sub">The Authority Partner</div>
+        <ul class="tick-list">
+          <li>Develop the strategy</li>
+          <li>Research and plan topics</li>
+          <li>Guide the authority session</li>
+          <li>Produce the long-form content</li>
+          <li>Edit the premium reels</li>
+          <li>Build the Authority Blueprint</li>
+          <li>Create the monthly content calendar</li>
+          <li>Develop hooks and CTA direction</li>
+          <li>Identify proof opportunities</li>
+          <li>Review performance</li>
+          <li>Refine future strategy</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="statement reveal">
+      <p>You bring the expertise. <span class="accent">We turn it into a repeatable authority system.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 EXPANDED AUTHORITY SYSTEM (act break) ============ -->
+<section class="act-break" id="scale">
+  <div class="wrap ab-inner">
+    <div class="eyebrow reveal"><span class="sec-num">09</span> Level 02 — Need More Content?</div>
+    <h2 class="section-title reveal">Expanded<br>Authority System</h2>
+    <p class="lead reveal">
+      Level 01 is the recommended starting point. When Chance wants to post more often without independently creating the extra content, Level 02 adds production on top of everything already included — the strategic system stays fully intact.
+    </p>
+
+    <div class="next-card reveal">
+      <div class="next-head">
+        <div>
+          <div class="next-tag">Level 02 — Everything In The Authority System, Plus More Production</div>
+          <div class="next-name">Expanded Authority System</div>
+        </div>
+        <div class="next-price">$1,500 <span class="u">/ Month</span></div>
+      </div>
+      <div class="asset-total">12 <span class="lbl">Finished Social Assets / Month</span></div>
+      <ul class="tick-list next-list">
+        <li><strong style="color:var(--white);">7 premium reels</strong> — from a strategic mix of authority/podcast, talking-head, testimonials, client success, training-floor, educational, or offer content</li>
+        <li><strong style="color:var(--white);">5 supporting static / carousel posts</strong> — educational carousels, quotes, authority posts, client proof, testimonials, or offer/CTA graphics</li>
+        <li>Monthly authority session</li>
+        <li>Long-form authority / podcast asset</li>
+        <li>Authority Blueprint</li>
+        <li>Full monthly strategy</li>
+        <li>Structured 30-day content calendar</li>
+        <li>Hooks + CTA direction</li>
+        <li>Content pillars</li>
+        <li>Monthly strategic review</li>
+      </ul>
+      <div class="not-required">Level 02 is primarily about more finished content — not a different system.</div>
+    </div>
+
+    <!-- the upgrade band -->
+    <div class="upgrade-band reveal">
+      <div class="ub-lead">Level 02 adds:</div>
+      <div class="ub-row">
+        <span class="ub-item">More Reels</span><span class="ub-plus">+</span>
+        <span class="ub-item">More Posts</span><span class="ub-plus">+</span>
+        <span class="ub-item cop">12 Finished Assets / Month</span>
+      </div>
+    </div>
+
+    <!-- side-by-side comparison -->
+    <div class="compare reveal">
+      <div class="cmp-col">
+        <div class="cmp-tag">Level 01 — $1,000 / Month</div>
+        <div class="cmp-name">Authority System</div>
+        <div class="cmp-assets">Build <span>The System</span></div>
+        <ul class="tick-list">
+          <li>1 authority / podcast session</li>
+          <li>1 long-form authority asset</li>
+          <li>5 premium reels</li>
+          <li>Authority Blueprint</li>
+          <li>Monthly strategy</li>
+          <li>Content pillars</li>
+          <li>Structured 30-day calendar</li>
+          <li>Hooks + talking points</li>
+          <li>CTA direction</li>
+          <li>Monthly review</li>
+        </ul>
+        <div class="cmp-kick">Best for: establishing consistent authority content and finally having a structured monthly posting plan.</div>
+      </div>
+      <div class="cmp-col featured">
+        <div class="cmp-tag">Level 02 — $1,500 / Month</div>
+        <div class="cmp-name">Expanded Authority System</div>
+        <div class="cmp-assets">12 <span>Finished Assets</span></div>
+        <ul class="tick-list">
+          <li>Everything in Level 01</li>
+          <li>7 total premium reels</li>
+          <li>5 supporting static / carousel posts</li>
+          <li>12 finished social assets / month</li>
+          <li>Expanded content mix</li>
+          <li>Higher posting frequency</li>
+        </ul>
+        <div class="cmp-kick">Best for: a stronger, more active presence with enough finished content to maintain a higher-frequency posting schedule.</div>
+      </div>
+    </div>
+
+    <div class="chain reveal" style="margin-top:clamp(30px,4vw,44px);">
+      <span class="item">Level 01</span>
+      <span class="item" style="font-size:clamp(0.8rem,1.6vw,1rem);color:var(--muted);letter-spacing:0.18em;">Build The System</span>
+      <span class="arrow">→</span>
+      <span class="item final">Level 02</span>
+      <span class="item final" style="font-size:clamp(0.8rem,1.6vw,1rem);letter-spacing:0.18em;">Expand The Output</span>
+    </div>
+
+    <p class="lead reveal" style="margin-top:clamp(30px,4vw,44px);">
+      Chance can start with Level 01 and move to Level 02 whenever more content and a higher posting frequency make sense. The strategy, calendar, and long-form production are already included in both.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 10 FIRST 90 DAYS ============ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="roadmap">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">10</span> The First 90 Days</div>
+    <h2 class="section-title reveal">A Simple<br>Three-Month Path</h2>
+
+    <div class="road reveal" style="margin-top:clamp(34px,4vw,52px);">
+      <div class="month">
+        <div class="mlab">Month 1</div>
+        <div class="mname">Build</div>
+        <ul class="tick-list">
+          <li>Establish Authority Blueprint</li>
+          <li>Define positioning</li>
+          <li>Establish content pillars</li>
+          <li>Record first authority session</li>
+          <li>Produce first long-form content</li>
+          <li>Produce first 5 reels</li>
+          <li>Build first structured calendar</li>
+          <li>Connect content direction to existing GHL opportunities</li>
+        </ul>
+      </div>
+      <div class="month">
+        <div class="mlab">Month 2</div>
+        <div class="mname">Refine</div>
+        <ul class="tick-list">
+          <li>Review performance</li>
+          <li>Identify strongest topics</li>
+          <li>Improve hooks</li>
+          <li>Refine messaging</li>
+          <li>Identify testimonial / proof opportunities</li>
+          <li>Improve CTAs</li>
+          <li>Continue authority production</li>
+        </ul>
+      </div>
+      <div class="month">
+        <div class="mlab">Month 3</div>
+        <div class="mname">Compound</div>
+        <ul class="tick-list">
+          <li>Strengthen recognizable authority themes</li>
+          <li>Double down on effective content</li>
+          <li>Improve connection between content and coaching opportunities</li>
+          <li>Continue building consistency</li>
+          <li>Determine whether additional content volume is warranted</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="decision-note reveal">
+      Chance can remain at the $1,000 Authority System or expand to the $1,500 Expanded Authority System at any point where additional content volume makes sense.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 11 INVESTMENT / CTA ============ -->
+<div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
+<section id="invest">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="sec-num">11</span> The Investment</div>
+    <h2 class="section-title reveal">Start The<br>Authority System</h2>
+
+    <div class="cta-panel reveal">
+      <div class="cta-name">Option 01 — Level 01</div>
+      <div class="cta-price">$1,000 <span class="u">/ Month</span></div>
+      <div class="cta-commit">Authority System &nbsp;•&nbsp; Recommended Starting Point &nbsp;•&nbsp; <strong>90-Day Initial Commitment</strong></div>
+
+      <div class="cta-levels">
+        <div class="ctl"><span class="ctl-lab">Produce</span><span class="ctl-name">Authority Content</span></div>
+        <div class="ctl-op">+</div>
+        <div class="ctl"><span class="ctl-lab">Strategize</span><span class="ctl-name">The Monthly System</span></div>
+        <div class="ctl-op">=</div>
+        <div class="ctl total"><span class="ctl-lab">Outcome</span><span class="ctl-name">Consistent Authority</span></div>
+      </div>
+
+      <ul class="cta-summary">
+        <li>Monthly authority / podcast session</li>
+        <li>Professionally edited long-form authority content</li>
+        <li>5 premium reels</li>
+        <li>Testimonial / proof flexibility when applicable</li>
+        <li>Authority Blueprint</li>
+        <li>Monthly content strategy</li>
+        <li class="launch">Structured 30-day content calendar</li>
+        <li>Content pillars</li>
+        <li>Hooks + CTA direction</li>
+        <li>Future content ideas</li>
+        <li>Monthly strategic review</li>
+        <li class="launch">Strategic use of existing GHL infrastructure</li>
+      </ul>
+
+      <a class="cta-btn" href="#">Start The Authority System</a>
+
+      <p class="cta-foot">
+        Primary outcome: build a consistent authority system. Capture Chance's expertise once a month, turn it into professional content and a structured strategy, and establish a recognizable, consistent presence over time.
+      </p>
+    </div>
+
+    <!-- secondary upgrade callout -->
+    <div class="upgrade-callout reveal">
+      <div class="uc-tag">Option 02 — Level 02</div>
+      <div class="uc-row">
+        <div class="uc-name">Expanded Authority System<span class="uc-price">$1,500 / Month &nbsp;•&nbsp; Expand The Content Output</span></div>
+        <div class="uc-eq"><span class="cop">12 Finished Social Assets / Month</span> &nbsp;+&nbsp; Full Authority System</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="lockup reveal">
+      <div class="lockup-mark"><span></span><span></span><span></span><span></span></div>
+      <div class="lockup-name">Daily Grind Media</div>
+    </div>
+    <div class="footer-mark reveal">Bring The Expertise.<br>We Build The System.</div>
+    <div class="footer-tag reveal">The team behind the authority.</div>
+    <div class="footer-meta reveal">Prepared for Chance Dyck &nbsp;•&nbsp; Daily Grind Media</div>
+    <p class="disclaimer reveal">
+      Content volumes, formats, and pillars described here are illustrative and directional. They represent the planned structure of the system and will be reviewed and adjusted together as the work evolves. This proposal is not a guarantee of specific reach, engagement, leads, or client outcomes.
+    </p>
+  </div>
+</footer>
+
+<script>
+/* ===== Authority Flywheel: sequential node reveal + hover/focus detail ===== */
+(function(){
+  var svg=document.querySelector('.fw-svg');
+  if(!svg) return;
+  var nodes=Array.prototype.slice.call(svg.querySelectorAll('.fw-node'));
+  var items=Array.prototype.slice.call(document.querySelectorAll('.fw-detail .fd-item'));
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // sequential entrance
+  function fireIn(){
+    if(reduce){svg.classList.add('in');return;}
+    svg.classList.add('in');
+    nodes.forEach(function(n,idx){ n.style.transitionDelay=(0.12*idx)+'s'; });
+  }
+  if('IntersectionObserver' in window){
+    var o=new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ fireIn(); o.unobserve(e.target); } });
+    },{threshold:0.25});
+    o.observe(svg);
+  } else { fireIn(); }
+
+  // detail swap
+  function activate(i){
+    nodes.forEach(function(n){ n.classList.toggle('active', +n.dataset.i===i); });
+    items.forEach(function(it){ it.classList.toggle('show', +it.dataset.i===i); });
+  }
+  nodes.forEach(function(n){
+    var i=+n.dataset.i;
+    n.addEventListener('mouseenter',function(){activate(i);});
+    n.addEventListener('focus',function(){activate(i);});
+    n.addEventListener('click',function(){activate(i);});
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
+</body>
+</html>
