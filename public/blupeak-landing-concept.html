@@ -416,6 +416,34 @@ h3{font-family:var(--sans);font-weight:800;line-height:1.05;letter-spacing:-.01e
   .reveal{opacity:1;transform:none}
   .ripple.animate{opacity:.25;animation:none}
 }
+
+/* ============================================================
+   APPLICATION HANDOFF MODAL — minimal, on-brand
+   ============================================================ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:1000;
+  display:grid;place-items:center;padding:1.5rem;
+  background:rgba(6,58,99,.55);backdrop-filter:blur(4px);
+  opacity:0;transition:opacity .25s ease;
+}
+.modal-overlay[hidden]{display:none}
+.modal-overlay.show{opacity:1}
+.modal{
+  position:relative;overflow:hidden;isolation:isolate;
+  width:min(440px,100%);text-align:center;
+  background:var(--white);border-radius:var(--r-lg);
+  padding:clamp(2rem,5vw,2.8rem);
+  box-shadow:0 40px 90px -30px rgba(6,58,99,.6);
+  transform:translateY(14px) scale(.98);transition:transform .28s ease;
+}
+.modal-overlay.show .modal{transform:none}
+.modal .eyebrow{margin-bottom:1rem}
+.modal-body{color:var(--gray);font-size:1.02rem;line-height:1.6;margin-bottom:1.8rem;max-width:34ch;margin-left:auto;margin-right:auto}
+/* soft ripple echo behind the message — reuses page's ripple language */
+.modal-ripple{position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:130%;aspect-ratio:1;z-index:-1;pointer-events:none;opacity:.5}
+.modal-ripple span{position:absolute;inset:0;border:1px solid var(--sky-2);border-radius:50%}
+.modal-ripple span:nth-child(2){inset:16%}
+.modal-ripple span:nth-child(3){inset:32%}
 </style>
 </head>
 <body>
@@ -633,7 +661,7 @@ h3{font-family:var(--sans);font-weight:800;line-height:1.05;letter-spacing:-.01e
       </div>
     </div>
     <div class="steps-cta reveal">
-      <a href="https://open.blupeak.com/products?customerCategory=personal&productType=all" class="btn btn-primary">Start your application <span class="arrow">&rarr;</span></a>
+      <button type="button" class="btn btn-primary" data-open-modal="handoff">Start your application <span class="arrow">&rarr;</span></button>
       <p>Complete the application online in just a few minutes.</p>
     </div>
   </div>
@@ -706,6 +734,16 @@ h3{font-family:var(--sans);font-weight:800;line-height:1.05;letter-spacing:-.01e
 
 </main>
 
+<!-- ============================ APPLICATION HANDOFF MODAL ============================ -->
+<div class="modal-overlay" id="handoff-modal" role="dialog" aria-modal="true" aria-labelledby="handoff-title" hidden>
+  <div class="modal">
+    <div class="modal-ripple" aria-hidden="true"><span></span><span></span><span></span></div>
+    <span class="eyebrow" id="handoff-title">Application handoff</span>
+    <p class="modal-body">In production, this CTA will connect directly to BluPeak's approved account application or desired conversion destination.</p>
+    <button type="button" class="btn btn-primary" data-close-modal>Return to concept</button>
+  </div>
+</div>
+
 <!-- ============================ FOOTER ============================ -->
 <footer class="footer">
   <div class="wrap">
@@ -763,6 +801,35 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 document.querySelectorAll('.hero-ripples span, .purpose-bg span').forEach((s,i) => {
   s.style.transition = 'transform .6s ease';
 });
+
+/* Application handoff modal — open, close, restore focus */
+(function(){
+  const modal = document.getElementById('handoff-modal');
+  if(!modal) return;
+  let lastFocus = null;
+
+  function open(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.hidden = false;
+    requestAnimationFrame(() => modal.classList.add('show'));
+    document.body.style.overflow = 'hidden';
+    modal.querySelector('[data-close-modal]').focus();
+  }
+  function close(){
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+    const done = () => { modal.hidden = true; modal.removeEventListener('transitionend', done); };
+    modal.addEventListener('transitionend', done);
+    if(lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-open-modal="handoff"]').forEach(btn => {
+    btn.addEventListener('click', () => open(btn));
+  });
+  modal.querySelector('[data-close-modal]').addEventListener('click', close);
+  modal.addEventListener('click', e => { if(e.target === modal) close(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && !modal.hidden) close(); });
+})();
 </script>
 </body>
 </html>
