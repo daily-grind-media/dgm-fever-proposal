@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BluRipple Checking — BluPeak Credit Union</title>
+<!-- v2: Nunito Sans typographic system (Fraunces removed) -->
+
+<!--
+  BluPeak Credit Union — Speculative landing page concept
+  Prepared by Daily Grind Media. Not a rebrand — an elevation of the
+  existing BluPeak identity for a conversion-focused campaign page.
+  Visual system: PEAK (upward geometry) + RIPPLE (concentric rings, the
+  proprietary device) + HORIZON (open California light & gradients).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  /* Brand blues — sampled from the BluPeak logo */
+  --blu:        #00ade2;   /* bright BluPeak blue (logo mark)      */
+  --blu-mid:    #009cdb;   /* medium blue                          */
+  --navy:       #0067b0;   /* deep authority blue (peak swoosh)    */
+  --navy-deep:  #063a63;   /* darkest — purpose section base       */
+  --cyan:       #6fd6f2;   /* light water accent, used sparingly   */
+
+  /* Neutrals */
+  --white:      #ffffff;
+  --paper:      #f6f4ef;   /* warm off-white                       */
+  --paper-2:    #eef2f4;   /* coastal cool off-white               */
+  --stone:      #d9d3c8;   /* muted stone line                     */
+  --gray:       #5f6b73;   /* soft coastal gray text               */
+  --ink:        #12252f;   /* primary text (blue-black, not #000)  */
+
+  /* Atmosphere */
+  --sky-1:      #eaf6fc;
+  --sky-2:      #cfe9f6;
+
+  /* Type — single family, elevated through art direction */
+  --sans: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+
+  /* Space & shape */
+  --pad: clamp(1.25rem, 5vw, 6rem);
+  --r:   18px;
+  --r-lg:28px;
+  --maxw:1240px;
+}
+
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--white);
+  line-height:1.6;
+  overflow-x:hidden;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+/* Display headings — weight and tight metrics carry the personality now */
+h1{font-family:var(--sans);font-weight:900;line-height:.94;letter-spacing:-.025em}
+h2{font-family:var(--sans);font-weight:800;line-height:1.0;letter-spacing:-.02em}
+h3{font-family:var(--sans);font-weight:800;line-height:1.05;letter-spacing:-.01em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+/* Eyebrow — small, wide, but sentence-spaced (not shouty) */
+.eyebrow{
+  font-family:var(--sans);
+  font-weight:800;
+  font-size:.7rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--navy);
+  display:inline-block;
+  margin-bottom:1.1rem;
+}
+.eyebrow::before{
+  content:"";
+  display:inline-block;
+  width:26px;height:2px;
+  background:var(--blu);
+  vertical-align:middle;
+  margin-right:12px;
+  transform:translateY(-2px);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--sans);font-weight:700;font-size:.95rem;
+  padding:.95rem 1.6rem;border-radius:100px;
+  cursor:pointer;border:1.5px solid transparent;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+}
+.btn:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--blu);transform:translateY(-2px);box-shadow:0 12px 30px -12px rgba(0,103,176,.6)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:rgba(0,103,176,.35)}
+.btn-ghost:hover{border-color:var(--navy);transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--navy)}
+.btn-light:hover{background:var(--cyan);color:var(--navy-deep);transform:translateY(-2px)}
+.btn-outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+.btn-outline-light:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.arrow{transition:transform .18s ease}
+.btn:hover .arrow{transform:translateX(3px)}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s ease, box-shadow .3s ease;
+}
+.site-header.scrolled{border-color:rgba(0,0,0,.06);box-shadow:0 4px 24px -18px rgba(0,0,0,.4)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding-top:.85rem;padding-bottom:.85rem;gap:1rem}
+.logo{height:34px;width:auto}
+.logo svg{height:100%;width:auto;display:block}
+.header-actions{display:flex;align-items:center;gap:1.4rem}
+.header-link{font-weight:600;font-size:.9rem;color:var(--gray)}
+.header-link:hover{color:var(--navy)}
+@media(max-width:620px){.header-link{display:none}.header-actions{gap:.6rem}}
+
+/* ============================================================
+   RIPPLE DEVICE (proprietary) — reusable
+   ============================================================ */
+.ripple-field{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.ripple{
+  position:absolute;border-radius:50%;
+  border:1.5px solid currentColor;
+  opacity:0;
+  transform:scale(.2);
+}
+@keyframes rippleOut{
+  0%  {opacity:.0;transform:scale(.15)}
+  15% {opacity:.5}
+  100%{opacity:0;transform:scale(1)}
+}
+.ripple.animate{animation:rippleOut 6s ease-out infinite}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative;background:
+   radial-gradient(120% 90% at 85% -10%, var(--sky-2) 0%, var(--sky-1) 30%, var(--paper) 70%);
+   padding-top:clamp(3rem,7vw,6rem);padding-bottom:clamp(3rem,7vw,6rem);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,5rem);align-items:center;position:relative;z-index:2}
+.hero h1{
+  font-size:clamp(2.7rem,5.9vw,4.9rem);
+  margin:.5rem 0 1.4rem;
+  color:var(--ink);
+}
+/* "more." emphasized with BluPeak blue + heaviest weight, no italics */
+.hero h1 .light{color:var(--blu);font-weight:900}
+.hero-sub{font-family:var(--sans);font-weight:600;font-size:clamp(1.1rem,2vw,1.35rem);color:var(--navy);margin-bottom:1.3rem;line-height:1.3;letter-spacing:-.01em}
+.hero-body{color:var(--gray);max-width:33ch;margin-bottom:2rem;font-size:1.02rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.85rem;margin-bottom:2.6rem}
+
+/* Trust strip */
+.trust{display:flex;gap:clamp(1rem,3vw,2.6rem);flex-wrap:wrap;border-top:1px solid var(--stone);padding-top:1.6rem}
+.trust .stat{min-width:80px}
+.trust .num{font-family:var(--sans);font-weight:900;font-size:2.4rem;color:var(--navy);line-height:1;letter-spacing:-.03em}
+.trust .lbl{font-size:.78rem;color:var(--gray);margin-top:.35rem;font-weight:600;max-width:14ch}
+.trust-note{width:100%;font-size:.72rem;color:var(--gray);margin-top:1.1rem;opacity:.85}
+
+/* Hero image w/ ripple mask */
+.hero-media{position:relative;aspect-ratio:4/5;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 40px 80px -40px rgba(6,58,99,.5)}
+.hero-media img{width:100%;height:100%;object-fit:cover}
+.hero-media .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,103,176,.05),rgba(6,58,99,.28));mix-blend-mode:multiply}
+/* concentric ripple overlaid on hero image */
+.hero-ripples{position:absolute;right:-10%;bottom:-8%;width:70%;aspect-ratio:1;color:#fff;z-index:2;pointer-events:none}
+.hero-ripples span{position:absolute;inset:0;border:1.5px solid rgba(255,255,255,.55);border-radius:50%}
+.hero-ripples span:nth-child(1){inset:30%}
+.hero-ripples span:nth-child(2){inset:18%;opacity:.7}
+.hero-ripples span:nth-child(3){inset:6%;opacity:.45}
+.hero-ripples span:nth-child(4){inset:-8%;opacity:.25}
+/* floating impact tag on image */
+.hero-tag{position:absolute;left:1.1rem;bottom:1.1rem;z-index:3;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-radius:14px;padding:.8rem 1.1rem;box-shadow:0 14px 30px -18px rgba(0,0,0,.5);max-width:65%}
+.hero-tag .t{font-family:var(--sans);font-weight:800;font-size:1.35rem;color:var(--navy);line-height:1;letter-spacing:-.02em}
+.hero-tag .s{font-size:.72rem;color:var(--gray);margin-top:.25rem}
+
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-media{aspect-ratio:16/13;order:-1}
+  .hero-body{max-width:none}
+}
+
+/* ============================================================
+   SECTION SCAFFOLD
+   ============================================================ */
+.section{padding-top:clamp(4rem,9vw,8rem);padding-bottom:clamp(4rem,9vw,8rem);position:relative}
+.section-head{max-width:60ch}
+.section h2{font-size:clamp(2.1rem,4.6vw,3.6rem);color:var(--ink)}
+.section-lead{color:var(--gray);margin-top:1.4rem;max-width:52ch;font-size:1.05rem}
+.paper{background:var(--paper)}
+
+/* ============================================================
+   BENEFITS — editorial ledger, not cards
+   ============================================================ */
+.benefits{margin-top:clamp(2.5rem,5vw,4rem)}
+.benefit-row{
+  display:grid;grid-template-columns:auto 1fr auto;
+  gap:clamp(1rem,4vw,3rem);align-items:baseline;
+  padding:1.9rem 0;border-top:1px solid var(--stone);
+}
+.benefit-row:last-child{border-bottom:1px solid var(--stone)}
+.benefit-key{font-family:var(--sans);font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--navy);white-space:nowrap;letter-spacing:-.02em}
+.benefit-title{font-weight:800;font-size:1.05rem;letter-spacing:.01em}
+.benefit-desc{color:var(--gray);font-size:.98rem;text-align:right;max-width:34ch;justify-self:end}
+.benefits-cta{margin-top:2.6rem}
+@media(max-width:720px){
+  .benefit-row{grid-template-columns:1fr;gap:.35rem;padding:1.4rem 0}
+  .benefit-desc{text-align:left;justify-self:start;margin-top:.2rem}
+}
+
+/* ============================================================
+   PURPOSE / RIPPLE — the hero of the page
+   ============================================================ */
+.purpose{background:radial-gradient(130% 120% at 50% 0%, var(--navy) 0%, var(--navy-deep) 65%);color:#fff;overflow:hidden;position:relative;isolation:isolate}
+.purpose .eyebrow{color:var(--cyan)}
+.purpose .eyebrow::before{background:var(--cyan)}
+.purpose h2{color:#fff;font-size:clamp(2.2rem,5vw,4rem)}
+.purpose-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,6vw,5rem);align-items:center;position:relative;z-index:3}
+.purpose-copy{color:rgba(255,255,255,.82);margin-top:1.6rem;max-width:46ch;font-size:1.05rem}
+/* giant impact figure */
+.impact{text-align:center;position:relative;z-index:3}
+.impact .fig{font-family:var(--sans);font-weight:900;font-size:clamp(4.2rem,12vw,8rem);color:#fff;line-height:.9;letter-spacing:-.035em}
+.impact .fig .plus{color:var(--cyan)}
+.impact .cap{color:rgba(255,255,255,.78);max-width:32ch;margin:1.2rem auto 0;font-size:.95rem}
+.impact-ring{position:absolute;inset:-40% 0;z-index:-1;display:grid;place-items:center;pointer-events:none}
+.impact-ring span{position:absolute;border:1px solid rgba(111,214,242,.35);border-radius:50%;width:120%;aspect-ratio:1}
+.purpose-close{position:relative;z-index:3;text-align:center;margin-top:clamp(3rem,6vw,5rem);font-family:var(--sans);font-weight:600;font-size:clamp(1.25rem,2.4vw,1.75rem);color:#fff;letter-spacing:-.01em}
+.purpose-close span{color:var(--cyan)}
+/* background concentric ripples */
+.purpose-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(1400px,160vw);aspect-ratio:1;z-index:0;opacity:.5}
+.purpose-bg span{position:absolute;inset:0;border:1px solid rgba(255,255,255,.10);border-radius:50%}
+.purpose-bg span:nth-child(1){inset:0}
+.purpose-bg span:nth-child(2){inset:12%}
+.purpose-bg span:nth-child(3){inset:24%}
+.purpose-bg span:nth-child(4){inset:36%}
+.purpose-bg span:nth-child(5){inset:48%}
+@media(max-width:860px){.purpose-grid{grid-template-columns:1fr;text-align:center}.purpose-copy{margin-left:auto;margin-right:auto}}
+
+/* ============================================================
+   WHY BLUPEAK — pillars w/ peak geometry
+   ============================================================ */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,3vw,2.4rem);margin-top:clamp(2.5rem,5vw,4rem)}
+.pillar{position:relative;padding-top:2.2rem}
+.pillar::before{
+  content:"";position:absolute;top:0;left:0;width:40px;height:22px;
+  background:var(--blu);
+  clip-path:polygon(0 100%, 50% 0, 100% 100%); /* peak */
+}
+.pillar h3{font-family:var(--sans);font-weight:800;font-size:1.15rem;letter-spacing:.02em;margin-bottom:.6rem;color:var(--navy)}
+.pillar p{color:var(--gray);font-size:.98rem}
+.why-figure{margin-top:clamp(2.5rem,5vw,3.5rem);border-radius:var(--r-lg);overflow:hidden;position:relative;aspect-ratio:21/8;box-shadow:0 30px 60px -40px rgba(6,58,99,.5)}
+.why-figure img{width:100%;height:100%;object-fit:cover}
+.why-figure .tint{position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,58,99,.55),rgba(6,58,99,0) 60%)}
+.why-figure .cap{position:absolute;left:clamp(1.2rem,3vw,2.5rem);bottom:clamp(1.2rem,3vw,2.2rem);color:#fff;font-family:var(--sans);font-weight:800;font-size:clamp(1.1rem,2.4vw,1.6rem);max-width:20ch;line-height:1.12;letter-spacing:-.015em}
+@media(max-width:760px){.pillars{grid-template-columns:1fr;gap:1.8rem}.why-figure{aspect-ratio:16/11}}
+
+/* ============================================================
+   HOW IT WORKS — real sequence, oversized numerals
+   ============================================================ */
+.steps{margin-top:clamp(2.5rem,5vw,4rem);counter-reset:step}
+.step{
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(1.2rem,4vw,3rem);
+  align-items:start;padding:2rem 0;border-top:1px solid var(--stone);
+}
+.step:last-of-type{border-bottom:1px solid var(--stone)}
+.step .n{font-family:var(--sans);font-weight:900;font-size:clamp(2.6rem,7vw,5rem);line-height:.8;letter-spacing:-.03em;
+  background:linear-gradient(180deg,var(--blu),var(--navy));-webkit-background-clip:text;background-clip:text;color:transparent}
+.step h3{font-family:var(--sans);font-weight:800;font-size:1.2rem;letter-spacing:.02em;margin-bottom:.5rem}
+.step p{color:var(--gray);max-width:52ch}
+/* each step nudges upward — peak progression */
+.step:nth-child(2){padding-left:0}
+.step:nth-child(3){padding-left:clamp(0px,3vw,2.5rem)}
+.step:nth-child(4){padding-left:clamp(0px,6vw,5rem)}
+@media(max-width:720px){.step{grid-template-columns:auto 1fr;gap:1.2rem}.step:nth-child(3),.step:nth-child(4){padding-left:0}}
+.steps-cta{margin-top:2.6rem;display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem}
+.steps-cta p{color:var(--gray);font-size:.95rem}
+
+/* ============================================================
+   HORIZON — full-width California moment
+   ============================================================ */
+.horizon{position:relative;min-height:70vh;display:grid;align-items:center;overflow:hidden}
+.horizon img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.horizon .grad{position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,58,99,.72) 0%,rgba(0,103,176,.28) 45%,rgba(0,103,176,0) 75%)}
+.horizon .content{position:relative;z-index:2;color:#fff}
+.horizon h2{color:#fff;font-size:clamp(2.2rem,5.4vw,4.4rem);max-width:16ch}
+.horizon p{color:rgba(255,255,255,.9);margin-top:1.4rem;max-width:44ch;font-size:1.08rem}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.faq-list{border-top:1px solid var(--stone)}
+.faq-item{border-bottom:1px solid var(--stone)}
+.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;font-family:var(--sans);
+  font-weight:700;font-size:1.08rem;color:var(--ink);padding:1.3rem 0;display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.faq-q:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+.faq-icon{flex:none;width:22px;height:22px;position:relative;transition:transform .3s ease}
+.faq-icon::before,.faq-icon::after{content:"";position:absolute;background:var(--navy);border-radius:2px}
+.faq-icon::before{top:50%;left:0;width:100%;height:2px;transform:translateY(-50%)}
+.faq-icon::after{left:50%;top:0;height:100%;width:2px;transform:translateX(-50%);transition:opacity .3s ease}
+.faq-item.open .faq-icon{transform:rotate(180deg)}
+.faq-item.open .faq-icon::after{opacity:0}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{color:var(--gray);padding-bottom:1.3rem;max-width:60ch}
+@media(max-width:800px){.faq-grid{grid-template-columns:1fr;gap:1.5rem}}
+
+/* ============================================================
+   FINAL CONVERSION
+   ============================================================ */
+.final{background:radial-gradient(120% 120% at 50% 120%, var(--blu) 0%, var(--navy) 40%, var(--navy-deep) 100%);color:#fff;text-align:center;overflow:hidden;position:relative;isolation:isolate}
+.final h2{color:#fff;font-size:clamp(2.3rem,5.6vw,4.4rem)}
+.final .eyebrow{color:var(--cyan)}
+.final .eyebrow::before{background:var(--cyan)}
+.final p{color:rgba(255,255,255,.85);margin:1.4rem auto 2.2rem;max-width:34ch;font-family:var(--sans);font-weight:600;font-size:1.2rem;line-height:1.35;letter-spacing:-.01em}
+.final-ctas{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:3}
+.final-support{display:flex;gap:clamp(1rem,3vw,2.5rem);justify-content:center;flex-wrap:wrap;margin-top:2.8rem;position:relative;z-index:3}
+.final-support .it{font-size:.85rem;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:.5rem}
+.final-support .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan)}
+.final-bg{position:absolute;bottom:-60%;left:50%;transform:translateX(-50%);width:min(1100px,150vw);aspect-ratio:1;z-index:0;pointer-events:none}
+.final-bg span{position:absolute;inset:0;border:1px solid rgba(255,255,255,.14);border-radius:50%}
+.final-bg span:nth-child(2){inset:14%}
+.final-bg span:nth-child(3){inset:28%}
+.final-bg span:nth-child(4){inset:42%}
+.final .content{position:relative;z-index:3}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{background:var(--ink);color:rgba(255,255,255,.7);padding-top:3.5rem;padding-bottom:3.5rem;font-size:.85rem}
+.footer-top{display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer .logo svg path{fill:#fff !important}
+.footer nav{display:flex;gap:1.4rem;flex-wrap:wrap}
+.footer nav a{color:rgba(255,255,255,.75);font-weight:600}
+.footer nav a:hover{color:#fff}
+.disclosure{margin-top:2rem;font-size:.75rem;line-height:1.7;color:rgba(255,255,255,.5);max-width:90ch}
+.footer-legal{margin-top:1.6rem;font-size:.75rem;color:rgba(255,255,255,.4);display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+/* Authorship credit — deliberately quiet, separated from BluPeak legal */
+.concept-credit{margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.07);
+  font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.24em;color:rgba(255,255,255,.28)}
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none}
+  .ripple.animate{opacity:.25;animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header" id="header">
+  <div class="wrap header-inner">
+    <a href="#" class="logo" aria-label="BluPeak Credit Union home">
+      <svg viewBox="0 0 276 95.19" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BluPeak">
+        <g fill="#00ade2"><path d="m34.98 56.77c0 5.41-3.1 9.42-8.29 10.47 7.03 1.05 12.15 5.55 12.15 13.06 0 8.36-6.53 13.98-22.05 13.98-3.02 0-15.6-.21-16.79-.28v-49.18c9.42-.28 13.42-.21 16.51-.14 13.84.14 18.47 5.54 18.47 12.09zm-26.76-4.99v12.58c2.87.07 7.8.07 10.11 0 6.18-.28 8.64-3.3 8.43-6.68-.21-3.94-3.94-5.83-8.08-5.9-2.03-.07-7.65-.07-10.47 0zm0 19.81v15.52c2.67 0 8.28.07 10.67.07 7.52-.21 11.66-3.23 11.66-7.87s-3.79-7.59-13.06-7.8c-2.39-.07-6.53 0-9.27.07z"/><path d="m44.53 94v-50.79h7.73v50.79z"/><path d="m88.51 94-.35-5.9c-1.83 2.03-7.03 7.09-14.4 7.09s-14.12-5.34-14.12-15.39v-23.47h7.72v23.11c0 5.83 4.01 8.99 8.71 8.99 5.54 0 9.76-4.29 11.87-7.52v-24.59h7.72v37.65h-7.16v.02z"/><path d="m103.9 44.82c5.2-.14 12.09-.28 15.11-.28 14.89 0 23.81 6.04 23.88 17.84 0 12.29-9.55 17.91-20.17 18.34-3.3.14-7.65.21-10.61.21v13.06h-8.22s0-49.18 0-49.18zm8.21 28.6c3.65 0 6.53 0 9.55-.07 8.15-.28 12.93-4.07 12.93-10.39s-5.27-10.61-13-10.82c-2.74-.07-5.62-.07-9.48-.07v21.36z"/><path d="m184.81 78.05-31.12-.07c1.34 6.74 7.17 10.04 13.91 9.98 6.25-.07 10.54-3.02 12.93-5.2l3.86 5.62c-3.02 2.74-8.92 6.25-16.92 6.25-11.31 0-21.85-6.74-21.85-19.74 0-12.29 9.55-19.81 20.58-19.67 13.42.15 21.29 11.45 18.62 22.83zm-7.44-6.39c.35-5.13-4.07-9.7-11.1-9.76-6.11 0-11.31 3.37-12.58 9.76z"/><path d="m228.51 94h-7.09l-.21-5.13c-2.24 2.95-6.46 5.69-12.09 5.69-9.35 0-18.47-7.65-18.47-19.95 0-11.66 8.57-18.83 17.7-18.83 5.83 0 10.19 2.95 12.65 6.46l.14-5.9h7.37v37.65zm-30.56-19.25c0 7.8 5.69 13 12.37 13 4.5 0 8.22-2.24 10.67-5.27v-13.7c-2.67-3.94-6.6-6.46-11.24-6.46-6.25 0-11.81 4.85-11.81 12.43z"/><path d="m261.04 56.35h9.98l-14.26 15.39 16.44 22.27h-10.04l-11.66-16.65-7.59 8.15v8.5h-7.65v-50.79h7.65v32.11l17.14-18.97z"/></g><path d="m156.96 35.72s43.06 23.67 76.8-34.69c0 0 11.26 22.59 39.42 38.34 0 0-18.47-4.31-37.48-27.88l-1.05 3.66-1.3-5.45-1.38 10.97-1.95-6.99-1.55 8.13-1.22-1.95s-25.88 39.05-70.3 15.87h.02z" fill="#0067b0"/><path d="m164.02 33.39s24.49-6.78 38.04-33.39c0 0 6.93 13.81 13.66 20.87 0 0-8.26-4.67-12.28-11.14l-1.22 4.8-1.14-4.23-2.27 6.99-.24-6.17s-7.16 16.31-34.55 22.28z" fill="#00ade2"/><path d="m267.93 43.5-.28.81c-.42-.22-.96-.39-1.51-.39-.66 0-1.18.26-1.17.74.02.52.7.6 1.52.81 1.07.26 1.84.61 1.85 1.62.02 1.17-.98 1.73-2.18 1.74-1.02.02-1.86-.36-2.31-.62l.34-.78c.42.25 1.12.56 1.9.54.79 0 1.3-.35 1.3-.83 0-.61-.77-.7-1.65-.92-.93-.22-1.7-.57-1.72-1.53-.02-1.13 1.04-1.61 2.12-1.61.74 0 1.38.22 1.79.42z" fill="#009cdb"/><path d="m275.03 48.72v-4.05l-2.27 3.01-2.23-3.02v4.05h-.94v-5.55h.88l2.29 3.07 2.34-3.07h.9v5.55h-.97z" fill="#009cdb"/>
+      </svg>
+    </a>
+    <div class="header-actions">
+      <a href="#faq" class="header-link">Membership Eligibility</a>
+      <a href="#open" class="btn btn-primary">Open an account</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">BluRipple Checking</span>
+      <h1>Your next<br>account can<br>do <span class="light">more.</span></h1>
+      <p class="hero-sub">Simple checking for your everyday life.<br>A bigger impact beyond it.</p>
+      <p class="hero-body">Open a BluRipple Checking Account with no monthly fee when enrolled in eStatements, no minimum balance, and just $25 to open — while becoming part of BluPeak's mission to expand access to clean water.</p>
+      <div class="hero-ctas">
+        <a href="#open" class="btn btn-primary">Open your account <span class="arrow">&rarr;</span></a>
+        <a href="#faq" class="btn btn-ghost">See membership eligibility</a>
+      </div>
+      <div class="trust">
+        <div class="stat"><div class="num">$0</div><div class="lbl">Monthly fee with eStatements*</div></div>
+        <div class="stat"><div class="num">$0</div><div class="lbl">Minimum balance</div></div>
+        <div class="stat"><div class="num">$25</div><div class="lbl">Opening deposit</div></div>
+        <div class="trust-note">Federally insured by NCUA. Membership and account criteria apply.</div>
+      </div>
+    </div>
+    <div class="hero-media reveal">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1100&q=80" alt="Friends sharing a relaxed moment together outdoors in the California daylight">
+      <div class="tint"></div>
+      <div class="hero-ripples" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <div class="hero-tag">
+        <div class="t">$100K+ for clean water</div>
+        <div class="s">Contributed since 2024 through the BluPeak Foundation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BENEFITS ============================ -->
+<section class="section" id="benefits">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Simple by design</span>
+      <h2>Banking shouldn't<br>get in your way.</h2>
+      <p class="section-lead">BluRipple Checking keeps the everyday stuff simple, so you can spend less time thinking about your checking account and more time using your money for what matters.</p>
+    </div>
+    <div class="benefits reveal">
+      <div class="benefit-row">
+        <div class="benefit-key">$0</div>
+        <div class="benefit-title">No monthly fee*</div>
+        <div class="benefit-desc">With eStatements.</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-key">$0</div>
+        <div class="benefit-title">No minimum balance</div>
+        <div class="benefit-desc">Keep your money flexible.</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-key">$25</div>
+        <div class="benefit-title">Simple to open</div>
+        <div class="benefit-desc">A straightforward way to get started.</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-key">ATM</div>
+        <div class="benefit-title">Nationwide access</div>
+        <div class="benefit-desc">Use the CO-OP ATM network wherever life takes you.</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-key">24/7</div>
+        <div class="benefit-title">Fraud monitoring</div>
+        <div class="benefit-desc">Added protection for everyday banking.</div>
+      </div>
+    </div>
+    <div class="benefits-cta reveal">
+      <a href="#open" class="btn btn-primary">Open BluRipple Checking <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PURPOSE / RIPPLE ============================ -->
+<section class="section purpose" id="purpose">
+  <div class="purpose-bg" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="wrap">
+    <div class="purpose-grid">
+      <div class="reveal">
+        <span class="eyebrow">Every ripple makes a difference</span>
+        <h2>Your money moves<br>through more than<br>your account.</h2>
+        <p class="purpose-copy">BluPeak believes financial success and positive social impact can go hand in hand. Every account, purchase and interaction has the potential to help create a ripple of positive change through BluPeak's commitment to expanding access to clean water.</p>
+      </div>
+      <div class="impact reveal">
+        <div class="impact-ring" aria-hidden="true"><span style="width:70%"></span><span style="width:100%"></span><span style="width:130%"></span></div>
+        <div class="fig">$100K<span class="plus">+</span></div>
+        <p class="cap">Contributed since 2024 to the BluPeak Foundation and organizations addressing local and global water access.</p>
+      </div>
+    </div>
+    <p class="purpose-close reveal">Simple banking for you. <span>Meaningful impact beyond you.</span></p>
+  </div>
+</section>
+
+<!-- ============================ WHY BLUPEAK ============================ -->
+<section class="section paper" id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">More than a financial institution</span>
+      <h2>Built around people.<br>Driven by purpose.</h2>
+      <p class="section-lead">BluPeak is a member-owned credit union serving more than 54,000 members with over $1 billion in assets, combining modern digital banking with a commitment to its members, communities and positive change.</p>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <h3>Member-owned</h3>
+        <p>A financial institution designed around the people it serves — not outside shareholders.</p>
+      </div>
+      <div class="pillar">
+        <h3>Built for California</h3>
+        <p>Local roots with access designed for how members actually live today.</p>
+      </div>
+      <div class="pillar">
+        <h3>Purpose-driven</h3>
+        <p>Everyday financial activity becomes part of something bigger than a single account.</p>
+      </div>
+    </div>
+    <div class="why-figure reveal">
+      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80" alt="A group of people connecting over a shared table in natural light">
+      <div class="tint"></div>
+      <div class="cap">A credit union that grows when its members do.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ HOW IT WORKS ============================ -->
+<section class="section" id="open">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Get started</span>
+      <h2>Opening your account<br>is simple.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">01</div>
+        <div><h3>Check eligibility</h3><p>Membership is available through several eligibility pathways. A quick check confirms how you qualify.</p></div>
+      </div>
+      <div class="step reveal">
+        <div class="n">02</div>
+        <div><h3>Apply online</h3><p>Complete the secure application with basic personal and identification information.</p></div>
+      </div>
+      <div class="step reveal">
+        <div class="n">03</div>
+        <div><h3>Fund your account</h3><p>Start your BluRipple Checking Account with the $25 opening deposit — and your ripple begins.</p></div>
+      </div>
+    </div>
+    <div class="steps-cta reveal">
+      <a href="#open" class="btn btn-primary">Start your application <span class="arrow">&rarr;</span></a>
+      <p>Complete the application online in just a few minutes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ HORIZON MOMENT ============================ -->
+<section class="horizon" id="horizon">
+  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1900&q=80" alt="Wide California coastline meeting an open horizon under bright natural light">
+  <div class="grad"></div>
+  <div class="wrap content reveal">
+    <h2>Money should help you<br>live more of your life.</h2>
+    <p>Whether you're building what's next, creating stability, or simply looking for a better everyday banking experience, BluPeak is here to help make more possible.</p>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section paper" id="faq">
+  <div class="wrap faq-grid">
+    <div class="section-head reveal">
+      <span class="eyebrow">Good to know</span>
+      <h2>A few things<br>you may be<br>wondering.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is there a monthly fee?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>BluRipple Checking has no monthly fee when you're enrolled in eStatements. Additional fees may apply based on account usage.*</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is there a minimum balance?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>No. BluRipple Checking has no minimum balance requirement, so your money stays flexible.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How much do I need to open an account?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>A $25 opening deposit is all it takes to open your BluRipple Checking Account.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Can I open my account online?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Yes. The secure application can be completed online in just a few minutes.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Who can become a member?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>BluPeak membership is available through several eligibility pathways. View full eligibility requirements before applying.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How does BluPeak support clean-water access?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Through the BluPeak Foundation and partner organizations, BluPeak supports efforts to expand access to clean water — locally and globally. Everyday banking activity helps make that possible.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FINAL CONVERSION ============================ -->
+<section class="section final" id="final">
+  <div class="final-bg" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <div class="wrap content">
+    <span class="eyebrow reveal">BluRipple Checking</span>
+    <h2 class="reveal">Bank for today.<br>Create a ripple<br>for tomorrow.</h2>
+    <p class="reveal">Simple everyday checking. A credit union with a bigger purpose.</p>
+    <div class="final-ctas reveal">
+      <a href="#open" class="btn btn-light">Open your account <span class="arrow">&rarr;</span></a>
+      <a href="#faq" class="btn btn-outline-light">Check eligibility</a>
+    </div>
+    <div class="final-support reveal">
+      <span class="it"><span class="dot"></span>$0 monthly fee with eStatements</span>
+      <span class="it"><span class="dot"></span>No minimum balance</span>
+      <span class="it"><span class="dot"></span>$25 to open</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="#top" class="logo" aria-label="BluPeak Credit Union">
+        <svg viewBox="0 0 276 95.19" xmlns="http://www.w3.org/2000/svg" style="height:30px" role="img" aria-label="BluPeak">
+          <g fill="#ffffff"><path d="m34.98 56.77c0 5.41-3.1 9.42-8.29 10.47 7.03 1.05 12.15 5.55 12.15 13.06 0 8.36-6.53 13.98-22.05 13.98-3.02 0-15.6-.21-16.79-.28v-49.18c9.42-.28 13.42-.21 16.51-.14 13.84.14 18.47 5.54 18.47 12.09zm-26.76-4.99v12.58c2.87.07 7.8.07 10.11 0 6.18-.28 8.64-3.3 8.43-6.68-.21-3.94-3.94-5.83-8.08-5.9-2.03-.07-7.65-.07-10.47 0zm0 19.81v15.52c2.67 0 8.28.07 10.67.07 7.52-.21 11.66-3.23 11.66-7.87s-3.79-7.59-13.06-7.8c-2.39-.07-6.53 0-9.27.07z"/><path d="m44.53 94v-50.79h7.73v50.79z"/><path d="m88.51 94-.35-5.9c-1.83 2.03-7.03 7.09-14.4 7.09s-14.12-5.34-14.12-15.39v-23.47h7.72v23.11c0 5.83 4.01 8.99 8.71 8.99 5.54 0 9.76-4.29 11.87-7.52v-24.59h7.72v37.65h-7.16v.02z"/><path d="m103.9 44.82c5.2-.14 12.09-.28 15.11-.28 14.89 0 23.81 6.04 23.88 17.84 0 12.29-9.55 17.91-20.17 18.34-3.3.14-7.65.21-10.61.21v13.06h-8.22s0-49.18 0-49.18zm8.21 28.6c3.65 0 6.53 0 9.55-.07 8.15-.28 12.93-4.07 12.93-10.39s-5.27-10.61-13-10.82c-2.74-.07-5.62-.07-9.48-.07v21.36z"/><path d="m184.81 78.05-31.12-.07c1.34 6.74 7.17 10.04 13.91 9.98 6.25-.07 10.54-3.02 12.93-5.2l3.86 5.62c-3.02 2.74-8.92 6.25-16.92 6.25-11.31 0-21.85-6.74-21.85-19.74 0-12.29 9.55-19.81 20.58-19.67 13.42.15 21.29 11.45 18.62 22.83zm-7.44-6.39c.35-5.13-4.07-9.7-11.1-9.76-6.11 0-11.31 3.37-12.58 9.76z"/><path d="m228.51 94h-7.09l-.21-5.13c-2.24 2.95-6.46 5.69-12.09 5.69-9.35 0-18.47-7.65-18.47-19.95 0-11.66 8.57-18.83 17.7-18.83 5.83 0 10.19 2.95 12.65 6.46l.14-5.9h7.37v37.65zm-30.56-19.25c0 7.8 5.69 13 12.37 13 4.5 0 8.22-2.24 10.67-5.27v-13.7c-2.67-3.94-6.6-6.46-11.24-6.46-6.25 0-11.81 4.85-11.81 12.43z"/><path d="m261.04 56.35h9.98l-14.26 15.39 16.44 22.27h-10.04l-11.66-16.65-7.59 8.15v8.5h-7.65v-50.79h7.65v32.11l17.14-18.97z"/></g><path d="m156.96 35.72s43.06 23.67 76.8-34.69c0 0 11.26 22.59 39.42 38.34 0 0-18.47-4.31-37.48-27.88l-1.05 3.66-1.3-5.45-1.38 10.97-1.95-6.99-1.55 8.13-1.22-1.95s-25.88 39.05-70.3 15.87h.02z" fill="#6fd6f2"/><path d="m164.02 33.39s24.49-6.78 38.04-33.39c0 0 6.93 13.81 13.66 20.87 0 0-8.26-4.67-12.28-11.14l-1.22 4.8-1.14-4.23-2.27 6.99-.24-6.17s-7.16 16.31-34.55 22.28z" fill="#ffffff"/>
+        </svg>
+      </a>
+      <nav aria-label="Footer">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Disclosures</a>
+        <a href="#faq">Membership Eligibility</a>
+        <a href="#">NCUA</a>
+      </nav>
+    </div>
+    <p class="disclosure">*Must meet membership and account criteria. $25 minimum opening deposit. BluRipple Checking has no monthly fee when enrolled in eStatements. Additional fees may apply based on account usage. Refer to BluPeak's Schedule of Fees and Charges for complete information. Federally insured by NCUA.</p>
+    <div class="footer-legal">
+      <span>&copy; 2026 BluPeak Credit Union. All rights reserved.</span>
+      <span>Equal Housing Opportunity &middot; Insured by NCUA</span>
+    </div>
+    <div class="concept-credit">Landing page concept &middot; Daily Grind Media</div>
+  </div>
+</footer>
+
+<script>
+/* Sticky header shadow on scroll */
+const header = document.getElementById('header');
+addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', scrollY > 8);
+}, {passive:true});
+
+/* FAQ accordion — single-job, keyboard accessible */
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const open = item.classList.contains('open');
+    const answer = item.querySelector('.faq-a');
+    item.classList.toggle('open', !open);
+    btn.setAttribute('aria-expanded', String(!open));
+    answer.style.maxHeight = open ? null : answer.scrollHeight + 'px';
+  });
+});
+
+/* Scroll reveal — one orchestrated entrance per element, once */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, {threshold:.14, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* Ripple animation staggering (respects reduced motion via CSS) */
+document.querySelectorAll('.hero-ripples span, .purpose-bg span').forEach((s,i) => {
+  s.style.transition = 'transform .6s ease';
+});
+</script>
+</body>
+</html>
