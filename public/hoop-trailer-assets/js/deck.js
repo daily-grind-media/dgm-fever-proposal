@@ -239,6 +239,7 @@
     void deck.offsetWidth;            // commit hidden state so reveals replay
     go(entry.idx, { instant: true });
     fsEnter();
+    setTimeout(fitPhone, 60); setTimeout(fitPhone, 700);
     setHint();
     $('exitBtn').focus({ preventScroll: true });
   }
@@ -265,6 +266,7 @@
     observeSite();
     trackSite();
     fsExit();
+    setTimeout(fitPhone, 60); setTimeout(fitPhone, 700);
     setHint();
     $('presentBtn').focus({ preventScroll: true });
   }
@@ -287,9 +289,13 @@
   panel.addEventListener('click', function (e) { if (e.target === panel || e.target.classList.contains('index-inner')) closeIndex(); });
 
   /* ---------------- Keyboard ---------------- */
-  document.addEventListener('keydown', function (e) {
-    if (e.metaKey || e.ctrlKey || e.altKey) return;
-    var k = e.key;
+  function onKey(k, e) {
+    if (!zoom.hidden) {
+      if (k === 'Escape') { e.preventDefault(); closeZoom(); }
+      else if (k === 'ArrowRight') { e.preventDefault(); setGuide(gIdx + 1); fillZoom(); }
+      else if (k === 'ArrowLeft') { e.preventDefault(); setGuide(gIdx - 1); fillZoom(); }
+      return;
+    }
     if (!panel.hidden) { if (k === 'Escape') { closeIndex(); indexBtn.focus(); } return; }
     if (!isPresent()) {
       // Website mode: native scrolling owns arrows/space/page keys. Only P is reserved.
@@ -305,6 +311,17 @@
     else if (k === 'i' || k === 'I') openIndex();
     else if (/^[1-9]$/.test(k)) go(+k - 1);
     else if (k === '0') go(9);
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    onKey(e.key, e);
+  });
+  // keys forwarded from the embedded concept landing page (so deck navigation keeps working after clicking into it)
+  window.addEventListener('message', function (ev) {
+    var d = ev.data;
+    if (!d || d.dgm !== 'key' || typeof d.key !== 'string') return;
+    if (['ArrowLeft', 'ArrowRight', 'Escape'].indexOf(d.key) < 0) return;
+    onKey(d.key, { preventDefault: function () {}, target: document.body });
   });
 
   /* ---------------- Wheel / swipe: presentation mode only ---------------- */
@@ -431,8 +448,77 @@
   tabs.forEach(function (t, i) { t.addEventListener('click', function () { setTier(i); }); });
   setTier(1);
 
+  // 09 — ownership guide sample pages
+  var gPages = Array.prototype.slice.call(document.querySelectorAll('#gPages .gp'));
+  var gTabs = Array.prototype.slice.call(document.querySelectorAll('.g-thumbs button'));
+  var G = gPages.length, gIdx = 0;
+  function setGuide(i) {
+    gIdx = (i + G) % G;
+    gPages.forEach(function (p, k) {
+      var d = k - gIdx;
+      p.style.setProperty('--d', Math.max(0, d));
+      p.style.zIndex = 20 - Math.abs(d);
+      p.classList.toggle('is-on', d === 0);
+      p.classList.toggle('past', d < 0);
+      p.classList.toggle('far', d > 3);
+      p.setAttribute('aria-hidden', d === 0 ? 'false' : 'true');
+    });
+    gTabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === gIdx ? 'true' : 'false'); });
+    if ($('gCount')) $('gCount').textContent = pad(gIdx) + ' / ' + pad(G - 1);
+  }
+  gTabs.forEach(function (t, i) { t.addEventListener('click', function () { setGuide(i); }); });
+  gPages.forEach(function (p, i) {
+    p.addEventListener('click', function () { if (i === gIdx) openZoom(); else setGuide(i); });
+  });
+  if (G) {
+    $('gPrev').addEventListener('click', function () { setGuide(gIdx - 1); });
+    $('gNext').addEventListener('click', function () { setGuide(gIdx + 1); });
+    $('gZoomBtn').addEventListener('click', openZoom);
+    setGuide(0);
+  }
+  var zoom = $('gZoom'), zoomStage = $('gZoomStage'), zoomReturn = null;
+  function fillZoom() {
+    zoomStage.innerHTML = '';
+    var c = gPages[gIdx].cloneNode(true);
+    c.classList.remove('past', 'far'); c.removeAttribute('style'); c.setAttribute('aria-hidden', 'false');
+    zoomStage.appendChild(c);
+    $('gzCount').textContent = pad(gIdx) + ' / ' + pad(G - 1);
+  }
+  function openZoom() { zoomReturn = document.activeElement; fillZoom(); zoom.hidden = false; $('gzClose').focus(); }
+  function closeZoom() { zoom.hidden = true; zoomStage.innerHTML = ''; if (zoomReturn && zoomReturn.focus) zoomReturn.focus({ preventScroll: true }); }
+  if (zoom) {
+    $('gzClose').addEventListener('click', closeZoom);
+    $('gzPrev').addEventListener('click', function () { setGuide(gIdx - 1); fillZoom(); });
+    $('gzNext').addEventListener('click', function () { setGuide(gIdx + 1); fillZoom(); });
+    zoom.addEventListener('click', function (e) { if (e.target === zoom) closeZoom(); });
+  }
+
+  // 10 — concept landing page inside a phone frame
+  function landIndex() { var el = document.querySelector('.s-land'); return el ? slides.indexOf(el) : -99; }
+  var landFrame = $('landFrame'), phone = $('phone');
+  var landSrc = (window.DGM_BASE || '') + 'concepts/landing.html';
+  if ($('landOpen')) $('landOpen').href = landSrc;
+  function loadLanding() { if (landFrame && !landFrame.getAttribute('src')) landFrame.setAttribute('src', landSrc); }
+  function fitPhone() {
+    if (!phone || !landFrame) return;
+    var scr = phone.querySelector('.phone-screen'), w = scr.clientWidth, h = scr.clientHeight - landFrame.offsetTop;
+    if (!w) return;
+    var sc = w / 390;
+    landFrame.style.transform = 'scale(' + sc + ')';
+    landFrame.style.height = Math.round(h / sc) + 'px';
+  }
+  window.addEventListener('resize', fitPhone, { passive: true });
+  document.querySelectorAll('[data-land]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      loadLanding();
+      document.querySelectorAll('[data-land]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
+      try { landFrame.contentWindow.postMessage({ dgm: 'view', v: b.dataset.land }, '*'); } catch (e) {}
+    });
+  });
+
   function onEnter(n) {
     var s = slides[n];
+    if (Math.abs(n - landIndex()) <= 1) { loadLanding(); fitPhone(); }
     if (s.classList.contains('s-approach')) {
       clear('pillars'); pUserLock = false; setPillar(0);
       if (!reduce) timers.pillars = setInterval(function () { if (!pUserLock) setPillar((pIdx + 1) % 3); }, 3500);
