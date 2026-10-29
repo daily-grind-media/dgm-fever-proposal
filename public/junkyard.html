@@ -604,6 +604,200 @@ footer .lockup{justify-content:center}
 .next .bg img{filter:saturate(.75) brightness(.8)}
 footer{background:linear-gradient(180deg,rgba(10,9,8,.9),rgba(10,9,8,.96)),var(--tex-blackwood) center/700px;border-top:0}
 
+
+/* ---------- OPTIONS v3: real pricing + deliverables ---------- */
+[hidden]{display:none!important}
+.price .box{border-style:solid;border-color:var(--line-2);background:rgba(10,9,8,.35)}
+.tier.feature .price .box{border-color:var(--gold-deep);background:rgba(237,198,67,.04)}
+.price .row .v.big{font-size:2.5rem;line-height:.9}
+.price .row .v small{font-family:var(--f-label);font-size:.68rem;letter-spacing:.14em;color:var(--muted);margin-left:4px}
+.price .was{color:var(--muted);font-size:1.05rem;margin-right:8px;text-decoration-thickness:1px}
+.dl-h{font-family:var(--f-label);text-transform:uppercase;letter-spacing:.24em;font-size:.62rem;color:var(--gold);font-weight:600;margin-top:4px;padding-top:12px;border-top:1px solid var(--line)}
+ul.dl{list-style:none;display:grid;gap:7px}
+ul.dl li{display:flex;gap:9px;font-size:.86rem;color:var(--body);line-height:1.45}
+ul.dl li::before{content:"";width:5px;height:5px;background:var(--gold-deep);transform:rotate(45deg);margin-top:.55em;flex:none}
+ul.dl li.from{font-family:var(--f-label);text-transform:uppercase;letter-spacing:.16em;font-size:.64rem;color:var(--muted)}
+ul.dl li.from::before{content:none}
+.addons li{align-items:baseline}
+.addons li .an{min-width:0}
+.addons li .an em{display:block;font-style:normal;font-size:.76rem;color:var(--muted);margin-top:2px}
+.addons li span{font-family:var(--f-display);font-size:1.2rem;letter-spacing:.03em;text-transform:none;color:var(--gold-soft);text-align:right}
+
+/* =====================================================================
+   06 CONCEPT — Turning Nights Into Bookings (preview of Option 03)
+   Samples are rendered as phone screens and one slide, all watermarked.
+   ===================================================================== */
+.concept{background:
+  radial-gradient(ellipse 55% 24% at 50% 0,rgba(227,155,74,.14),transparent 70%),
+  radial-gradient(ellipse 40% 30% at 85% 45%,rgba(227,155,74,.06),transparent 70%),
+  linear-gradient(180deg,rgba(10,9,8,.84),rgba(10,9,8,.78) 50%,rgba(10,9,8,.9)),
+  var(--tex-blackwood) center/700px repeat,var(--black)}
+.cx-head{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(20px,4vw,56px);align-items:end}
+.cx-head>*{min-width:0}
+.cx-head .lead{margin-bottom:16px}
+.o3-tag{display:inline-flex;font-family:var(--f-label);text-transform:uppercase;letter-spacing:.22em;font-size:.7rem;font-weight:600;color:var(--black);background:var(--gold);padding:6px 12px;margin-bottom:18px}
+.sample{margin-top:clamp(56px,8vw,96px);padding-top:clamp(26px,4vw,40px);border-top:1px solid var(--line-2)}
+.s-label{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:clamp(22px,3vw,34px)}
+.s-label .n{font-family:var(--f-display);font-size:clamp(2.4rem,4vw,3.2rem);color:var(--gold);line-height:.9}
+.s-label h3{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.s-label .concept-note{margin-left:auto}
+.s-grid{display:grid;grid-template-columns:340px minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.rsvp-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px 340px;gap:clamp(20px,3vw,36px);align-items:start}
+.rsvp-grid>*,.s-grid>*{min-width:0}
+.cx-pts{list-style:none;display:grid;gap:10px;margin:18px 0 22px;border-top:1px solid var(--line);padding-top:16px}
+.cx-pts li{display:flex;gap:12px;color:var(--body);font-size:.95rem}
+.cx-pts li::before{content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg);margin-top:.6em;flex:none}
+.cx-cap{font-family:var(--f-serif);font-style:italic;font-weight:300;color:var(--gold-soft);font-size:clamp(1.3rem,2.4vw,1.75rem);line-height:1.25;max-width:24ch}
+.demo-btn{justify-self:start;background:rgba(10,9,8,.5);border:1px solid var(--gold-deep);color:var(--gold-soft);font-family:var(--f-label);text-transform:uppercase;letter-spacing:.18em;font-size:.68rem;padding:10px 14px;cursor:pointer;transition:all .3s ease}
+.demo-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* phone frame */
+.phone{position:relative;width:340px;max-width:100%;height:700px;border-radius:46px;padding:10px;background:#050404;border:1px solid #3a3326;box-shadow:0 0 0 1px #000,0 40px 80px rgba(0,0,0,.7),0 0 70px rgba(227,155,74,.07)}
+.phone::before{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);width:92px;height:26px;border-radius:14px;background:#000;z-index:7}
+.screen{position:relative;height:100%;border-radius:36px;overflow:hidden;background:var(--black)}
+.scroll{height:100%;overflow-y:auto;scrollbar-width:none}
+.scroll::-webkit-scrollbar{display:none}
+.phone .ctag{top:18px;left:20px;right:auto;z-index:7}
+.wm{position:absolute;inset:0;z-index:5;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='170'%3E%3Ctext x='120' y='90' text-anchor='middle' transform='rotate(-28 120 85)' font-family='Arial Narrow, Arial, sans-serif' font-size='13' font-weight='700' letter-spacing='3' fill='%23EDC643' fill-opacity='0.10'%3ECONCEPT %E2%80%94 NOT LIVE%3C/text%3E%3C/svg%3E");background-size:240px 170px}
+.wm-band{position:absolute;left:0;right:0;bottom:0;z-index:6;text-align:center;font-family:var(--f-label);font-weight:700;letter-spacing:.26em;font-size:.58rem;text-transform:uppercase;color:var(--black);background:var(--gold);padding:5px 0}
+
+/* landing / RSVP page inside the phone (Junkyard's look, not DGM's) */
+.lp-hero{position:relative;height:300px;overflow:hidden}
+.lp-hero.sm{height:250px}
+.lp-hero>img{width:100%;height:100%;object-fit:cover}
+.lp-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,9,8,.55) 0%,rgba(10,9,8,.1) 35%,rgba(10,9,8,.6) 65%,var(--black) 100%)}
+.lp-top{position:absolute;top:52px;left:18px;right:18px;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.lp-top img{height:22px;width:auto}
+.lp-pill{font-family:var(--f-label);font-weight:600;text-transform:uppercase;letter-spacing:.16em;font-size:.58rem;color:var(--gold);border:1px solid var(--gold-deep);padding:4px 8px;background:rgba(10,9,8,.6)}
+.lp-hin{position:absolute;left:18px;right:18px;bottom:14px;z-index:2}
+.lp-kick{font-family:var(--f-label);font-weight:700;letter-spacing:.24em;font-size:.6rem;text-transform:uppercase;color:var(--gold)}
+.lp-h{font-family:var(--f-display);font-size:2.35rem;line-height:.9;text-transform:uppercase;color:var(--white);margin-top:4px}
+.lp-h.sm{font-size:1.95rem}
+.lp-h .g{color:var(--gold)}
+.lp-body{padding:16px 18px 48px}
+.lp-sub{font-size:.88rem;color:var(--body);line-height:1.55}
+.lp-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:16px 0 4px}
+.lp-facts div{background:var(--ink);padding:10px 4px;text-align:center}
+.lp-facts b{display:block;font-family:var(--f-display);font-weight:400;font-size:1.55rem;line-height:1;color:var(--gold)}
+.lp-facts span{font-family:var(--f-label);text-transform:uppercase;letter-spacing:.16em;font-size:.56rem;color:var(--muted)}
+.lp-sec{font-family:var(--f-label);font-weight:600;text-transform:uppercase;letter-spacing:.22em;font-size:.62rem;color:var(--gold);margin:20px 0 10px}
+.lp-occ{display:flex;flex-wrap:wrap;gap:6px}
+.lp-occ button{background:#0f0d0b;border:1px solid var(--line-2);color:var(--body);font-family:var(--f-label);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;padding:7px 11px;border-radius:999px;cursor:pointer}
+.lp-occ button[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);background:rgba(237,198,67,.08)}
+.lp-incl{list-style:none;display:grid;gap:8px}
+.lp-incl li{display:flex;gap:10px;font-size:.86rem;color:var(--body);line-height:1.45}
+.lp-incl li::before{content:"";width:5px;height:5px;background:var(--gold);transform:rotate(45deg);margin-top:.55em;flex:none}
+.fld{display:grid;gap:5px;margin-bottom:10px;min-width:0}
+.fld label{font-family:var(--f-label);text-transform:uppercase;letter-spacing:.16em;font-size:.6rem;color:var(--muted)}
+.fld input,.fld select,.fld textarea{width:100%;min-width:0;background:#0f0d0b;border:1px solid var(--line-2);color:var(--white);font-family:var(--f-body);font-size:16px;padding:9px 10px;border-radius:6px;-webkit-appearance:none;appearance:none}
+.fld textarea{resize:none}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--gold)}
+.fld2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lp-btn{width:100%;background:var(--gold);color:var(--black);border:0;font-family:var(--f-label);font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:.8rem;padding:14px;border-radius:6px;cursor:pointer;margin-top:4px}
+.lp-btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold-deep);margin-top:10px}
+.lp-fine{font-size:.72rem;color:var(--muted);margin-top:9px;text-align:center;line-height:1.5}
+.lp-done{position:absolute;inset:0;z-index:4;background:linear-gradient(180deg,rgba(10,9,8,.9),rgba(10,9,8,.97)),var(--tex-blackwood) 0 0/700px;display:flex;flex-direction:column;justify-content:center;padding:60px 26px 54px;text-align:center;gap:12px;animation:fadeup .5s var(--ease)}
+.lp-done h4{font-family:var(--f-display);font-size:2.3rem;font-weight:400;text-transform:uppercase;line-height:.95}
+.lp-done p{font-size:.9rem;color:var(--body);line-height:1.55}
+.chk{width:62px;height:62px;border-radius:50%;border:2px solid var(--gold);margin:0 auto 4px;position:relative}
+.chk::after{content:"";position:absolute;left:21px;top:12px;width:14px;height:26px;border:solid var(--gold);border-width:0 3px 3px 0;transform:rotate(45deg)}
+.rs-det{display:grid;border-top:1px solid var(--line);margin-bottom:4px}
+.rs-det div{display:grid;grid-template-columns:78px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.86rem}
+.rs-det dt{font-family:var(--f-label);text-transform:uppercase;letter-spacing:.16em;font-size:.6rem;color:var(--muted);padding-top:3px}
+.rs-det dd{color:var(--white)}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
+.seg button{background:#0f0d0b;border:1px solid var(--line-2);color:var(--body);font-family:var(--f-display);font-size:1.35rem;padding:7px 0 5px;border-radius:6px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--gold);color:var(--black);border-color:var(--gold)}
+
+/* behind the scenes: CRM + text */
+.bts{display:grid;gap:14px;align-content:start}
+.bts-k{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;font-family:var(--f-label);text-transform:uppercase;letter-spacing:.24em;font-size:.68rem;color:var(--gold);font-weight:600;margin-top:10px}
+.bts-k .st{letter-spacing:.14em;color:var(--muted);font-weight:500}
+.bts.live .bts-k .st{color:var(--gold-soft)}
+.ghl,.sms{position:relative;background:#11100d;border:1px solid var(--line-2);border-radius:8px;overflow:hidden;transition:border-color .5s ease,box-shadow .5s ease}
+.bts.live .ghl,.bts.live .sms{border-color:var(--gold-deep);box-shadow:0 0 0 3px rgba(237,198,67,.10)}
+.ghl .ctag,.sms .ctag{top:8px;right:8px}
+.ghl-bar{display:flex;gap:14px;padding:10px 90px 10px 14px;background:#191612;border-bottom:1px solid var(--line-2);font-family:var(--f-label);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.ghl-bar b{color:var(--white);font-weight:600}
+.ghl-stages{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:12px 14px 0}
+.ghl-stages li{font-family:var(--f-label);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-top:3px solid var(--line-2);padding-top:6px}
+.ghl-stages li.on{color:var(--gold);border-top-color:var(--gold)}
+.ghl-f{display:grid;grid-template-columns:1fr 1fr;padding:6px 14px 14px}
+.ghl-f div{padding:9px 0;border-bottom:1px solid var(--line);min-width:0}
+.ghl-f div:nth-child(odd){padding-right:12px}
+.ghl-f div.wide{grid-column:1/-1}
+.ghl-f dt{font-family:var(--f-label);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.ghl-f dd{font-size:.92rem;color:var(--white);overflow-wrap:anywhere}
+.sms{padding:14px}
+.sms-h{display:flex;gap:10px;align-items:center;margin-bottom:12px;padding-right:80px}
+.av{width:34px;height:34px;border-radius:50%;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--line-2);flex:none}
+.av img{width:86%;height:auto}
+.sms-h b{display:block;font-weight:500;font-size:.9rem}
+.sms-h span{font-size:.72rem;color:var(--muted)}
+.bubble{max-width:88%;padding:10px 13px;border-radius:18px;font-size:.9rem;line-height:1.42;background:#26231e;color:#F1EEE8;border-bottom-left-radius:6px}
+.bts.live .bubble,.msg.live .bubble{animation:pop .55s var(--ease) both}
+.msg.live .b2{animation-delay:.35s}
+.msg.live .b3{animation-delay:.7s}
+@keyframes pop{0%{transform:scale(.92);opacity:.2}100%{transform:none;opacity:1}}
+
+/* messages phone */
+.msg .screen{background:#0b0a09;display:flex;flex-direction:column}
+.msg-h{padding:50px 14px 10px;display:grid;justify-items:center;gap:3px;border-bottom:1px solid var(--line);background:#11100d;position:relative}
+.msg-h .back{position:absolute;left:16px;top:54px;color:var(--gold);font-size:1.7rem;line-height:1}
+.msg-h b{font-weight:500;font-size:.86rem}
+.msg-h small{font-size:.66rem;color:var(--muted)}
+.msg .scroll{height:auto;flex:1;min-height:0;padding:10px 12px 44px;display:flex;flex-direction:column;gap:6px}
+.msg .day{align-self:center;font-size:.66rem;color:var(--muted);margin-top:14px;text-align:center}
+.msg .tag{font-family:var(--f-label);font-weight:600;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:6px}
+
+/* the guest loop slide */
+.slide{position:relative;overflow:hidden;padding:clamp(24px,4vw,52px) clamp(20px,4vw,52px) calc(clamp(24px,4vw,48px) + 26px);
+  background:radial-gradient(ellipse 50% 30% at 50% 0,rgba(227,155,74,.12),transparent 70%),linear-gradient(180deg,rgba(17,15,12,.93),rgba(12,11,9,.95)),var(--tex-steel) 0 0/700px;
+  border:1px solid #2f281f;border-top:2px solid var(--gold);box-shadow:0 30px 60px rgba(0,0,0,.55);display:flex;flex-direction:column;gap:clamp(22px,3vw,34px)}
+@media (min-width:981px){.slide{aspect-ratio:16/9;justify-content:space-between}}
+.slide .ctag{top:14px;right:14px}
+.sl-h{font-family:var(--f-display);font-weight:400;font-size:clamp(2rem,4.4vw,3.6rem);line-height:.92;text-transform:uppercase;margin-top:6px}
+.sl-h .g{color:var(--gold)}
+.loop{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);position:relative}
+.loop::before{content:"";position:absolute;left:8.33%;right:8.33%;top:21px;height:2px;background:linear-gradient(90deg,var(--gold-deep),var(--gold))}
+.loop li{position:relative;text-align:center;padding:0 8px;min-width:0}
+.loop li:not(:last-child)::after{content:"›";position:absolute;right:-5px;top:6px;color:var(--gold);font-size:1.4rem;line-height:1}
+.loop b{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0 auto 12px;border-radius:50%;background:var(--black);border:2px solid var(--gold);font-family:var(--f-display);font-weight:400;font-size:1.3rem;color:var(--gold);position:relative;z-index:1}
+.loop li.hot b{background:var(--gold);color:var(--black)}
+.loop h5{font-family:var(--f-display);font-size:clamp(1.15rem,1.7vw,1.45rem);font-weight:400;text-transform:uppercase;line-height:1;letter-spacing:.02em}
+.loop p{font-size:.84rem;color:var(--body);margin-top:6px;line-height:1.45}
+.loop-back{position:relative;margin:-6px 8.33% 0;height:24px;border:1.5px dashed var(--gold-deep);border-top:0;border-radius:0 0 14px 14px}
+.loop-back::before{content:"";position:absolute;left:-6.5px;top:-9px;border:5.5px solid transparent;border-bottom:8px solid var(--gold-deep);border-top:0}
+.loop-back span{position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);background:#100e0c;padding:0 12px;white-space:nowrap;font-family:var(--f-label);text-transform:uppercase;letter-spacing:.2em;font-size:.62rem;color:var(--gold-soft)}
+.sl-foot{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(20px,4vw,48px);align-items:end}
+.sl-foot>*{min-width:0}
+.report{background:rgba(10,9,8,.7);border:1px solid var(--line-2);padding:14px 16px}
+.r-h{font-family:var(--f-label);text-transform:uppercase;letter-spacing:.22em;font-size:.64rem;color:var(--gold);font-weight:600;padding-bottom:8px;border-bottom:1px solid var(--line-2)}
+.r-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.9rem;color:var(--body)}
+.r-row:last-child{border-bottom:0}
+.r-row b{font-family:var(--f-display);font-weight:400;font-size:1.15rem}
+
+@media (max-width:1100px){
+  .rsvp-grid{grid-template-columns:340px 340px;justify-content:center}
+  .rsvp-text{grid-column:1/-1}
+}
+@media (max-width:760px){
+  .cx-head,.s-grid,.rsvp-grid,.sl-foot{grid-template-columns:minmax(0,1fr)}
+  .rsvp-text{grid-column:auto}
+  .phone{margin-inline:auto;height:660px}
+  .s-label .concept-note{margin-left:0}
+  .loop{grid-template-columns:minmax(0,1fr);gap:16px}
+  .loop::before{left:21px;right:auto;top:22px;bottom:22px;width:2px;height:auto;background:linear-gradient(180deg,var(--gold-deep),var(--gold))}
+  .loop li{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:14px;text-align:left;padding:0}
+  .loop li::after{display:none}
+  .loop b{margin:0;grid-row:span 2}
+  .loop p{margin-top:2px}
+  .loop-back{margin:0;height:auto;border:0}
+  .loop-back::before{content:none}
+  .loop-back span{position:static;transform:none;display:inline-block;padding:0;background:none;white-space:normal}
+  .loop-back span::before{content:"↺ ";color:var(--gold)}
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:980px){
   .opp-grid,.v-grid,.turn,.stepper,.addons{grid-template-columns:1fr}
@@ -712,7 +906,7 @@ footer{background:linear-gradient(180deg,rgba(10,9,8,.9),rgba(10,9,8,.96)),var(-
   <div class="wrap cv-mid">
     <div class="cv-eyebrow rv">Prepared for Daniel England &amp; the Junkyard ownership team</div>
     <h1 class="cv-title rv d1">You built the experience. <span class="g">Let’s make sure people know about it.</span></h1>
-    <p class="cv-sub rv d2">A creative and marketing partnership designed to elevate Junkyard’s brand, amplify its entertainment programming, and support its next stage of growth.</p>
+    <p class="cv-sub rv d2">A creative and marketing partnership built to promote Junkyard’s entertainment, reach new guests, and get the marketing ready for location two.</p>
     <div class="cv-x rv d3">
       <span class="dgm"><span class="lockup-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="lockup-name">Daily Grind Media</span></span>
       <span class="x">×</span>
@@ -1016,7 +1210,7 @@ footer{background:linear-gradient(180deg,rgba(10,9,8,.9),rgba(10,9,8,.96)),var(-
   <div class="wrap">
     <div class="eyebrow rv"><span class="sec-num">05</span> Partnership Options</div>
     <h2 class="h-sec rv">Three levels of <span class="g">partnership.</span></h2>
-    <p class="lead rv">Each level builds on the one before it. Scope, deliverables and investment get finalized together once we align on where to start.</p>
+    <p class="lead rv">Each level builds on the one before it. Monthly deliverables and investment are listed with each option.</p>
     <!-- Rendered from PROPOSAL_CONFIG in the script at the bottom of this file -->
     <div class="tiers rv d1" id="tiers"></div>
     <div class="mx-wrap rv"><table class="mx" id="matrix"></table></div>
@@ -1026,6 +1220,243 @@ footer{background:linear-gradient(180deg,rgba(10,9,8,.9),rgba(10,9,8,.96)),var(-
       <ul id="addons"></ul>
     </div>
     <p class="opt-note" id="optNote"></p>
+  </div>
+</section>
+
+<div class="rail" aria-hidden="true"></div>
+<!-- ============ 06 CONCEPT: TURNING NIGHTS INTO BOOKINGS ============ -->
+<section class="band concept mat" id="concept" data-nav="Concept: Bookings">
+  <div class="wrap">
+    <div class="cx-head">
+      <div>
+        <div class="eyebrow rv"><span class="sec-num">06</span> Concept</div>
+        <div class="o3-tag rv">Preview of Option 03 · Full-Service</div>
+        <h2 class="h-sec rv">Turning nights into <span class="g">bookings.</span></h2>
+      </div>
+      <div class="rv d1">
+        <p class="lead">Posts and ads get people’s attention. These pages and texts turn that attention into inquiries and RSVPs that ownership can count every month.</p>
+        <span class="concept-note">Concept samples · Not live</span>
+      </div>
+    </div>
+
+    <!-- SAMPLE 01: private events & group bookings -->
+    <article class="sample" id="s-events">
+      <header class="s-label rv"><span class="n">01</span><h3>Private events &amp; group bookings</h3><span class="concept-note">Concept — not live</span></header>
+      <div class="s-grid">
+        <div class="phone rv" role="group" aria-label="Concept: private events landing page on a phone">
+          <div class="screen">
+            <div class="scroll" id="lpScroll">
+              <div class="lp-hero">
+                <img src="/junkyard-assets/interior.jpg" alt="">
+                <div class="lp-top"><img src="/junkyard-assets/logo.png" alt="Junkyard Sports Bar &amp; Grill"><span class="lp-pill">Private events</span></div>
+                <div class="lp-hin">
+                  <div class="lp-kick">Oceanside · Ocean Ranch Blvd</div>
+                  <div class="lp-h">26 screens. 24 taps.<br><span class="g">Room for your crowd.</span></div>
+                </div>
+              </div>
+              <div class="lp-body">
+                <p class="lp-sub">Reserve a section or the whole remodeled room for a birthday, a watch party, a team night or a company event.</p>
+                <div class="lp-facts"><div><b>26</b><span>Screens</span></div><div><b>24</b><span>Taps</span></div><div><b class="ph-hold">[Max]</b><span>Guests</span></div></div>
+                <div class="lp-sec">What’s the occasion?</div>
+                <div class="lp-occ" id="lpOcc">
+                  <button type="button" aria-pressed="false" data-occ="Birthday">Birthdays</button>
+                  <button type="button" aria-pressed="false" data-occ="Watch party">Watch parties</button>
+                  <button type="button" aria-pressed="false" data-occ="Team event">Team events</button>
+                  <button type="button" aria-pressed="false" data-occ="Corporate">Corporate</button>
+                  <button type="button" aria-pressed="false" data-occ="Game day">Game day</button>
+                </div>
+                <div class="lp-sec">What’s included</div>
+                <ul class="lp-incl">
+                  <li>Reserved space for your group</li>
+                  <li>Food and drink packages from the scratch kitchen and 24 taps</li>
+                  <li>Your game on the screens you want</li>
+                  <li>Events from <span class="ph-hold">[Private event minimum]</span></li>
+                </ul>
+                <form class="lp-form" id="lpForm" novalidate>
+                  <div class="lp-sec">Tell us about your event</div>
+                  <div class="fld"><label for="lpName">Name</label><input id="lpName" name="name" autocomplete="off"></div>
+                  <div class="fld2">
+                    <div class="fld"><label for="lpPhone">Phone</label><input id="lpPhone" name="phone" type="tel" autocomplete="off"></div>
+                    <div class="fld"><label for="lpEmail">Email</label><input id="lpEmail" name="email" type="email" autocomplete="off"></div>
+                  </div>
+                  <div class="fld2">
+                    <div class="fld"><label for="lpDate">Date</label><input id="lpDate" name="date" type="date"></div>
+                    <div class="fld"><label for="lpSize">Party size</label><input id="lpSize" name="size" type="number" min="1" inputmode="numeric"></div>
+                  </div>
+                  <div class="fld"><label for="lpOccSel">Occasion</label>
+                    <select id="lpOccSel" name="occasion">
+                      <option value="">Choose one</option>
+                      <option>Birthday</option><option>Watch party</option><option>Team event</option><option>Corporate</option><option>Game day</option><option>Other</option>
+                    </select>
+                  </div>
+                  <div class="fld"><label for="lpNotes">Notes</label><textarea id="lpNotes" name="notes" rows="2" placeholder="Games, food, anything we should know"></textarea></div>
+                  <button class="lp-btn" type="submit">Send inquiry</button>
+                  <p class="lp-fine">We reply by text within <span class="ph-hold">[X]</span> hours.</p>
+                </form>
+              </div>
+            </div>
+            <div class="lp-done" id="lpDone" hidden>
+              <div class="chk" aria-hidden="true"></div>
+              <h4>Inquiry received</h4>
+              <p>Thanks, <span data-lp="name"><span class="ph-hold">[Name]</span></span>. Our events team will reach out within <span class="ph-hold">[X]</span> hours to talk dates, space and food.</p>
+              <p style="font-size:.78rem;color:var(--muted)">A text confirmation is on its way.</p>
+              <button class="lp-btn ghost" type="button" id="lpReset">Start over</button>
+            </div>
+            <span class="ctag">Concept</span>
+            <div class="wm" aria-hidden="true"></div>
+            <div class="wm-band">Concept — not live</div>
+          </div>
+        </div>
+
+        <div class="bts rv d1" id="bts">
+          <p class="lead">One form, built for a phone. The inquiry lands in GoHighLevel with everything the events team needs, and the guest gets a text before they close the page.</p>
+          <button class="demo-btn" type="button" id="lpDemo">Fill a sample inquiry</button>
+
+          <div class="bts-k">What ownership sees <span class="st" id="ghlState">Waiting for an inquiry</span></div>
+          <div class="ghl">
+            <span class="ctag">Concept</span>
+            <div class="ghl-bar"><b>GoHighLevel</b><span>Opportunities · Private Events</span></div>
+            <ol class="ghl-stages"><li class="on">New inquiry</li><li>Contacted</li><li>Proposal sent</li><li>Booked</li></ol>
+            <dl class="ghl-f">
+              <div><dt>Name</dt><dd data-lp="name"><span class="ph-hold">[Name]</span></dd></div>
+              <div><dt>Phone</dt><dd data-lp="phone"><span class="ph-hold">[Phone]</span></dd></div>
+              <div><dt>Email</dt><dd data-lp="email"><span class="ph-hold">[Email]</span></dd></div>
+              <div><dt>Event date</dt><dd data-lp="date"><span class="ph-hold">[Date]</span></dd></div>
+              <div><dt>Party size</dt><dd data-lp="size"><span class="ph-hold">[Party size]</span></dd></div>
+              <div><dt>Occasion</dt><dd data-lp="occasion"><span class="ph-hold">[Occasion]</span></dd></div>
+              <div class="wide"><dt>Notes</dt><dd data-lp="notes"><span class="ph-hold">[Notes]</span></dd></div>
+              <div><dt>Source</dt><dd>Private events page</dd></div>
+              <div><dt>Next step</dt><dd>Call back within <span class="ph-hold">[X]</span> hours</dd></div>
+            </dl>
+          </div>
+
+          <div class="bts-k">What the guest gets</div>
+          <div class="sms">
+            <span class="ctag">Concept</span>
+            <div class="sms-h"><span class="av"><img src="/junkyard-assets/logo.png" alt=""></span><div><b>Junkyard Sports Bar &amp; Grill</b><span>Text message · instant</span></div></div>
+            <div class="bubble">Got it, <span data-lp="name"><span class="ph-hold">[Name]</span></span>. Our events team will reach out within <span class="ph-hold">[X]</span> hours.</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- SAMPLE 02: event RSVP -->
+    <article class="sample" id="s-rsvp">
+      <header class="s-label rv"><span class="n">02</span><h3>Event RSVP</h3><span class="concept-note">Concept — not live</span></header>
+      <div class="rsvp-grid">
+        <div class="rsvp-text rv">
+          <p class="lead">A reservation page for each fight night or show, linked from the posts, Stories and ads.</p>
+          <ul class="cx-pts">
+            <li>A table count for every event before the doors open</li>
+            <li>A reminder goes out the day of, on its own</li>
+            <li>The next morning, a text invites them to the next one</li>
+          </ul>
+          <p class="cx-cap">Every RSVP is a guest you can reach again.</p>
+          <button class="demo-btn" type="button" id="rsvDemo" style="margin-top:22px">Fill a sample RSVP</button>
+        </div>
+
+        <div class="phone rv d1" role="group" aria-label="Concept: event RSVP page on a phone">
+          <div class="screen">
+            <div class="scroll" id="rsvScroll">
+              <div class="lp-hero sm">
+                <img src="/junkyard-assets/crowd.jpg" alt="" style="object-position:50% 35%">
+                <div class="lp-top"><img src="/junkyard-assets/logo.png" alt="Junkyard Sports Bar &amp; Grill"><span class="lp-pill">Fight night</span></div>
+                <div class="lp-hin">
+                  <div class="lp-kick">Fight night at Junkyard</div>
+                  <div class="lp-h sm">Reserve a table: <span class="ph-hold">[UFC event]</span> <span class="g">at Junkyard</span></div>
+                </div>
+              </div>
+              <div class="lp-body">
+                <dl class="rs-det">
+                  <div><dt>Date</dt><dd><span class="ph-hold">[Fight night date]</span></dd></div>
+                  <div><dt>Main card</dt><dd><span class="ph-hold">[Start time]</span></dd></div>
+                  <div><dt>Screens</dt><dd>All 26, sound on</dd></div>
+                  <div><dt>Where</dt><dd>3617 Ocean Ranch Blvd #100, Oceanside</dd></div>
+                </dl>
+                <form id="rsvForm" novalidate>
+                  <div class="lp-sec">Table size</div>
+                  <div class="seg" id="rsvSeg" role="group" aria-label="Table size">
+                    <button type="button" aria-pressed="false" data-n="2">2</button>
+                    <button type="button" aria-pressed="false" data-n="4">4</button>
+                    <button type="button" aria-pressed="false" data-n="6">6</button>
+                    <button type="button" aria-pressed="false" data-n="8+">8+</button>
+                  </div>
+                  <div class="fld"><label for="rsvName">Name</label><input id="rsvName" name="name" autocomplete="off"></div>
+                  <div class="fld"><label for="rsvPhone">Phone</label><input id="rsvPhone" name="phone" type="tel" autocomplete="off"></div>
+                  <div class="fld"><label for="rsvEmail">Email</label><input id="rsvEmail" name="email" type="email" autocomplete="off"></div>
+                  <button class="lp-btn" type="submit">Reserve my table</button>
+                  <p class="lp-fine">Tables held until <span class="ph-hold">[Hold time]</span>. <span class="ph-hold">[Cover policy]</span></p>
+                </form>
+              </div>
+            </div>
+            <div class="lp-done" id="rsvDone" hidden>
+              <div class="chk" aria-hidden="true"></div>
+              <h4>You’re on the list</h4>
+              <p>Table for <span data-rs="size"><span class="ph-hold">[Table size]</span></span> on <span class="ph-hold">[Fight night date]</span>. We just texted you the details.</p>
+              <button class="lp-btn ghost" type="button" id="rsvReset">Start over</button>
+            </div>
+            <span class="ctag">Concept</span>
+            <div class="wm" aria-hidden="true"></div>
+            <div class="wm-band">Concept — not live</div>
+          </div>
+        </div>
+
+        <div class="phone msg rv d2" id="msgPhone" role="group" aria-label="Concept: automatic text messages after an RSVP">
+          <div class="screen">
+            <div class="msg-h"><span class="back" aria-hidden="true">‹</span><span class="av"><img src="/junkyard-assets/logo.png" alt=""></span><b>Junkyard Sports Bar &amp; Grill</b><small>Text message</small></div>
+            <div class="scroll" id="msgScroll">
+              <div class="day">Today · right after they reserve</div>
+              <div class="tag">Instant confirmation</div>
+              <div class="bubble b1">You’re set, <span data-rs="name"><span class="ph-hold">[Name]</span></span>. Table for <span data-rs="size"><span class="ph-hold">[Table size]</span></span> at Junkyard for <span class="ph-hold">[UFC event]</span> on <span class="ph-hold">[Fight night date]</span>. Reply C to cancel.</div>
+              <div class="day"><span class="ph-hold">[Fight night date]</span> · 12:00 PM</div>
+              <div class="tag">Day-of reminder · automatic</div>
+              <div class="bubble b2">Fight night is tonight. Main card on all 26 screens, sound on. Your table for <span data-rs="size"><span class="ph-hold">[Table size]</span></span> is held until <span class="ph-hold">[Hold time]</span>.</div>
+              <div class="day">Day after · 11:00 AM</div>
+              <div class="tag">After the event · automatic</div>
+              <div class="bubble b3">Thanks for coming out, <span data-rs="name"><span class="ph-hold">[Name]</span></span>. <span class="ph-hold">[Next event]</span> is <span class="ph-hold">[Next event date]</span>. Want the same table? Reply YES. Reply STOP to opt out.</div>
+            </div>
+            <span class="ctag">Concept</span>
+            <div class="wm" aria-hidden="true"></div>
+            <div class="wm-band">Concept — not live</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- SAMPLE 03: the guest loop (one slide) -->
+    <article class="sample" id="s-loop">
+      <header class="s-label rv"><span class="n">03</span><h3>The guest loop</h3><span class="concept-note">Concept — not live</span></header>
+      <div class="slide rv">
+        <span class="ctag">Concept</span>
+        <div>
+          <div class="m-kick">How the pieces connect</div>
+          <h4 class="sl-h">From the first post <span class="g">to the next visit.</span></h4>
+        </div>
+        <div>
+          <ol class="loop">
+            <li><b>01</b><h5>Ad or post</h5><p>A guest sees the event or the room.</p></li>
+            <li><b>02</b><h5>RSVP or inquiry</h5><p>They reserve a table or ask about a party.</p></li>
+            <li><b>03</b><h5>Instant text</h5><p>A reply from Junkyard arrives right away.</p></li>
+            <li class="hot"><b>04</b><h5>Visit</h5><p>They come in, and their table is ready.</p></li>
+            <li><b>05</b><h5>Post-visit text</h5><p>A thank-you and what’s coming up.</p></li>
+            <li><b>06</b><h5>Next event</h5><p>The next post goes out to a guest who has already been in.</p></li>
+          </ol>
+          <div class="loop-back" aria-hidden="true"><span>Back to 01 with the next event</span></div>
+        </div>
+        <div class="sl-foot">
+          <p class="cx-cap" style="max-width:30ch">Inquiries and RSVPs tracked each month, so ownership sees what the marketing produced.</p>
+          <div class="report">
+            <div class="r-h">Monthly report · <span class="ph-hold">[Month]</span></div>
+            <div class="r-row"><span>Private event inquiries</span><b class="ph-hold">[#]</b></div>
+            <div class="r-row"><span>Inquiries booked</span><b class="ph-hold">[#]</b></div>
+            <div class="r-row"><span>Event RSVPs</span><b class="ph-hold">[#]</b></div>
+            <div class="r-row"><span>Guests reached by text</span><b class="ph-hold">[#]</b></div>
+          </div>
+        </div>
+        <div class="wm" aria-hidden="true"></div>
+        <div class="wm-band">Concept — not live</div>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -1055,7 +1486,7 @@ footer{background:linear-gradient(180deg,rgba(10,9,8,.9),rgba(10,9,8,.96)),var(-
     <div class="f-x"><span class="lockup-name" style="font-size:.8rem">Daily Grind Media</span><span class="x">×</span><img src="/junkyard-assets/logo.png" alt="Junkyard Sports Bar &amp; Grill"></div>
     <div class="f-mark">Creatives who understand <span class="c">business.</span></div>
     <div class="f-meta">Marketing Partnership · Prepared for Junkyard Sports Bar &amp; Grill · Oceanside, CA</div>
-    <p class="f-disc">Venue photography courtesy of Junkyard Sports Bar &amp; Grill’s website and social channels. Creative examples are illustrative concepts, not existing campaigns. Partnership scope, deliverables and investment are to be finalized with ownership. This proposal describes a recommended approach, not a guarantee of specific results.</p>
+    <p class="f-disc">Venue photography courtesy of Junkyard Sports Bar &amp; Grill’s website and social channels. Creative examples are illustrative concepts, not existing campaigns. Final scope and terms are confirmed in the partnership agreement. This proposal describes a recommended approach, not a guarantee of specific results.</p>
   </div>
 </footer>
 
@@ -1067,6 +1498,8 @@ footer{background:linear-gradient(180deg,rgba(10,9,8,.9),rgba(10,9,8,.96)),var(-
    ===================================================================== */
 var PROPOSAL_CONFIG = {
   pricingPending: "Investment to be finalized",
+  /* monthly / setup: display strings. setupStandard shows struck through
+     next to setup. deliverables: list shown under "Each month". */
   tiers: [
     {
       id: "o1", level: "Option 01", name: "Creative & Social",
@@ -1074,18 +1507,31 @@ var PROPOSAL_CONFIG = {
       desc: "Professional content production and day-to-day social media management, with foundational promotion for Junkyard’s events.",
       depth: 1, featured: false,
       includes: ["Content production: photo & video", "Social media management", "Foundational event promotion"],
-      monthly: null, setup: null,
-      deliverables: "[Deliverables to be finalized: shoot cadence, content volume, posting schedule]"
+      monthly: "$4,000", setup: "$1,000",
+      deliverables: [
+        "2 on-site content sessions a month (event nights and food)",
+        "~40 edited photos",
+        "8 reels",
+        "12 feed posts, plus event-day Stories",
+        "Weekly lineup graphic",
+        "Comment and DM management"
+      ]
     },
     {
       id: "o2", level: "Option 02", name: "Marketing & Growth",
       role: "The event engine, plus new guests.",
-      desc: "Everything in Creative & Social, expanded into a coordinated event marketing operation with local visibility and paid advertising.",
+      desc: "Everything in Creative & Social, expanded into a coordinated event marketing operation with local visibility and monthly reporting.",
       depth: 2, featured: false,
       inherits: "Everything in Option 01",
-      includes: ["Coordinated event marketing system", "Performer collaborations", "Website & local visibility management", "Digital advertising"],
-      monthly: null, setup: null,
-      deliverables: "[Deliverables to be finalized: event campaigns per month, ad management scope, website/GBP scope]"
+      includes: ["Coordinated event marketing system", "Performer collaborations", "Website & local visibility management", "Monthly reporting"],
+      monthly: "$6,000", setup: "$1,500",
+      deliverables: [
+        "Everything in Option 01",
+        "4 full event campaigns a month: announcement, artist collab post, day-of reminder, recap",
+        "Performer coordination",
+        "Google Business Profile and website event updates",
+        "Monthly report"
+      ]
     },
     {
       id: "o3", level: "Option 03", name: "Full-Service Marketing Partnership",
@@ -1093,9 +1539,16 @@ var PROPOSAL_CONFIG = {
       desc: "Creative, social, events, advertising, retention and marketing systems integrated under one team, built to scale to a second location.",
       depth: 3, featured: true,
       inherits: "Everything in Option 02",
-      includes: ["Customer retention: email & SMS", "Marketing systems & reporting", "Private event & group booking promotion", "Multi-location marketing structure"],
-      monthly: null, setup: null,
-      deliverables: "[Deliverables to be finalized: retention program scope, systems build, reporting cadence]"
+      includes: ["Meta & Google ad management", "Customer retention: email & SMS", "Private event & group booking promotion", "Multi-location marketing structure"],
+      monthly: "$9,500", setup: "$1,000", setupStandard: "$2,500", setupLabel: "Partner setup",
+      deliverables: [
+        "Everything in Option 02",
+        "Meta and Google ad management",
+        "2 emails and 4 SMS a month to the loyalty list",
+        "Private-event booking campaign with landing page",
+        "Monthly strategy meeting",
+        "Brand system ready for location two"
+      ]
     }
   ],
   /* Comparison matrix: 2 = included, 1 = foundational, 0 = not included */
@@ -1110,7 +1563,7 @@ var PROPOSAL_CONFIG = {
     { group: "Growth" },
     { row: "Website & event information", v: [0,2,2] },
     { row: "Local search & Google Business Profile", v: [0,2,2] },
-    { row: "Meta & Google advertising", v: [0,2,2] },
+    { row: "Meta & Google advertising", v: [0,0,2] },
     { row: "Private event & group booking promotion", v: [0,0,2] },
     { group: "Retention & Systems" },
     { row: "Email & SMS marketing", v: [0,0,2] },
@@ -1118,13 +1571,15 @@ var PROPOSAL_CONFIG = {
     { row: "Multi-location readiness", v: [0,0,2] }
   ],
   addons: [
-    { name: "Location two launch campaign", price: null },
-    { name: "Aerial & drone content", price: null },
-    { name: "Large-event productions (concerts, fight nights)", price: null },
-    { name: "Website redesign or event landing pages", price: null }
+    { name: "Paid ads pilot", detail: "Starting month 3 · ad spend billed separately", price: "$1,000/mo + ad spend" },
+    { name: "Location two launch campaign", price: "From $4,000" },
+    { name: "Aerial & drone content", price: "$750/session" },
+    { name: "Large-event production", detail: "Concerts, fight nights", price: "$1,500/event" },
+    { name: "Event landing pages", price: "$1,000 each" },
+    { name: "Website redesign", price: "Quoted separately" }
   ],
   addonsPending: "Scoped separately",
-  note: "Pricing, setup fees and exact deliverables will be added after the first review. Advertising spend is billed separately from management.",
+  note: "Ad spend is billed directly to Junkyard, separate from management. 6-month initial term, billed monthly in advance.",
   contact: {
     ctaLabel: "Let’s align on scope",
     ctaHref: "mailto:lo@dailygrindmediapro.com?subject=Junkyard%20%C3%97%20Daily%20Grind%20Media",
@@ -1169,15 +1624,18 @@ var CAPS = [
     var depth = ''; for(var i=1;i<=3;i++){ depth += '<i class="'+(i<=t.depth?'on':'')+'"></i>'; }
     var inc = (t.inherits?'<li class="from">'+esc(t.inherits)+', plus</li>':'') + t.includes.map(function(x){return '<li class="'+(t.inherits?'plus':'')+'">'+esc(x)+'</li>';}).join('');
     var m = t.monthly!=null ? esc(t.monthly) : '';
-    var s = t.setup!=null ? esc(t.setup) : '';
+    var s = t.setup!=null ? (t.setupStandard ? '<s class="was" title="Standard setup">'+esc(t.setupStandard)+'</s>' : '')+esc(t.setup) : '';
+    var dl = Array.isArray(t.deliverables)
+      ? '<div class="dl-h">Each month</div><ul class="dl">'+t.deliverables.map(function(x){ return /^Everything in/.test(x) ? '<li class="from">'+esc(x)+'</li>' : '<li>'+hold(x)+'</li>'; }).join('')+'</ul>'
+      : '<div class="dl">'+hold(t.deliverables||'')+'</div>';
     return '<article class="tier'+(t.featured?' feature':'')+'" id="'+t.id+'">'+
       '<div class="lvl">'+esc(t.level)+'</div><h3>'+esc(t.name)+'</h3><div class="role">'+esc(t.role)+'</div>'+
       '<div class="depth" aria-label="Partnership depth '+t.depth+' of 3">'+depth+'</div>'+
       '<p class="desc">'+esc(t.desc)+'</p><ul class="inc">'+inc+'</ul>'+
       '<div class="price"><div class="box">'+
-        '<div class="row"><span class="k">Monthly</span><span class="v'+(m?'':' tbd')+'">'+(m||'[ Pricing TBD ]')+'</span></div>'+
-        '<div class="row"><span class="k">Setup</span><span class="v'+(s?'':' tbd')+'">'+(s||'[ TBD ]')+'</span></div>'+
-        '<div class="dl">'+hold(t.deliverables)+'</div>'+
+        '<div class="row"><span class="k">Monthly</span><span class="v'+(m?' big':' tbd')+'">'+(m ? m+'<small>/mo</small>' : '[ Pricing TBD ]')+'</span></div>'+
+        '<div class="row"><span class="k">'+esc(t.setupLabel||'Setup')+'</span><span class="v'+(s?'':' tbd')+'">'+(s||'[ TBD ]')+'</span></div>'+
+        dl+
       '</div></div></article>';
   }).join('');
 
@@ -1193,7 +1651,7 @@ var CAPS = [
   mx.innerHTML = head + body;
 
   document.getElementById('addons').innerHTML = C.addons.map(function(a){
-    return '<li>'+esc(a.name)+'<span>'+(a.price!=null?esc(a.price):esc(C.addonsPending))+'</span></li>';
+    return '<li><div class="an">'+esc(a.name)+(a.detail?'<em>'+esc(a.detail)+'</em>':'')+'</div><span>'+(a.price!=null?esc(a.price):esc(C.addonsPending))+'</span></li>';
   }).join('');
   document.getElementById('optNote').textContent = C.note;
 
@@ -1209,6 +1667,98 @@ var CAPS = [
     function sel(){ var r=document.createRange(); r.selectNodeContents(document.getElementById('email')); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); cb.textContent='Selected'; setTimeout(function(){cb.textContent='Copy';},1800); }
     try{ navigator.clipboard.writeText(txt).then(done, sel); }catch(e){ sel(); }
   });
+
+  /* ---------- 06 CONCEPT: private events + RSVP demos ---------- */
+  function fillBind(attr, key, val){
+    document.querySelectorAll('['+attr+'="'+key+'"]').forEach(function(el){
+      if(!el.hasAttribute('data-ph')) el.setAttribute('data-ph', el.innerHTML);
+      el.innerHTML = val ? esc(val) : el.getAttribute('data-ph');
+    });
+  }
+  function resetBind(attr){
+    document.querySelectorAll('['+attr+'][data-ph]').forEach(function(el){ el.innerHTML = el.getAttribute('data-ph'); });
+  }
+  function niceDate(v){
+    if(!v) return '';
+    var d = new Date(v+'T12:00:00');
+    return isNaN(d) ? v : d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
+  }
+  function nextSaturday(){
+    var d = new Date(); d.setDate(d.getDate() + ((6 - d.getDay() + 7) % 7 || 7) + 14);
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+
+  // Private events landing page
+  var lpForm = document.getElementById('lpForm');
+  if(lpForm){
+    var lpDone = document.getElementById('lpDone'), bts = document.getElementById('bts');
+    var ghlState = document.getElementById('ghlState'), occSel = document.getElementById('lpOccSel');
+    var occBtns = [].slice.call(document.querySelectorAll('#lpOcc button'));
+    function setOcc(v){ occBtns.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-occ')===v ? 'true':'false'); }); occSel.value = v; }
+    occBtns.forEach(function(b){ b.addEventListener('click', function(){ setOcc(b.getAttribute('data-occ')); }); });
+    occSel.addEventListener('change', function(){ setOcc(occSel.value); });
+    lpForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var f = lpForm.elements;
+      fillBind('data-lp','name', f.name.value.trim());
+      fillBind('data-lp','phone', f.phone.value.trim());
+      fillBind('data-lp','email', f.email.value.trim());
+      fillBind('data-lp','date', niceDate(f.date.value));
+      fillBind('data-lp','size', f.size.value ? f.size.value+' guests' : '');
+      fillBind('data-lp','occasion', f.occasion.value);
+      fillBind('data-lp','notes', f.notes.value.trim());
+      lpDone.hidden = false;
+      bts.classList.remove('live'); void bts.offsetWidth; bts.classList.add('live');
+      ghlState.textContent = 'New inquiry · just now';
+    });
+    document.getElementById('lpReset').addEventListener('click', function(){
+      lpForm.reset(); setOcc(''); resetBind('data-lp');
+      lpDone.hidden = true; bts.classList.remove('live');
+      ghlState.textContent = 'Waiting for an inquiry';
+      document.getElementById('lpScroll').scrollTop = 0;
+    });
+    document.getElementById('lpDemo').addEventListener('click', function(){
+      lpDone.hidden = true;
+      var f = lpForm.elements;
+      f.name.value = 'Alex'; f.phone.value = '(760) 555-0142'; f.email.value = 'alex@example.com';
+      f.date.value = nextSaturday(); f.size.value = '30'; setOcc('Birthday');
+      f.notes.value = 'Fight on the main screens, wings and a couple of pitchers.';
+      var sc = document.getElementById('lpScroll');
+      sc.scrollTo({top: sc.scrollHeight, behavior: RM ? 'auto' : 'smooth'});
+      setTimeout(function(){ lpForm.requestSubmit ? lpForm.requestSubmit() : lpForm.dispatchEvent(new Event('submit',{cancelable:true})); }, RM ? 0 : 900);
+    });
+  }
+
+  // Event RSVP + text thread
+  var rsvForm = document.getElementById('rsvForm');
+  if(rsvForm){
+    var rsvDone = document.getElementById('rsvDone'), msgPhone = document.getElementById('msgPhone');
+    var segBtns = [].slice.call(document.querySelectorAll('#rsvSeg button')), tableSize = '';
+    function setSize(n){ tableSize = n; segBtns.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-n')===n ? 'true':'false'); }); }
+    segBtns.forEach(function(b){ b.addEventListener('click', function(){ setSize(b.getAttribute('data-n')); }); });
+    rsvForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      fillBind('data-rs','name', rsvForm.elements.name.value.trim());
+      fillBind('data-rs','size', tableSize);
+      rsvDone.hidden = false;
+      msgPhone.classList.remove('live'); void msgPhone.offsetWidth; msgPhone.classList.add('live');
+      document.getElementById('msgScroll').scrollTop = 0;
+    });
+    document.getElementById('rsvReset').addEventListener('click', function(){
+      rsvForm.reset(); setSize(''); resetBind('data-rs');
+      rsvDone.hidden = true; msgPhone.classList.remove('live');
+      document.getElementById('rsvScroll').scrollTop = 0;
+    });
+    document.getElementById('rsvDemo').addEventListener('click', function(){
+      rsvDone.hidden = true;
+      var f = rsvForm.elements;
+      setSize('4'); f.name.value = 'Jordan'; f.phone.value = '(760) 555-0187'; f.email.value = 'jordan@example.com';
+      var sc = document.getElementById('rsvScroll');
+      sc.scrollTo({top: sc.scrollHeight, behavior: RM ? 'auto' : 'smooth'});
+      setTimeout(function(){ rsvForm.requestSubmit ? rsvForm.requestSubmit() : rsvForm.dispatchEvent(new Event('submit',{cancelable:true})); }, RM ? 0 : 900);
+    });
+  }
+
 
   /* ---------- VISION orbit ---------- */
   var orbit = document.getElementById('orbit');
