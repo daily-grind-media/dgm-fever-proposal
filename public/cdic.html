@@ -4,749 +4,852 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CDIC Research Briefing</title>
-<meta name="description" content="California Direct Importing Company — Honoring the Past. Building the Future. A research and business development briefing prepared by Daily Grind Media.">
+<meta name="description" content="California Direct Importing Company: Honoring the Past. Building the Future. A research and business development briefing prepared by Daily Grind Media.">
 <!--
-  EDITING NOTES
-  - Every slide is a <section class="slide"> inside #deck, authored on a fixed 1920×1080 canvas.
-  - Add, remove or reorder sections freely; numbering, progress and the overview update automatically.
-  - Evidence tags: <span class="tag owner|research|rec|verify">…</span>  (legend on slide 2).
-  - Images live in ./img and fonts in ./fonts. Run build.py to produce the single-file version.
-  - Print / PDF: browser Print → "Save as PDF", or press P. Each slide prints as one 16:9 page.
+  CDIC RESEARCH BRIEFING · EDITING NOTES
+  One set of content, two layouts:
+    • Website mode (default): responsive editorial page. Sections flow vertically; layouts adapt with
+      container queries (@container sec …). Typography uses fluid clamp() tokens.
+    • Canvas mode (body.canvas): every <section class="sec"> becomes a fixed 1920×1080 composition.
+      Used by Presentation Mode (body.canvas.present, scaled to the viewport) and by print/PDF
+      (body.canvas.printing, one section per 16:9 page). Tokens are overridden with fixed px values.
+  - Add/reorder <section class="sec"> blocks freely; nav, progress and presentation update automatically.
+  - Evidence tags: <span class="tag owner|research|rec|verify">…</span> (legend in "About this briefing").
+  - Images in ./img, fonts in ./fonts. build.py makes a single-file version.
+  - cdic-assets/CDIC_Research_Briefing.pdf is replaced at build time with the PDF's path.
 -->
 <style>
-@font-face{font-family:"Cormorant";src:url(cdic-assets/fonts/cormorant-garamond-latin-500-normal.woff2) format("woff2");font-weight:500;font-style:normal;font-display:block}
-@font-face{font-family:"Cormorant";src:url(cdic-assets/fonts/cormorant-garamond-latin-600-normal.woff2) format("woff2");font-weight:600;font-style:normal;font-display:block}
-@font-face{font-family:"Cormorant";src:url(cdic-assets/fonts/cormorant-garamond-latin-400-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:block}
-@font-face{font-family:"Cormorant";src:url(cdic-assets/fonts/cormorant-garamond-latin-500-italic.woff2) format("woff2");font-weight:500;font-style:italic;font-display:block}
-@font-face{font-family:"Instrument Sans";src:url(cdic-assets/fonts/instrument-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:block}
-@font-face{font-family:"Instrument Sans";src:url(cdic-assets/fonts/instrument-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:block}
-@font-face{font-family:"Instrument Sans";src:url(cdic-assets/fonts/instrument-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:block}
-@font-face{font-family:"Plex Mono";src:url(cdic-assets/fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:block}
-@font-face{font-family:"Plex Mono";src:url(cdic-assets/fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:block}
+@font-face{font-family:"Cormorant";src:url(cdic-assets/fonts/cormorant-garamond-latin-500-normal.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Cormorant";src:url(cdic-assets/fonts/cormorant-garamond-latin-600-normal.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Cormorant";src:url(cdic-assets/fonts/cormorant-garamond-latin-400-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Cormorant";src:url(cdic-assets/fonts/cormorant-garamond-latin-500-italic.woff2) format("woff2");font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(cdic-assets/fonts/instrument-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(cdic-assets/fonts/instrument-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(cdic-assets/fonts/instrument-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Plex Mono";src:url(cdic-assets/fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Plex Mono";src:url(cdic-assets/fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 
+/* =========================================================== TOKENS */
 :root{
-  --paper:#F2ECE2; --paper-2:#E9E0D2; --paper-3:#DED2BF;
-  --ink:#1C1814; --ink-2:#4A4038; --ink-3:#7A6E62;
-  --espresso:#211913; --espresso-2:#2E231B;
-  --oxblood:#7C2E23; --oxblood-2:#9A3D2E;
-  --brass:#A3845A; --brass-2:#C2A57A;
+  --paper:#F2ECE2; --paper-2:#E9E0D2; --ink:#1C1814; --ink-2:#4A4038; --ink-3:#7A6E62;
+  --espresso:#211913; --oxblood:#7C2E23; --brass:#A3845A; --brass-2:#C2A57A; --cream:#F4EDE1;
   --line:rgba(28,24,20,.16); --line-strong:rgba(28,24,20,.32);
-  --cream:#F4EDE1;
-  --serif:"Cormorant", "Cormorant Garamond", Garamond, "Times New Roman", serif;
-  --sans:"Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-  --mono:"Plex Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
-  --s:1; /* stage scale, set by JS */
+  --serif:"Cormorant","Cormorant Garamond",Garamond,"Times New Roman",serif;
+  --sans:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"Plex Mono","IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --bar:64px;
 }
+/* Fluid tokens: website mode */
+.sec{
+  --px:clamp(20px,6vw,120px); --pt:clamp(88px,10vw,150px); --pb:clamp(80px,9vw,140px);
+  --fs-display:clamp(50px,8.6vw,150px); --fs-section:clamp(46px,7.6vw,124px);
+  --fs-h2:clamp(34px,4.5vw,72px); --fs-lead:clamp(20px,2vw,32px); --fs-quote:clamp(26px,2.9vw,44px);
+  --fs-body:clamp(17px,1.3vw,21px); --fs-sm:clamp(15px,1.05vw,17.5px); --fs-h4:clamp(18px,1.3vw,21px);
+  --fs-sh:clamp(26px,2.1vw,36px); --fs-stat:clamp(64px,7vw,100px); --fs-yr:clamp(32px,2.6vw,44px);
+  --gap:clamp(22px,3vw,48px); --head-gap:clamp(36px,5vw,72px); --banner-h:clamp(240px,34vw,480px);
+}
+/* Fixed tokens: canvas mode (presentation + PDF), on a 1920×1080 composition */
+body.canvas .sec{
+  --px:120px; --pt:140px; --pb:110px;
+  --fs-display:136px; --fs-section:118px; --fs-h2:68px; --fs-lead:30px; --fs-quote:42px;
+  --fs-body:21px; --fs-sm:17.5px; --fs-h4:21px; --fs-sh:34px; --fs-stat:96px; --fs-yr:44px;
+  --gap:40px; --head-gap:64px; --banner-h:330px;
+}
+
+/* =========================================================== BASE */
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:#120E0B;color:var(--ink)}
-body{font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow:hidden}
-img{display:block}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{font-weight:500}
 
-/* ---------- Stage ---------- */
-#viewport{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
-#deck{position:relative;width:1920px;height:1080px;transform:scale(var(--s));transform-origin:center center;flex:none}
-.slide{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;background:var(--paper);
-  opacity:0;visibility:hidden;transform:translateX(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),visibility 0s .9s}
-.slide.is-active{opacity:1;visibility:visible;transform:none;transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),visibility 0s}
-.slide.is-past{transform:translateX(-28px)}
-/* staged reveal */
-.slide .rv{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
-.slide.is-active .rv{opacity:1;transform:none}
-.slide.is-active .rv.d1{transition-delay:.12s}.slide.is-active .rv.d2{transition-delay:.24s}
-.slide.is-active .rv.d3{transition-delay:.36s}.slide.is-active .rv.d4{transition-delay:.48s}
-.slide.is-active .rv.d5{transition-delay:.6s}
-.slide .kb{transform:scale(1.06);transition:transform 9s ease-out}
-.slide.is-active .kb{transform:scale(1)}
-
-/* paper grain */
-.slide::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply;
+/* =========================================================== SECTIONS (website) */
+.sec{position:relative;container:sec/inline-size;overflow:hidden;background:var(--paper)}
+.sec::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;mix-blend-mode:multiply;z-index:1;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .3  0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-.slide.dark{background:var(--espresso);color:var(--cream)}
-.slide.dark::after{opacity:.22;mix-blend-mode:screen}
+.sec.dark{background:var(--espresso);color:var(--cream)}
+.sec.dark::after{opacity:.2;mix-blend-mode:screen}
+.wrap{position:relative;z-index:2;max-width:1920px;margin:0 auto;padding:var(--pt) var(--px) var(--pb)}
 
-/* ---------- Chrome inside slides ---------- */
-.runhead{position:absolute;left:120px;right:120px;top:56px;display:flex;align-items:center;gap:22px;font:500 14px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);z-index:3}
-.runhead b{color:var(--ink);font-weight:500}
-.runhead .rule{flex:1;height:1px;background:var(--line)}
-.dark .runhead{color:rgba(244,237,225,.55)}.dark .runhead b{color:var(--cream)}.dark .runhead .rule{background:rgba(244,237,225,.2)}
-.foot{position:absolute;left:120px;right:120px;bottom:48px;display:flex;justify-content:space-between;align-items:flex-end;font:400 13px/1.4 var(--mono);letter-spacing:.08em;color:var(--ink-3);z-index:3}
-.dark .foot{color:rgba(244,237,225,.5)}
-.dgm{display:inline-flex;align-items:center;gap:12px;letter-spacing:.18em;text-transform:uppercase}
-.dgm i{font-style:normal;font:600 15px/1 var(--sans);letter-spacing:.08em;color:var(--ink);padding-right:12px;border-right:1px solid var(--line-strong)}
-.dark .dgm i{color:var(--cream);border-color:rgba(244,237,225,.3)}
-.pgno{font-variant-numeric:tabular-nums}
+/* Media */
+.media{position:relative;overflow:hidden;background:#2a211a;margin:0}
+.media img{width:100%;height:100%;object-fit:cover}
+.media .cred{position:absolute;left:18px;right:18px;bottom:14px;z-index:3;font:400 11.5px/1.45 var(--mono);letter-spacing:.05em;color:rgba(244,237,225,.85);text-shadow:0 1px 3px rgba(0,0,0,.65)}
+.media .vig{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(20,14,10,.45));pointer-events:none}
 
-/* ---------- Type ---------- */
-.eyebrow{font:500 15px/1 var(--mono);letter-spacing:.26em;text-transform:uppercase;color:var(--oxblood)}
-.dark .eyebrow{color:var(--brass-2)}
-.num{font:500 italic 30px/1 var(--serif);color:var(--oxblood);letter-spacing:.02em}
-h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.012em}
-.h-display{font-size:150px;line-height:.92;letter-spacing:-.02em}
-.h-section{font-size:118px;line-height:.95;letter-spacing:-.02em}
-.h-slide{font-size:74px;line-height:1;}
-.h-slide em,.h-section em,.h-display em{font-style:italic;font-weight:400}
-.lead{font:400 italic 34px/1.28 var(--serif);color:var(--oxblood)}
+/* Type */
+.eyebrow{display:block;font:500 13px/1.3 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--oxblood)}
+.num{display:block;font:500 italic calc(var(--fs-lead)*.95)/1.1 var(--serif);color:var(--oxblood)}
+.dark .eyebrow,.dark .num{color:var(--brass-2)}
+.h2{font:500 var(--fs-h2)/1.02 var(--serif);letter-spacing:-.012em;margin-top:.28em;max-width:20ch}
+.h2 em,.h-display em,.h-section em{font-style:italic;font-weight:400}
+.h2.wide{max-width:24ch}
+.lead{font:400 italic var(--fs-lead)/1.3 var(--serif);color:var(--oxblood)}
 .dark .lead{color:var(--brass-2)}
-.body{font:400 23px/1.55 var(--sans);color:var(--ink-2)}
+.body{font:400 var(--fs-body)/1.6 var(--sans);color:var(--ink-2);max-width:62ch}
 .dark .body{color:rgba(244,237,225,.78)}
-.small{font:400 18px/1.5 var(--sans);color:var(--ink-2)}
-.caption{font:400 12.5px/1.45 var(--mono);letter-spacing:.04em;color:var(--ink-3)}
+.small{font:400 var(--fs-sm)/1.55 var(--sans);color:var(--ink-2)}
+.dark .small{color:rgba(244,237,225,.72)}
+.caption{font:400 12.5px/1.5 var(--mono);letter-spacing:.04em;color:var(--ink-3)}
 .dark .caption{color:rgba(244,237,225,.55)}
-.rule-red{width:84px;height:2px;background:var(--oxblood)}
-.dark .rule-red{background:var(--brass-2)}
+.k{display:block;font:500 12.5px/1.3 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px}
+.dark .k{color:rgba(244,237,225,.55)}
+b.ink{color:var(--ink);font-weight:600}
+.dark b.ink{color:var(--cream)}
 
-/* ---------- Evidence tags ---------- */
-.tag{display:inline-flex;align-items:center;gap:8px;font:500 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;padding:7px 11px 7px 10px;border:1px solid currentColor;border-radius:2px;white-space:nowrap;vertical-align:middle}
-.tag::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
-.tag.owner{color:#8A6A3C}
-.tag.research{color:#3E4A52}
+/* Head block: title left, aside right (stacks when narrow) */
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,420px);gap:var(--gap);align-items:end;margin-bottom:var(--head-gap)}
+.head.solo{grid-template-columns:minmax(0,1fr)}
+.head .aside{font:400 var(--fs-sm)/1.55 var(--sans);color:var(--ink-2);padding-bottom:.4em}
+.dark .head .aside{color:rgba(244,237,225,.72)}
+
+/* Evidence tags */
+.tag{display:inline-flex;align-items:center;gap:8px;font:500 11.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;padding:7px 11px 7px 10px;border:1px solid currentColor;border-radius:2px;white-space:nowrap;vertical-align:middle}
+.tag::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.tag.owner{color:#8A6A3C}.tag.research{color:#3E4A52}.tag.verify{color:#6F655B;border-style:dotted}
 .tag.rec{color:var(--paper);background:var(--ink);border-color:var(--ink)}
-.tag.verify{color:#6F655B;border-style:dotted}
-.tag.verified{color:#3D5A3A}
 .dark .tag.owner{color:var(--brass-2)}.dark .tag.research{color:#B9C3C9}.dark .tag.verify{color:rgba(244,237,225,.6)}
 .dark .tag.rec{color:var(--espresso);background:var(--cream);border-color:var(--cream)}
 
-/* ---------- Photo treatment ---------- */
-.photo{position:absolute;overflow:hidden;background:#2a211a}
-.photo img{width:100%;height:100%;object-fit:cover}
-.photo .cred{position:absolute;left:18px;bottom:14px;right:18px;font:400 11.5px/1.4 var(--mono);letter-spacing:.05em;color:rgba(244,237,225,.82);text-shadow:0 1px 3px rgba(0,0,0,.6);z-index:2}
-.photo.hist img{filter:contrast(1.02)}
-.photo .vignette{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(20,14,10,.45));pointer-events:none}
-
-/* ---------- Generic layout atoms ---------- */
-.abs{position:absolute}
-.card{background:rgba(255,255,255,.34);border:1px solid var(--line);padding:30px 30px 32px}
-.dark .card{background:rgba(255,255,255,.04);border-color:rgba(244,237,225,.16)}
-.card h4{font:600 21px/1.25 var(--sans);color:var(--ink);margin-bottom:10px;letter-spacing:-.005em}
+/* Components */
+.card{background:rgba(255,255,255,.36);border:1px solid var(--line);padding:clamp(22px,2vw,30px)}
+.dark .card{background:rgba(255,255,255,.045);border-color:rgba(244,237,225,.16)}
+.card h4{font:600 var(--fs-h4)/1.25 var(--sans);margin-bottom:10px;color:var(--ink)}
 .dark .card h4{color:var(--cream)}
-.card p{font:400 18px/1.5 var(--sans);color:var(--ink-2)}
+.card p{font:400 var(--fs-sm)/1.5 var(--sans);color:var(--ink-2)}
 .dark .card p{color:rgba(244,237,225,.72)}
-.k{font:500 12.5px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px;display:block}
-.dark .k{color:rgba(244,237,225,.5)}
-.hair{height:1px;background:var(--line)}
-.dark .hair{background:rgba(244,237,225,.16)}
+.card .tag{margin-bottom:16px}
 
-/* ---------- Slide-specific ---------- */
-/* 1 Cover */
-.s-cover{background:#15100C;color:var(--cream)}
-.s-cover .photo{inset:0}
-.s-cover .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,13,9,.94) 0%,rgba(18,13,9,.82) 34%,rgba(18,13,9,.35) 62%,rgba(18,13,9,.15) 100%),linear-gradient(0deg,rgba(18,13,9,.75),transparent 40%)}
-.s-cover .wordmark{position:absolute;left:120px;top:120px;font:500 15px/1.6 var(--mono);letter-spacing:.34em;text-transform:uppercase;color:var(--brass-2)}
-.s-cover .wordmark strong{display:block;font:500 64px/1 var(--serif);letter-spacing:.14em;color:var(--cream);margin-top:14px}
-.s-cover h1{position:absolute;left:112px;top:350px;color:var(--cream);font-size:136px;line-height:1}
-.s-cover .sub{position:absolute;left:120px;top:690px;width:800px}
-.s-cover .sub p{font:400 26px/1.45 var(--sans);color:rgba(244,237,225,.8)}
-.s-cover .meta{position:absolute;left:120px;bottom:64px;display:flex;gap:56px;align-items:flex-end}
-.s-cover .meta div{font:400 14px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(244,237,225,.55)}
-.s-cover .meta div b{display:block;color:var(--cream);font-weight:500}
-.slide > .cred{position:absolute}
-.s-cover .cred{left:auto;right:120px;bottom:64px;text-align:right;width:520px}
+.grid{display:grid;gap:var(--gap)}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g5{grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
+.g-main{grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:clamp(32px,5vw,100px);align-items:start}
+.g-mod{grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:clamp(32px,5vw,90px)}
 
-/* 2 Letter */
-.s-letter .col-l{left:120px;top:210px;width:820px}
-.s-letter .col-r{left:1080px;top:210px;width:720px}
-.s-letter blockquote{font:400 italic 46px/1.22 var(--serif);color:var(--ink);letter-spacing:-.005em}
-.s-letter .letter p{font:400 22px/1.62 var(--sans);color:var(--ink-2);margin-top:22px}
-.s-letter .sig{font:500 italic 40px/1 var(--serif);color:var(--oxblood);margin-top:30px}
-.legend{display:grid;grid-template-columns:auto 1fr;gap:20px 26px;align-items:center;margin-top:28px}
-.legend p{font:400 18px/1.45 var(--sans);color:var(--ink-2)}
+.note{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,2.4vw,34px);align-items:start;padding-top:26px;border-top:1px solid var(--line);margin-top:var(--head-gap)}
+.dark .note{border-color:rgba(244,237,225,.2)}
+.note p{font:400 var(--fs-body)/1.6 var(--sans);color:var(--ink-2);max-width:none}
+.dark .note p{color:rgba(244,237,225,.78)}
 
-/* Section dividers */
-.s-div{background:#15100C;color:var(--cream)}
-.s-div .photo{inset:0}
-.s-div .shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,13,9,.92) 0%,rgba(18,13,9,.55) 45%,rgba(18,13,9,.2) 100%)}
-.s-div .bignum{position:absolute;left:112px;bottom:300px;font:400 italic 200px/1 var(--serif);color:var(--brass-2);opacity:.9}
-.s-div h2{position:absolute;left:120px;bottom:170px;color:var(--cream)}
-.s-div .lead{position:absolute;left:124px;bottom:96px;width:1200px;font-size:32px;color:rgba(244,237,225,.82)}
-.s-div > .cred{left:auto;right:120px;bottom:48px;width:560px;text-align:right}
+.box{display:flex;gap:28px;align-items:center;padding:22px 26px;border:1px solid var(--line);background:rgba(255,255,255,.3);margin-top:var(--head-gap)}
+.bar-ink{display:flex;gap:28px;align-items:center;padding:24px 28px;background:var(--ink);color:var(--paper);margin-top:var(--head-gap)}
+.bar-ink .k{color:var(--brass-2);margin:0;white-space:nowrap}
+.bar-ink p{font:400 italic calc(var(--fs-lead)*.92)/1.3 var(--serif)}
 
-/* Timeline */
-.tl{position:absolute;left:120px;right:120px;top:470px;height:420px}
-.tl .axis{position:absolute;left:0;right:0;top:64px;height:1px;background:var(--line-strong)}
-.tl .ev{position:absolute;top:0;width:200px}
-.tl .ev .yr{font:500 44px/1 var(--serif);color:var(--ink);letter-spacing:-.01em}
-.tl .ev .dot{position:absolute;top:58px;left:0;width:13px;height:13px;border-radius:50%;background:var(--paper);border:2px solid var(--oxblood)}
-.tl .ev.now .dot{background:var(--oxblood)}
-.tl .ev .tx{margin-top:46px;font:400 17px/1.45 var(--sans);color:var(--ink-2)}
-.tl .ev .tx b{display:block;font-weight:600;color:var(--ink);margin-bottom:6px;font-size:18px}
-.tl .ev .tag{margin-top:14px}
-
-/* Three column */
-.cols3{position:absolute;left:120px;right:120px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
-.col h3{font:500 40px/1.05 var(--serif);margin:14px 0 18px}
-.col ul{list-style:none}
-.col li{font:400 19px/1.45 var(--sans);color:var(--ink-2);padding:15px 0;border-top:1px solid var(--line)}
-.col li b{color:var(--ink);font-weight:600}
-.col li .caption{display:block;margin-top:6px}
+/* Rows (tables) */
+.rows .row{display:grid;grid-template-columns:minmax(200px,.36fr) minmax(0,1fr);gap:28px;padding:16px 0;border-top:1px solid var(--line);align-items:baseline}
+.rows .row:last-child{border-bottom:1px solid var(--line)}
+.rows .n{font:500 calc(var(--fs-sh)*.74)/1.15 var(--serif);color:var(--ink)}
+.rows .d{font:400 var(--fs-sm)/1.5 var(--sans);color:var(--ink-2)}
+.rows.numbered .row{grid-template-columns:44px minmax(200px,.36fr) minmax(0,1fr)}
+.rows .ix{font:500 italic 32px/1 var(--serif);color:var(--oxblood)}
 
 /* Stats */
 .stat{border-top:2px solid var(--ink);padding-top:22px}
-.stat .v{font:500 96px/.9 var(--serif);letter-spacing:-.02em;color:var(--ink)}
-.stat .v small{font-size:46px}
-.stat .l{font:400 19px/1.45 var(--sans);color:var(--ink-2);margin-top:14px}
-.stat .src{font:400 12px/1.4 var(--mono);letter-spacing:.05em;color:var(--ink-3);margin-top:12px}
+.stat .v{font:500 var(--fs-stat)/.9 var(--serif);letter-spacing:-.02em}
+.stat .v small{font-size:.48em}
+.stat .l{font:400 var(--fs-sm)/1.5 var(--sans);color:var(--ink-2);margin-top:14px}
+.stat .src{font:400 12px/1.45 var(--mono);letter-spacing:.04em;color:var(--ink-3);margin-top:12px}
 
-/* Competitor table */
-.comp{position:absolute;left:120px;top:330px;width:1060px}
-.comp .row{display:grid;grid-template-columns:270px 1fr;gap:28px;padding:15px 0;border-top:1px solid var(--line);align-items:baseline}
-.comp .row:last-child{border-bottom:1px solid var(--line)}
-.comp .n{font:500 25px/1.1 var(--serif);color:var(--ink)}
-.comp .d{font:400 17px/1.45 var(--sans);color:var(--ink-2)}
+/* Timeline */
+.tl{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:28px 18px}
+.ev{position:relative}
+.ev .yr{font:500 var(--fs-yr)/1 var(--serif);letter-spacing:-.01em;padding-bottom:18px;border-bottom:1px solid var(--line-strong);position:relative}
+.ev .yr::after{content:"";position:absolute;left:0;bottom:-7px;width:13px;height:13px;border-radius:50%;background:var(--paper);border:2px solid var(--oxblood)}
+.ev.now .yr{color:var(--oxblood)}.ev.now .yr::after{background:var(--oxblood)}
+.ev .tx{margin-top:26px;font:400 calc(var(--fs-sm)*.97)/1.45 var(--sans);color:var(--ink-2)}
+.ev .tx b{display:block;font-weight:600;color:var(--ink);margin-bottom:6px}
+.ev .tag{margin-top:14px}
+
+/* Columns with lists */
+.col h3{font:500 calc(var(--fs-sh)*1.1)/1.05 var(--serif);margin:14px 0 16px}
+.col ul{list-style:none}
+.col li{font:400 var(--fs-sm)/1.5 var(--sans);color:var(--ink-2);padding:14px 0;border-top:1px solid var(--line)}
+.col li b{color:var(--ink);font-weight:600}
 
 /* Pillars */
-.pillars{position:absolute;left:120px;right:120px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line-strong)}
-.pillar{padding:30px 34px 0 0;margin-right:34px;border-right:1px solid var(--line)}
+.pillars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line-strong)}
+.pillar{padding:28px 30px 0 0;margin-right:30px;border-right:1px solid var(--line)}
 .pillar:last-child{border-right:0;margin-right:0}
 .pillar .ix{font:400 italic 28px/1 var(--serif);color:var(--oxblood)}
-.pillar h4{font:500 34px/1.05 var(--serif);margin:14px 0 14px;color:var(--ink)}
-.pillar p{font:400 18px/1.5 var(--sans);color:var(--ink-2)}
-.flow{position:absolute;left:120px;right:120px;display:flex;align-items:center;gap:0}
-.flow .st{flex:1;text-align:center;font:500 14px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:18px 8px;border:1px solid var(--line-strong);background:rgba(255,255,255,.3)}
-.flow .ar{width:34px;height:1px;background:var(--line-strong);position:relative;flex:none}
-.flow .ar::after{content:"";position:absolute;right:0;top:-4px;border-left:7px solid var(--ink-3);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
-.dark .flow .st{color:var(--cream);border-color:rgba(244,237,225,.3);background:rgba(255,255,255,.04)}
-.dark .flow .ar{background:rgba(244,237,225,.3)}
+.pillar h4{font:500 var(--fs-sh)/1.05 var(--serif);margin:14px 0}
+.pillar p{font:400 var(--fs-sm)/1.5 var(--sans);color:var(--ink-2)}
 
-/* Steps (next chapter) */
-.steps{position:absolute;left:120px;width:1080px}
-.stp{display:grid;grid-template-columns:110px 330px 1fr;gap:24px;align-items:baseline;padding:22px 0;border-top:1px solid rgba(244,237,225,.18)}
+/* Flow */
+.flow{display:flex;align-items:center;margin-top:var(--head-gap)}
+.flow .st{flex:1;text-align:center;font:500 13px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:18px 8px;border:1px solid var(--line-strong);background:rgba(255,255,255,.3)}
+.flow .ar{width:30px;height:1px;background:var(--line-strong);position:relative;flex:none}
+.flow .ar::after{content:"";position:absolute;right:0;top:-4px;border-left:7px solid var(--ink-3);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
+.flow.v{flex-direction:column;align-items:stretch;margin-top:0}
+.flow.v .ar{width:1px;height:20px;align-self:center}.flow.v .ar::after{display:none}
+.flow .st.ink{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* Checks */
+.chk{display:grid;grid-template-columns:28px minmax(0,1fr);gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+.chk.plain{grid-template-columns:minmax(0,1fr);padding:15px 0}
+.chk .bx{width:22px;height:22px;border:1.5px solid var(--ink);margin-top:2px}
+.chk h5{font:600 calc(var(--fs-sm)*1.08)/1.3 var(--sans);color:var(--ink)}
+.chk p{font:400 calc(var(--fs-sm)*.94)/1.45 var(--sans);color:var(--ink-3);margin-top:5px}
+
+/* Steps */
+.stp{display:grid;grid-template-columns:110px minmax(200px,330px) minmax(0,1fr);gap:24px;align-items:baseline;padding:22px 0;border-top:1px solid rgba(244,237,225,.18)}
 .stp:last-child{border-bottom:1px solid rgba(244,237,225,.18)}
 .stp .pn{font:500 13px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--brass-2)}
-.stp h4{font:500 34px/1.05 var(--serif);color:var(--cream)}
-.stp p{font:400 19px/1.5 var(--sans);color:rgba(244,237,225,.74)}
+.stp h4{font:500 var(--fs-sh)/1.05 var(--serif);color:var(--cream)}
+.stp p{font:400 var(--fs-sm)/1.5 var(--sans);color:rgba(244,237,225,.74)}
 
-.chip{display:inline-block;font:500 13px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding:12px 16px;border:1px solid var(--line-strong);background:rgba(255,255,255,.4)}
+.legend{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px 24px;align-items:center;margin-top:24px}
+.legend p{font:400 var(--fs-sm)/1.45 var(--sans);color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-block;font:500 12.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:12px 16px;border:1px solid var(--line-strong);background:rgba(255,255,255,.4)}
 .chip.home{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-/* Checklist */
-.checks{position:absolute;left:120px;right:120px;display:grid;grid-template-columns:repeat(3,1fr);gap:0 56px}
-.chk{display:grid;grid-template-columns:30px 1fr;gap:16px;padding:19px 0;border-top:1px solid var(--line)}
-.chk .bx{width:22px;height:22px;border:1.5px solid var(--ink);margin-top:3px}
-.chk h5{font:600 19px/1.3 var(--sans);color:var(--ink)}
-.chk p{font:400 16px/1.45 var(--sans);color:var(--ink-3);margin-top:4px}
+.credits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(32px,5vw,80px)}
+.credits div{padding:18px 0;border-top:1px solid var(--line);font:400 calc(var(--fs-sm)*.97)/1.55 var(--sans);color:var(--ink-2)}
+.credits b{color:var(--ink);font-weight:600}
+.dgm{display:inline-flex;align-items:center;gap:12px;font:400 13px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase}
+.dgm i{font:600 15px/1 var(--sans);font-style:normal;letter-spacing:.08em;padding-right:12px;border-right:1px solid currentColor}
 
-/* Credits */
-.credits{position:absolute;left:120px;right:120px;top:240px;display:grid;grid-template-columns:1fr 1fr;gap:0 80px}
-.credits div{padding:20px 0;border-top:1px solid var(--line);font:400 18px/1.55 var(--sans);color:var(--ink-2)}
-.credits div b{color:var(--ink);font-weight:600}
-.credits .caption{font-size:12px}
+/* =========================================================== VARIANTS (website) */
+/* Hero & divider: full-bleed photo with overlay text */
+.v-hero,.v-div{background:#15100C;color:var(--cream);min-height:100svh;display:flex}
+.v-div{min-height:86svh}
+.v-hero .media,.v-div .media{position:absolute;inset:0;z-index:0}
+.v-hero .shade{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(18,13,9,.94) 0%,rgba(18,13,9,.8) 36%,rgba(18,13,9,.35) 66%,rgba(18,13,9,.15) 100%),linear-gradient(0deg,rgba(18,13,9,.78),transparent 45%)}
+.v-div .shade{position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(18,13,9,.92) 0%,rgba(18,13,9,.55) 48%,rgba(18,13,9,.2) 100%)}
+.v-hero .wrap,.v-div .wrap{display:flex;flex-direction:column;justify-content:flex-end;width:100%;min-height:inherit;padding-top:calc(var(--bar) + var(--pt))}
+.v-hero .wordmark{font:500 13px/1.6 var(--mono);letter-spacing:.34em;text-transform:uppercase;color:var(--brass-2);margin-bottom:auto}
+.v-hero .wordmark strong{display:block;font:500 clamp(40px,4vw,64px)/1 var(--serif);letter-spacing:.14em;color:var(--cream);margin-top:12px}
+.h-display{font:500 var(--fs-display)/.98 var(--serif);letter-spacing:-.02em;color:var(--cream);margin-top:clamp(48px,8vh,120px)}
+.v-hero .sub{max-width:800px;margin-top:clamp(28px,4vw,48px)}
+.v-hero .sub .rule{width:84px;height:2px;background:var(--brass-2);margin-bottom:26px}
+.v-hero .sub p{font:400 clamp(18px,1.6vw,26px)/1.45 var(--sans);color:rgba(244,237,225,.82)}
+.v-hero .sub p.sig{font:500 italic clamp(30px,2.6vw,40px)/1 var(--serif);color:var(--brass-2);margin-top:30px}
+.meta{display:flex;flex-wrap:wrap;gap:20px 56px;margin-top:clamp(36px,5vw,64px)}
+.meta div{font:400 13px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(244,237,225,.55)}
+.meta b{display:block;color:var(--cream);font-weight:500}
+.hero-cred{position:absolute;right:var(--px);bottom:28px;z-index:3;max-width:520px;text-align:right;font:400 11.5px/1.45 var(--mono);letter-spacing:.05em;color:rgba(244,237,225,.6)}
+.bignum{font:400 italic clamp(110px,13vw,200px)/1 var(--serif);color:var(--brass-2);opacity:.92}
+.h-section{font:500 var(--fs-section)/.98 var(--serif);letter-spacing:-.02em;color:var(--cream);margin-top:.1em}
+.v-div .lead{color:rgba(244,237,225,.84);margin-top:22px;max-width:52ch;padding-bottom:20px}
 
-/* ---------- UI controls (not printed) ---------- */
-#ui{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;padding:14px 22px;pointer-events:none;z-index:50;font:500 12px/1 var(--mono);letter-spacing:.14em;color:rgba(244,237,225,.75);opacity:.0;transition:opacity .4s}
-body:hover #ui,body.ui-on #ui{opacity:1}
-#ui button{pointer-events:auto;background:rgba(18,13,9,.72);color:var(--cream);border:1px solid rgba(244,237,225,.22);height:40px;min-width:40px;padding:0 14px;border-radius:20px;font:500 12px/1 var(--mono);letter-spacing:.14em;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-#ui button:hover{background:rgba(124,46,35,.9)}
-#ui .grp{display:flex;gap:8px;align-items:center}
-#ui .count{pointer-events:auto;background:rgba(18,13,9,.72);padding:13px 16px;border-radius:20px;border:1px solid rgba(244,237,225,.22)}
-#progress{position:fixed;left:0;top:0;height:3px;background:var(--oxblood);z-index:60;transition:width .6s cubic-bezier(.2,.7,.2,1)}
-#hint{position:fixed;top:16px;right:20px;z-index:55;font:500 11px/1 var(--mono);letter-spacing:.14em;color:rgba(244,237,225,.5);pointer-events:none;transition:opacity 1s}
+/* Split: content + full-height media column */
+.v-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.48fr)}
+.v-split.left{grid-template-columns:minmax(0,.5fr) minmax(0,1fr)}
+.v-split > .media{min-height:100%;z-index:2}
+.v-split.left > .media{order:-1}
+.v-split > .wrap{max-width:none;margin:0;width:100%}
 
-/* Overview grid */
-body.overview #viewport{overflow:auto;display:block;padding:40px}
-body.overview #deck{transform:none;width:auto;height:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:24px}
-body.overview .slide{position:relative;inset:auto;opacity:1;visibility:visible;transform:none;transition:none;width:1920px;height:1080px;zoom:var(--oz,.19);cursor:pointer;outline:0 solid var(--oxblood)}
-body.overview .slide.is-active{outline-width:14px}
-body.overview .slide .rv{opacity:1;transform:none}
+/* Banner: wide photo strip, content beneath */
+.v-banner > .media{height:var(--banner-h);z-index:0}
+.v-banner > .media .fade{position:absolute;inset:0;background:linear-gradient(0deg,var(--paper) 0%,var(--paper) 4%,rgba(242,236,226,.5) 40%,rgba(242,236,226,0) 82%)}
+.v-banner > .media .cred{color:var(--ink-3);text-shadow:none;top:calc(var(--bar) + 16px);bottom:auto;left:auto;right:var(--px);width:auto}
+.v-banner > .wrap{margin-top:calc(var(--banner-h) * -.3);padding-top:0}
 
-/* ---------- Scroll mode (phones in portrait / narrow screens) ---------- */
-body.scroll{overflow:auto}
-body.scroll #viewport{position:static;display:block}
-body.scroll #deck{transform:none;width:100%;height:auto}
-body.scroll .slide-wrap{width:100vw;height:calc(100vw * 9 / 16);position:relative;overflow:hidden;margin-bottom:10px}
-body.scroll .slide{position:absolute;left:0;top:0;opacity:1;visibility:visible;transform:scale(var(--ws));transform-origin:0 0;transition:none}
-body.scroll .slide .rv{opacity:1;transform:none}
-body.scroll #ui,body.scroll #hint{display:none}
+/* Inline figure */
+.fig{position:relative;aspect-ratio:16/10}
 
-/* ---------- Print / PDF ---------- */
+/* =========================================================== RESPONSIVE (container queries, website only) */
+@container sec (max-width:1180px){
+  .tl{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:44px}
+  .g5{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .g-main,.g-mod{grid-template-columns:minmax(0,1fr)}
+  .pillars{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}
+  .pillar:nth-child(2n){border-right:0;margin-right:0}
+  .flow{flex-wrap:wrap;gap:10px}.flow .ar{display:none}.flow .st{flex:1 1 30%}
+  .flow.v{flex-wrap:nowrap;gap:0}.flow.v .ar{display:block}
+}
+@container sec (max-width:900px){
+  .head{grid-template-columns:minmax(0,1fr)!important;align-items:start}
+  .g3,.g4,.credits,.g2{grid-template-columns:minmax(0,1fr)}
+  .g5{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rows .row,.rows.numbered .row{grid-template-columns:minmax(0,1fr);gap:6px}
+  .rows .ix{font-size:24px}
+  .stp{grid-template-columns:minmax(0,1fr);gap:8px}
+  .note,.box,.bar-ink{grid-template-columns:minmax(0,1fr);flex-direction:column;align-items:flex-start;gap:14px}
+  .hero-cred{position:relative;right:auto;bottom:auto;text-align:left;margin-top:28px;max-width:none}
+}
+@container sec (max-width:600px){
+  .tl{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px 18px}
+  .g5{grid-template-columns:minmax(0,1fr)}
+  .pillars{grid-template-columns:minmax(0,1fr)}
+  .pillar{border-right:0;margin-right:0;padding-right:0}
+  .flow .st{flex:1 1 100%}
+  .legend{grid-template-columns:minmax(0,1fr);gap:8px 0}
+  .legend p{margin-bottom:12px}
+  .meta{gap:18px 32px}
+}
+
+@media (max-width:900px){body:not(.canvas) .v-hero .shade{background:linear-gradient(0deg,rgba(18,13,9,.94) 0%,rgba(18,13,9,.78) 50%,rgba(18,13,9,.62) 100%)}}
+/* Split sections stack on narrow viewports (website mode only; the section is its own container) */
+@media (max-width:900px){
+  body:not(.canvas) .v-split,body:not(.canvas) .v-split.left{grid-template-columns:minmax(0,1fr)}
+  body:not(.canvas) .v-split > .media{order:-1;min-height:0;aspect-ratio:16/11}
+}
+
+/* =========================================================== WEBSITE CHROME */
+.topbar{position:fixed;left:0;right:0;top:0;height:var(--bar);z-index:50;display:flex;align-items:center;gap:28px;padding:0 clamp(16px,3vw,40px);color:var(--cream);transition:background .4s,color .4s,box-shadow .4s}
+.topbar.solid{background:rgba(242,236,226,.92);color:var(--ink);box-shadow:0 1px 0 var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.topbar .brand{font:500 22px/1 var(--serif);letter-spacing:.16em;text-decoration:none;white-space:nowrap}
+.topbar .brand small{font:400 11px/1 var(--mono);letter-spacing:.22em;margin-left:12px;opacity:.65;text-transform:uppercase}
+.topbar nav{display:flex;gap:2px;margin-left:auto;overflow:hidden}
+.topbar nav a{font:500 11.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:9px 10px;opacity:.7;white-space:nowrap;border-radius:2px;transition:opacity .2s}
+.topbar nav a:hover,.topbar nav a.on{opacity:1}
+.topbar nav a.on{box-shadow:inset 0 -2px 0 var(--oxblood)}
+.btn-present{flex:none;display:inline-flex;align-items:center;gap:10px;font:500 11.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;padding:12px 16px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;border-radius:2px}
+.btn-present svg{width:14px;height:14px}
+.btn-present:hover{background:var(--oxblood);border-color:var(--oxblood);color:var(--cream)}
+.topbar .prog{position:absolute;left:0;bottom:-1px;height:2px;background:var(--oxblood);width:0;transition:width .15s linear}
+@media (max-width:1180px){.topbar nav{display:none}.topbar .btn-present{margin-left:auto}}
+@media (max-width:1380px){.topbar .brand small{display:none}}
+@media (max-width:520px){.topbar .brand small{display:none}.btn-present{padding:10px 12px;letter-spacing:.12em}}
+.site-foot{position:relative;background:#15100C;color:rgba(244,237,225,.7);padding:56px clamp(20px,6vw,120px);display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between;font:400 12.5px/1.6 var(--mono);letter-spacing:.08em}
+.site-foot a{color:var(--brass-2)}
+.site-foot .dgm{color:var(--cream)}
+
+/* Scroll reveal (website) */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+.v-hero .media img,.v-div .media img{transform:scale(1.06);transition:transform 2.4s cubic-bezier(.2,.7,.2,1)}
+.v-hero.seen .media img,.v-div.seen .media img{transform:scale(1)}
+
+/* Presentation-only chrome inside sections */
+.pchrome{display:none!important}
+
+/* =========================================================== CANVAS MODE (presentation + PDF) */
+body.canvas .sec{width:1920px;height:1080px;min-height:0;flex:none}
+body.canvas .wrap{max-width:none;height:100%;display:flex;flex-direction:column}
+body.canvas .v-hero .wrap,body.canvas .v-div .wrap{min-height:0;padding-top:120px;padding-bottom:96px}
+body.canvas .v-hero .wordmark strong{font-size:64px}
+body.canvas .v-hero .sub p{font-size:26px}
+body.canvas .v-hero .sub p.sig{font-size:40px}
+body.canvas .h-display{margin-top:0}
+body.canvas .bignum{font-size:200px}
+body.canvas .v-div .wrap{padding-bottom:84px}
+body.canvas .hero-cred{bottom:56px}
+body.canvas .v-split > .media{min-height:0;height:1080px}
+body.canvas .v-split > .wrap{height:1080px}
+body.canvas .v-banner > .wrap{height:calc(1080px - var(--banner-h) * .7)}
+body.canvas .v-banner > .media .cred{top:24px}
+body.canvas .push{margin-top:auto}
+body.canvas .pchrome{display:flex!important}
+body.canvas .rv{opacity:1;transform:none;transition:none}
+body.canvas .v-hero .media img,body.canvas .v-div .media img{transform:none;transition:none}
+.runhead{position:absolute;left:var(--px);right:var(--px);top:56px;z-index:4;align-items:center;gap:22px;font:500 13px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
+.runhead b{color:var(--ink);font-weight:500}
+.runhead .rule{flex:1;height:1px;background:var(--line)}
+.dark .runhead{color:rgba(244,237,225,.55)}
+.dark .runhead b{color:var(--cream)}.dark .runhead .rule{background:rgba(244,237,225,.2)}
+.pfoot{position:absolute;left:var(--px);right:var(--px);bottom:46px;z-index:4;justify-content:space-between;align-items:flex-end;gap:24px;font:400 12.5px/1.4 var(--mono);letter-spacing:.08em;color:var(--ink-3)}
+.dark .pfoot{color:rgba(244,237,225,.5)}
+.pfoot .dgm i{color:var(--ink)}.dark .pfoot .dgm i{color:var(--cream)}
+.pfoot.inflow{position:relative;left:auto;right:auto;bottom:auto;margin-top:34px}
+
+/* Presentation viewer */
+body.present{overflow:hidden;background:#0B0907}
+body.present .topbar,body.present .site-foot{display:none}
+body.present main{position:fixed;inset:0;background:#0B0907;z-index:80}
+body.present .sec{position:absolute;left:50%;top:50%;margin:0;transform:translate(-50%,-50%) scale(var(--s,1));opacity:0;visibility:hidden;transition:opacity .6s ease,visibility 0s .6s}
+body.present .sec.cur{opacity:1;visibility:visible;transition:opacity .6s ease,visibility 0s}
+.pctl{display:none}
+body.present .pctl{display:flex;position:fixed;z-index:90;gap:8px;align-items:center;opacity:0;transition:opacity .4s}
+body.present.ui .pctl{opacity:1}
+.pctl button{background:rgba(18,13,9,.72);color:var(--cream);border:1px solid rgba(244,237,225,.24);height:40px;min-width:40px;padding:0 14px;border-radius:20px;font:500 11.5px/1 var(--mono);letter-spacing:.14em;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.pctl button:hover{background:var(--oxblood)}
+.pctl.tr{top:16px;right:16px}.pctl.br{bottom:16px;right:16px}
+.pctl .cnt{background:rgba(18,13,9,.72);color:rgba(244,237,225,.85);padding:13px 15px;border-radius:20px;border:1px solid rgba(244,237,225,.24);font:500 11.5px/1 var(--mono);letter-spacing:.14em}
+
+/* Print / PDF: canvas layout, one section per 16:9 page */
 @page{size:1920px 1080px;margin:0}
 @media print{
-  html,body{background:none;overflow:visible;height:auto}
-  #ui,#progress,#hint{display:none!important}
-  #viewport{position:static;display:block;overflow:visible}
-  #deck{transform:none!important;width:1920px;height:auto}
-  .slide-wrap{width:auto!important;height:auto!important;margin:0!important;overflow:visible!important}
-  .slide{position:relative!important;inset:auto;opacity:1!important;visibility:visible!important;transform:none!important;transition:none!important;
-    page-break-after:always;break-after:page;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .slide:last-child{page-break-after:auto;break-after:auto}
-  .slide::after{display:none}
-  .photo .vignette{display:none}
-  .slide .rv,.slide .kb{opacity:1!important;transform:none!important;transition:none!important}
-  body.overview .slide{zoom:1}
+  html,body{background:none!important}
+  .topbar,.site-foot,.pctl{display:none!important}
+  body.canvas main{position:static!important}
+  body.canvas .sec{page-break-after:always;break-after:page;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact;position:relative!important;transform:none!important;opacity:1!important;visibility:visible!important;left:auto!important;top:auto!important}
+  body.canvas .sec:last-of-type{page-break-after:auto;break-after:auto}
+  .sec::after,.media .vig{display:none}
 }
-@media (prefers-reduced-motion:reduce){.slide,.slide .rv,.slide .kb{transition:none!important}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv,.sec,.media img{transition:none!important;transform:none!important}}
 </style>
 </head>
 <body>
-<div id="progress"></div>
-<div id="hint">← → TO NAVIGATE · G OVERVIEW · F FULLSCREEN · P PRINT</div>
-<div id="viewport"><div id="deck">
 
-<!-- ============================ 01 · COVER ============================ -->
-<section class="slide s-cover" data-title="Cover">
-  <figure class="photo hist"><img class="kb" src="cdic-assets/img/h1-powell-1920.jpg" alt="Bird's-eye view up Powell Street from the Fairmont Hotel, San Francisco, about 1920"><div class="vignette"></div></figure>
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top">CDIC<small>Research Briefing</small></a>
+  <nav id="nav" aria-label="Sections">
+    <a href="#legacy">Legacy</a><a href="#market">Market</a><a href="#competition">Competition</a><a href="#opportunity">Opportunity</a><a href="#experience">Experience</a><a href="#modernize">Modernize</a><a href="#next">Next Chapter</a>
+  </nav>
+  <button class="btn-present" id="btnPresent" type="button" aria-label="Enter presentation mode"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="9" rx="1"/><path d="M6.5 5.2v3.6L9.6 7z" fill="currentColor"/><path d="M5 14h6"/></svg>Presentation Mode</button>
+  <span class="prog" id="prog"></span>
+</header>
+
+<main id="top">
+
+<!-- ======================= COVER ======================= -->
+<section class="sec v-hero" data-title="Cover">
+  <figure class="media"><img src="cdic-assets/img/h1-powell-1920.jpg" alt="Bird's-eye view up Powell Street from the Fairmont Hotel, San Francisco, about 1920" fetchpriority="high"><div class="vig"></div></figure>
   <div class="shade"></div>
-  <div class="wordmark rv">California Direct Importing Company<strong>CDIC</strong></div>
-  <h1 class="h-display rv d1">Honoring the Past.<br><em>Building the Future.</em></h1>
-  <div class="sub rv d2"><div class="rule-red" style="margin-bottom:28px;background:var(--brass-2)"></div><p>A research briefing on CDIC's heritage, its market, and the opportunities to strengthen, modernize and grow the business.</p></div>
-  <div class="meta rv d3">
-    <div>Prepared for<b>CDIC Ownership</b></div>
-    <div>Prepared by<b>Lo · Daily Grind Media</b></div>
-    <div>Research<b>November 2026</b></div>
+  <div class="wrap">
+    <div class="wordmark rv">California Direct Importing Company<strong>CDIC</strong></div>
+    <h1 class="h-display rv d1">Honoring the Past.<br><em>Building the Future.</em></h1>
+    <div class="sub rv d2"><div class="rule"></div><p>A research briefing on CDIC's heritage, its market, and the opportunities to strengthen, modernize and grow the business.</p></div>
+    <div class="meta rv d3"><div>Prepared for<b>CDIC Ownership</b></div><div>Prepared by<b>Lo · Daily Grind Media</b></div><div>Research<b>November 2026</b></div></div>
+    <p class="hero-cred">View up Powell Street from the Fairmont, c. 1920. Library of Congress, LCCN 96514400 (public domain). San Francisco context only. Not CDIC premises.</p>
   </div>
-  <p class="caption cred rv d4">View up Powell Street from the Fairmont, c. 1920. Library of Congress, LCCN 96514400 (public domain). San Francisco context only. Not CDIC premises.</p>
 </section>
 
-<!-- ============================ 02 · ABOUT THIS BRIEFING ============================ -->
-<section class="slide s-letter" data-title="About this briefing">
-  <div class="runhead"><b>CDIC</b><span>About this briefing</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs col-l">
-    <span class="eyebrow rv">About this briefing</span>
-    <blockquote class="rv d1" style="margin-top:34px">“A business with a remarkable history, an established presence in a valuable market, and meaningful opportunities to strengthen how we present ourselves, serve customers and pursue growth.”</blockquote>
-    <div class="letter rv d2">
-      <p>This briefing brings together research across five areas: CDIC's historical records, the Bay Area corporate coffee market, the competitive landscape, Franke A1000 service standards, and modern brand and business systems.</p>
-      <p>It's a starting point for a conversation. The findings are drawn from public records and published sources, and the ideas are offered for discussion.</p>
+<!-- ======================= ABOUT ======================= -->
+<section class="sec" data-title="About this briefing">
+  <div class="runhead pchrome"><b>CDIC</b><span>About this briefing</span><span class="rule"></span><span class="pg"></span></div>
+  <div class="wrap">
+    <div class="grid g-main">
+      <div>
+        <span class="eyebrow rv">About this briefing</span>
+        <blockquote class="rv d1" style="font:400 italic var(--fs-quote)/1.24 var(--serif);margin-top:30px;max-width:30ch">“A business with a remarkable history, an established presence in a valuable market, and meaningful opportunities to strengthen how we present ourselves, serve customers and pursue growth.”</blockquote>
+        <p class="body rv d2" style="margin-top:28px">This briefing brings together research across five areas: CDIC's historical records, the Bay Area corporate coffee market, the competitive landscape, Franke A1000 service standards, and modern brand and business systems.</p>
+        <p class="body rv d2" style="margin-top:16px">It's a starting point for a conversation. The findings are drawn from public records and published sources, and the ideas are offered for discussion.</p>
+        <p class="rv d3" style="font:500 italic calc(var(--fs-lead)*1.15)/1 var(--serif);color:var(--oxblood);margin-top:30px">— Lo, Daily Grind Media</p>
+      </div>
+      <div class="rv d2">
+        <span class="k">How to read this briefing</span>
+        <div style="height:1px;background:var(--line)"></div>
+        <div class="legend">
+          <span class="tag owner">Owner-reported</span><p>Details shared by CDIC ownership, accepted as context.</p>
+          <span class="tag research">Research</span><p>Found in outside sources: directories, filings, market reports. Traceable and cited.</p>
+          <span class="tag rec">Recommendation</span><p>A suggestion for discussion. Nothing here is decided until ownership approves it.</p>
+          <span class="tag verify">To verify</span><p>Details to confirm together from company records or family memory.</p>
+        </div>
+        <div style="height:1px;background:var(--line);margin-top:26px"></div>
+        <p class="small" style="margin-top:18px">Historical leads are presented as leads. Contemporary photographs are representative, and no image in this briefing is AI-generated.</p>
+      </div>
     </div>
-    <div class="sig rv d3">— Lo, Daily Grind Media</div>
   </div>
-  <div class="abs col-r rv d2">
-    <span class="k">How to read this briefing</span>
-    <div class="hair"></div>
-    <div class="legend">
-      <span class="tag owner">Owner-reported</span><p>Details shared by CDIC ownership, accepted as context.</p>
-      <span class="tag research">Research</span><p>Found in outside sources: directories, filings, market reports. Traceable and cited.</p>
-      <span class="tag rec">Recommendation</span><p>A suggestion for discussion. Nothing here is decided until ownership approves it.</p>
-      <span class="tag verify">To verify</span><p>Details to confirm together from company records or family memory.</p>
-    </div>
-    <div class="hair" style="margin-top:28px"></div>
-    <p class="small" style="margin-top:20px">Historical leads are presented as leads. Contemporary photographs are representative, and no image in this briefing is AI-generated.</p>
-  </div>
-  <div class="foot"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Research briefing · Prepared November 2026</span></div>
+  <div class="pfoot pchrome"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Research briefing · Prepared November 2026</span></div>
 </section>
 
-<!-- ============================ 03 · DIVIDER: LEGACY ============================ -->
-<section class="slide s-div" data-title="01 · A Legacy Worth Preserving">
-  <figure class="photo hist"><img class="kb" src="cdic-assets/img/h3-market-st.jpg" alt="Market Street, San Francisco, early 1900s postcard view" style="object-position:50% 40%"><div class="vignette"></div></figure>
+<!-- ======================= 01 DIVIDER ======================= -->
+<section class="sec v-div" id="legacy" data-title="01 · A Legacy Worth Preserving">
+  <figure class="media"><img src="cdic-assets/img/h3-market-st.jpg" alt="Market Street, San Francisco, early 1900s postcard view" loading="lazy" style="object-position:50% 40%"><div class="vig"></div></figure>
   <div class="shade"></div>
-  <div class="bignum rv">01</div>
-  <h2 class="h-section rv d1">A Legacy <em>Worth Preserving</em></h2>
-  <p class="lead rv d2">What the public record shows, and where more of the story is waiting.</p>
-  <p class="caption cred">Market Street, San Francisco, early 1900s. Detroit Photographic Co. postcard, NYPL Digital Collections (public domain). Context only. Not CDIC premises.</p>
+  <div class="wrap">
+    <div class="bignum rv">01</div>
+    <h2 class="h-section rv d1">A Legacy <em>Worth Preserving</em></h2>
+    <p class="lead rv d2">What the public record shows, and where more of the story is waiting.</p>
+    <p class="hero-cred">Market Street, San Francisco, early 1900s. Detroit Photographic Co. postcard, NYPL Digital Collections (public domain). Context only. Not CDIC premises.</p>
+  </div>
 </section>
 
-<!-- ============================ 04 · TIMELINE ============================ -->
-<section class="slide" data-title="The record so far">
-  <div class="runhead"><b>CDIC</b><span>01 · A Legacy Worth Preserving</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs" style="left:120px;top:150px;width:1100px">
-    <span class="num rv">The record so far</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px">A name that appears in San Francisco's records <em>across the century.</em></h2>
+<!-- ======================= TIMELINE ======================= -->
+<section class="sec" data-title="The record so far">
+  <div class="runhead pchrome"><b>CDIC</b><span>01 · A Legacy Worth Preserving</span><span class="rule"></span><span class="pg"></span></div>
+  <div class="wrap">
+    <div class="head">
+      <div><span class="num rv">The record so far</span><h2 class="h2 wide rv d1">A name that appears in San Francisco's records <em>across the century.</em></h2></div>
+      <p class="aside rv d2">Each entry is a documented lead. Connecting them into one continuous story is the next step, with family records.</p>
+    </div>
+    <div class="tl rv d2">
+      <div class="ev"><div class="yr">1917</div><div class="tx"><b>1031 Market St.</b>City directory listing for "California Direct Importing Co."</div><span class="tag research">Research lead</span></div>
+      <div class="ev"><div class="yr">1920</div><div class="tx"><b>2651 Mission St.</b>Directory listing at the Mission address.</div><span class="tag research">Research lead</span></div>
+      <div class="ev"><div class="yr">1923</div><div class="tx"><b>A newspaper ad</b><i>Vestkusten</i>, Dec. 13, p. 7, indexed by name and address.</div><span class="tag research">Research lead</span></div>
+      <div class="ev"><div class="yr">1954</div><div class="tx"><b>2653 Mission St.</b>Polk directory transcription: groceries and meats.</div><span class="tag research">Research lead</span></div>
+      <div class="ev"><div class="yr">1961–71</div><div class="tx"><b>2651 Mission recurs</b>Repeated in city directories through the '60s.</div><span class="tag research">Research lead</span></div>
+      <div class="ev"><div class="yr">1971</div><div class="tx"><b>State filing</b>Earliest visible entry for corporation C0095574 ("Term Perpetual").</div><span class="tag research">Research lead</span></div>
+      <div class="ev"><div class="yr">2013</div><div class="tx"><b>The modern LLC</b>California Direct Importing Company, LLC registered.</div><span class="tag research">Research</span></div>
+      <div class="ev now"><div class="yr">Today</div><div class="tx"><b>Premium corporate coffee</b>Franke A1000 installations and fresh-roasted coffee for Bay Area offices.</div><span class="tag owner">Owner-reported</span></div>
+    </div>
+    <div class="box push rv d3">
+      <span class="k" style="margin:0;white-space:nowrap">Undated find</span>
+      <p class="small">A Digger Archives leaflet lists <b class="ink">"Oh's (California Direct Importing Co.), 2651 Mission at 23rd"</b>, selling flour in 100-lb sacks. "Oh's" may be a family or trading name, and the family's memory can tell us more.</p>
+    </div>
   </div>
-  <p class="abs body rv d2" style="left:1300px;top:186px;width:500px;font-size:20px">Each entry is a documented lead. Connecting them into one continuous story is the next step, with family records.</p>
-  <div class="tl rv d3">
-    <div class="axis"></div>
-    <div class="ev" style="left:0"><div class="yr">1917</div><span class="dot"></span><div class="tx"><b>1031 Market St.</b>City directory listing for "California Direct Importing Co."</div><span class="tag research">Research lead</span></div>
-    <div class="ev" style="left:216px"><div class="yr">1920</div><span class="dot"></span><div class="tx"><b>2651 Mission St.</b>Directory listing at the Mission address.</div><span class="tag research">Research lead</span></div>
-    <div class="ev" style="left:432px"><div class="yr">1923</div><span class="dot"></span><div class="tx"><b>A newspaper ad</b><i>Vestkusten</i>, Dec. 13, p. 7, indexed by name and address.</div><span class="tag research">Research lead</span></div>
-    <div class="ev" style="left:648px"><div class="yr">1954</div><span class="dot"></span><div class="tx"><b>2653 Mission St.</b>Polk directory transcription: groceries and meats.</div><span class="tag research">Research lead</span></div>
-    <div class="ev" style="left:864px"><div class="yr">1961–71</div><span class="dot"></span><div class="tx"><b>2651 Mission recurs</b>Repeated in city directories through the '60s.</div><span class="tag research">Research lead</span></div>
-    <div class="ev" style="left:1080px"><div class="yr">1971</div><span class="dot"></span><div class="tx"><b>State filing</b>Earliest visible entry for corporation C0095574 ("Term Perpetual").</div><span class="tag research">Research lead</span></div>
-    <div class="ev" style="left:1296px"><div class="yr">2013</div><span class="dot"></span><div class="tx"><b>The modern LLC</b>California Direct Importing Company, LLC registered.</div><span class="tag research">Research</span></div>
-    <div class="ev now" style="left:1512px"><div class="yr" style="color:var(--oxblood)">Today</div><span class="dot"></span><div class="tx"><b>Premium corporate coffee</b>Franke A1000 installations and fresh-roasted coffee for Bay Area offices.</div><span class="tag owner">Owner-reported</span></div>
-  </div>
-  <div class="abs rv d4" style="left:120px;right:120px;bottom:118px;display:flex;gap:28px;align-items:center;padding:22px 26px;border:1px solid var(--line);background:rgba(255,255,255,.3)">
-    <span class="k" style="margin:0;white-space:nowrap">Undated find</span>
-    <p class="small" style="font-size:19px">A Digger Archives leaflet lists <b style="color:var(--ink)">"Oh's (California Direct Importing Co.), 2651 Mission at 23rd"</b>, selling flour in 100-lb sacks. "Oh's" may be a family or trading name, and the family's memory can tell us more.</p>
-  </div>
-  <div class="foot"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Sources: SF directories (sfgenealogy.org, archive.org) · CDNC/UCR · OpenCorporates · diggers.org</span></div>
+  <div class="pfoot pchrome"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Sources: SF directories (sfgenealogy.org, archive.org) · CDNC/UCR · OpenCorporates · diggers.org</span></div>
 </section>
 
-<!-- ============================ 05 · TELLING THE STORY ACCURATELY ============================ -->
-<section class="slide" data-title="Telling the story accurately">
-  <div class="runhead" style="right:740px"><b>CDIC</b><span>01 · A Legacy Worth Preserving</span><span class="rule"></span><span class="pgno"></span></div>
-  <figure class="photo hist rv" style="left:1300px;top:0;width:620px;height:1080px"><img src="cdic-assets/img/h2-banking-1920.jpg" alt="Banking center, Market and Montgomery streets, San Francisco, about 1920" style="object-position:58% 50%"><div class="vignette"></div><p class="cred">"Banking Center," San Francisco, c. 1920. Library of Congress, LCCN 2002711388 (public domain). Context only. Not CDIC premises.</p></figure>
-  <div class="abs" style="left:120px;top:150px;width:1060px">
-    <span class="num rv">Telling the story accurately</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px">Heritage is worth more <em>when every word can be backed up.</em></h2>
+<!-- ======================= STORY ======================= -->
+<section class="sec v-split" data-title="Telling the story accurately">
+  <div class="wrap">
+    <div class="runhead pchrome"><b>CDIC</b><span>01 · A Legacy Worth Preserving</span><span class="rule"></span><span class="pg"></span></div>
+    <div class="head solo"><div><span class="num rv">Telling the story accurately</span><h2 class="h2 rv d1">Heritage is worth more <em>when every word can be backed up.</em></h2></div></div>
+    <div class="grid g3 rv d2" style="gap:34px">
+      <div class="col"><span class="tag research">What's documented</span><h3>Real leads</h3><ul>
+        <li>Name and addresses in directories from <b>1917</b> onward</li><li>A <b>1923</b> newspaper advertisement</li><li>Historical corporation <b>C0095574</b> at 2651 Mission</li></ul></div>
+      <div class="col"><span class="tag verify">Wording to confirm</span><h3>Say it precisely</h3><ul>
+        <li><b>Founding date.</b> Not yet established by records. An earlier "1921" reading has been withdrawn.</li><li><b>"Since 1917."</b> Use once the company's continuous history is documented.</li><li>Early import records reflect history, not today's coffee business.</li></ul></div>
+      <div class="col"><span class="tag rec">Where to look next</span><h3>Untold story</h3><ul>
+        <li>Family photos, letterhead, invoices, signs</li><li>City assessor photos of <b>2651/2653 Mission</b> (SF Public Library)</li><li>The original 1923 ad and the state corporate file</li></ul></div>
+    </div>
+    <p class="caption push rv d3" style="margin-top:40px;max-width:80ch">No public archive has yet surfaced a photograph of a CDIC storefront, vehicle or installation, which makes the family's own collection the richest source for the story.</p>
+    <div class="pfoot pchrome inflow"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Directory and filing leads via SF Genealogy, archive.org, OpenCorporates</span></div>
   </div>
-  <div class="cols3 rv d2" style="top:470px;right:700px;gap:36px">
-    <div class="col"><span class="tag research">What's documented</span><h3>Real leads</h3><ul>
-      <li>Name and addresses in directories from <b>1917</b> onward</li>
-      <li>A <b>1923</b> newspaper advertisement</li>
-      <li>Historical corporation <b>C0095574</b> at 2651 Mission</li>
-    </ul></div>
-    <div class="col"><span class="tag verify">Wording to confirm</span><h3>Say it precisely</h3><ul>
-      <li><b>Founding date.</b> Not yet established by records. An earlier "1921" reading has been withdrawn.</li>
-      <li><b>"Since 1917."</b> Use once the company's continuous history is documented.</li>
-      <li>Early import records reflect history, not today's coffee business.</li>
-    </ul></div>
-    <div class="col"><span class="tag rec">Where to look next</span><h3>Untold story</h3><ul>
-      <li>Family photos, letterhead, invoices, signs</li>
-      <li>City assessor photos of <b>2651/2653 Mission</b> (SF Public Library)</li>
-      <li>The original 1923 ad and the state corporate file</li>
-    </ul></div>
-  </div>
-  <p class="abs caption rv d3" style="left:120px;bottom:100px;width:1060px">No public archive has yet surfaced a photograph of a CDIC storefront, vehicle or installation, which makes the family's own collection the richest source for the story.</p>
-  <div class="foot" style="right:740px"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Directory and filing leads via SF Genealogy, archive.org, OpenCorporates</span></div>
+  <figure class="media"><img src="cdic-assets/img/h2-banking-1920.jpg" alt="Banking center, Market and Montgomery streets, San Francisco, about 1920" loading="lazy" style="object-position:58% 50%"><div class="vig"></div><figcaption class="cred">"Banking Center," San Francisco, c. 1920. Library of Congress, LCCN 2002711388 (public domain). Context only. Not CDIC premises.</figcaption></figure>
 </section>
 
-<!-- ============================ 06 · DIVIDER: MARKET ============================ -->
-<section class="slide s-div" data-title="02 · The Corporate Coffee Market Today">
-  <figure class="photo"><img class="kb" src="cdic-assets/img/c1-pour.jpg" alt="Espresso pouring from a commercial machine" style="object-position:50% 45%"><div class="vignette"></div></figure>
+<!-- ======================= 02 DIVIDER ======================= -->
+<section class="sec v-div" id="market" data-title="02 · The Corporate Coffee Market Today">
+  <figure class="media"><img src="cdic-assets/img/c1-pour.jpg" alt="Espresso pouring from a commercial machine" loading="lazy" style="object-position:50% 45%"><div class="vig"></div></figure>
   <div class="shade"></div>
-  <div class="bignum rv">02</div>
-  <h2 class="h-section rv d1">The Corporate Coffee <em>Market Today</em></h2>
-  <p class="lead rv d2">Workplaces are investing in the on-site experience, and coffee is at the center of it.</p>
-  <p class="caption cred">Photo: Scott K / Unsplash. Representative imagery, not a CDIC installation.</p>
+  <div class="wrap">
+    <div class="bignum rv">02</div>
+    <h2 class="h-section rv d1">The Corporate Coffee <em>Market Today</em></h2>
+    <p class="lead rv d2">Workplaces are investing in the on-site experience, and coffee is at the center of it.</p>
+    <p class="hero-cred">Photo: Scott K / Unsplash. Representative imagery, not a CDIC installation.</p>
+  </div>
 </section>
 
-<!-- ============================ 07 · MARKET SIGNALS ============================ -->
-<section class="slide" data-title="Market signals">
-  <div class="runhead"><b>CDIC</b><span>02 · The Corporate Coffee Market Today</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs" style="left:120px;top:150px;width:1100px">
-    <span class="num rv">Market signals</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px">People are coming back to the office, <em>and they expect good coffee there.</em></h2>
+<!-- ======================= MARKET SIGNALS ======================= -->
+<section class="sec" data-title="Market signals">
+  <div class="runhead pchrome"><b>CDIC</b><span>02 · The Corporate Coffee Market Today</span><span class="rule"></span><span class="pg"></span></div>
+  <div class="wrap">
+    <div class="head solo"><div><span class="num rv">Market signals</span><h2 class="h2 wide rv d1">People are coming back to the office, <em>and they expect good coffee there.</em></h2></div></div>
+    <div class="grid g3 rv d2" style="gap:clamp(28px,4vw,56px)">
+      <div class="stat"><div class="v">48<small>%</small></div><div class="l">of American adults drank specialty coffee in the past day, a new high. 47% had an espresso-based drink in the past week.</div><div class="src">NCA National Coffee Data Trends, Fall 2026 · national, not Bay Area</div></div>
+      <div class="stat"><div class="v">12.1<small>M sq ft</small></div><div class="l">of San Francisco office space leased through Q3 2026, up from 8.1M in the same period of 2025. AI and tech firms are driving much of it.</div><div class="src">Savills San Francisco Office Report, Q3 2026</div></div>
+      <div class="stat"><div class="v">80<small>%</small></div><div class="l">average <i>peak</i> office utilization in 2025, against 53% on an average day. Demand comes in waves.</div><div class="src">CBRE global workplace research, 2026</div></div>
+    </div>
+    <div class="note push rv d3"><span class="tag research">What it means</span><p>New leases, expansions and renovations are the moments when companies choose a coffee partner. Hybrid schedules favor equipment sized for peak days and programs that flex on quieter ones. Coffee supports the workplace experience; it shouldn't be sold as a cure for return-to-office or retention.</p></div>
   </div>
-  <div class="abs rv d2" style="left:120px;top:460px;width:1680px;display:grid;grid-template-columns:repeat(3,1fr);gap:56px">
-    <div class="stat"><div class="v">48<small>%</small></div><div class="l">of American adults drank specialty coffee in the past day, a new high. 47% had an espresso-based drink in the past week.</div><div class="src">NCA National Coffee Data Trends, Fall 2026 · national, not Bay Area</div></div>
-    <div class="stat"><div class="v">12.1<small>M sq ft</small></div><div class="l">of San Francisco office space leased through Q3 2026, up from 8.1M in the same period of 2025. AI and tech firms are driving much of it.</div><div class="src">Savills San Francisco Office Report, Q3 2026</div></div>
-    <div class="stat"><div class="v">80<small>%</small></div><div class="l">average <i>peak</i> office utilization in 2025, against 53% on an average day. Demand comes in waves.</div><div class="src">CBRE global workplace research, 2026</div></div>
-  </div>
-  <div class="abs rv d3" style="left:120px;right:120px;top:800px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:start;padding-top:26px;border-top:1px solid var(--line)">
-    <span class="tag research">What it means</span>
-    <p class="body" style="font-size:21px">New leases, expansions and renovations are the moments when companies choose a coffee partner. Hybrid schedules favor equipment sized for peak days and programs that flex on quieter ones. Coffee supports the workplace experience; it shouldn't be sold as a cure for return-to-office or retention.</p>
-  </div>
-  <div class="foot"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Indicators only: none of these figures measures Bay Area office coffee spending</span></div>
+  <div class="pfoot pchrome"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Indicators only: none of these figures measures Bay Area office coffee spending</span></div>
 </section>
 
-<!-- ============================ 08 · WHO BUYS ============================ -->
-<section class="slide" data-title="Who buys premium workplace coffee">
-  <div class="runhead"><b>CDIC</b><span>02 · The Corporate Coffee Market Today</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs" style="left:120px;top:150px;width:1200px">
-    <span class="num rv">The Bay Area opportunity</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px">The best-fit workplaces <em>value quality and reliability.</em></h2>
-  </div>
-  <div class="comp rv d2" style="top:400px;width:1040px">
-    <div class="row" style="grid-template-columns:330px 1fr"><span class="n">Premium headquarters</span><span class="d">Concentrated offices with roughly 100–300 regular on-site users. Peak queues may call for more than one station.</span></div>
-    <div class="row" style="grid-template-columns:330px 1fr"><span class="n">Law, finance &amp; professional firms</span><span class="d">Roughly 60–200 on site plus client visitors. Presentation matters as much as volume.</span></div>
-    <div class="row" style="grid-template-columns:330px 1fr"><span class="n">Multi-floor corporate &amp; tech</span><span class="d">200–600+ on site. Multi-station programs with consistent service across floors.</span></div>
-    <div class="row" style="grid-template-columns:330px 1fr"><span class="n">Property &amp; flex amenities</span><span class="d">Shared tenant lounges, sized to the actual space, with clear agreements on who pays and who has access.</span></div>
-    <div class="row" style="grid-template-columns:330px 1fr"><span class="n">Customer-owned equipment</span><span class="d">Offices that already own commercial machines and need expert care and coffee supply.</span></div>
-  </div>
-  <div class="abs rv d3" style="left:1260px;top:400px;width:540px">
-    <span class="k">Moments when companies choose</span>
-    <p class="body" style="font-size:20px">New offices and expansions · renovations · replacing an unreliable provider · client-facing upgrades</p>
-    <div class="hair" style="margin:26px 0"></div>
-    <span class="k">Who's involved in the decision</span>
-    <p class="body" style="font-size:20px">Workplace experience · facilities · office managers · procurement · finance · IT for connected equipment</p>
-    <div class="hair" style="margin:26px 0"></div>
-    <p class="small" style="color:var(--ink-3)">A Franke A1000 is rated for up to 300 cups a day. Sizing is based on real daily drinks, peaks and layout, not headcount alone.</p>
-  </div>
-  <div class="foot"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span><span class="tag research" style="padding:5px 8px;font-size:10px">Research</span> &nbsp;Segment sizes are planning ranges, not manufacturer guarantees</span></div>
-</section>
-
-<!-- ============================ 09 · COMPETITIVE LANDSCAPE ============================ -->
-<section class="slide" data-title="03 · Competitive Landscape">
-  <div class="runhead"><b>CDIC</b><span>03 · Competitive Landscape &amp; Positioning</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs" style="left:120px;top:150px;width:1060px">
-    <span class="num rv">03 · Competitive Landscape &amp; Positioning</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px">A crowded field, <em>with very different approaches.</em></h2>
-  </div>
-  <div class="comp rv d2" style="top:400px">
-    <div class="row"><span class="n">Canteen · First Choice</span><span class="d">National-scale breadth: coffee, pantry, vending, micro-markets and large route networks.</span></div>
-    <div class="row"><span class="n">Royal Cup</span><span class="d">Roaster-distributor with SF service and heritage "since 1896." Heritage alone isn't unique in this market.</span></div>
-    <div class="row"><span class="n">C&amp;S · BayCo · Blaisdell's</span><span class="d">Local refreshment providers, often placing basic brewers within supply contracts.</span></div>
-    <div class="row"><span class="n">Reliant · Break Coffee</span><span class="d">Managed automatic programs with advertised per-drink pricing, trials and response promises.</span></div>
-    <div class="row"><span class="n">Equator · Red Bay</span><span class="d">Bay Area specialty roasters. Possible competitors, or possible coffee partners.</span></div>
-    <div class="row"><span class="n">Nood Coffee</span><span class="d">Mobile espresso for events and launches. A hospitality benchmark, not a permanent program.</span></div>
-  </div>
-  <div class="abs rv d3" style="left:1280px;top:400px;width:520px">
-    <figure class="photo" style="position:relative;width:520px;height:300px"><img src="cdic-assets/img/c2-cups.jpg" alt="Two espresso shots pulling" style="object-position:50% 60%"><p class="cred">Photo: Kevin Butz / Unsplash. Representative.</p></figure>
-    <span class="k" style="margin-top:30px">The pattern</span>
-    <p class="body" style="font-size:21px">Large providers compete on breadth. Roasters compete on coffee. Automated programs compete on convenience. Few combine all three with a premium installation and a personal relationship.</p>
-  </div>
-  <div class="foot"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Provider claims are their own published marketing, not tested performance · Research, Nov 2026</span></div>
-</section>
-
-<!-- ============================ 10 · WHERE CDIC CAN WIN ============================ -->
-<section class="slide dark" data-title="Where CDIC can win">
-  <div class="runhead"><b>CDIC</b><span>03 · Competitive Landscape &amp; Positioning</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs" style="left:120px;top:150px;width:1300px">
-    <span class="num rv" style="color:var(--brass-2)">Positioning</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px;color:var(--cream)">Premium corporate coffee experiences, <em>fully managed.</em></h2>
-    <p class="body rv d2" style="margin-top:24px;width:1100px">A working positioning line for CDIC: a refined coffee bar experience inside the workplace, backed by accountable local service.</p>
-  </div>
-  <div class="abs rv d2" style="left:120px;top:500px;width:1680px;display:grid;grid-template-columns:repeat(5,1fr);gap:20px">
-    <div class="card"><span class="k">01</span><h4>Family heritage</h4><p>A San Francisco story few providers can tell.</p></div>
-    <div class="card"><span class="k">02</span><h4>Refined installations</h4><p>Swiss Franke systems, thoughtfully designed into the space.</p></div>
-    <div class="card"><span class="k">03</span><h4>Fresh-roasted coffee</h4><p>Quality the customer can taste in every cup.</p></div>
-    <div class="card"><span class="k">04</span><h4>Accountable service</h4><p>Clear standards, documented care, prompt follow-through.</p></div>
-    <div class="card"><span class="k">05</span><h4>Personal relationships</h4><p>A local partner who knows each account by name.</p></div>
-  </div>
-  <div class="abs rv d3" style="left:120px;right:120px;top:800px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:start;padding-top:26px;border-top:1px solid rgba(244,237,225,.2)">
-    <span class="tag rec">The advantage</span>
-    <p class="body" style="font-size:21px">Each ingredient exists somewhere in the market. The combination, shown through real installations, documented service and permissioned references, is what competitors find hard to copy. Proof is the advantage, not the slogan.</p>
-  </div>
-  <div class="foot"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Claims such as "authorized dealer" or "zero downtime" are used only with documentation</span></div>
-</section>
-
-<!-- ============================ 11 · THE CDIC OPPORTUNITY ============================ -->
-<section class="slide dark" data-title="04 · The CDIC Opportunity">
-  <figure class="photo" style="left:0;top:0;width:640px;height:1080px"><img class="kb" src="cdic-assets/img/c4-beans.jpg" alt="Roasted coffee beans"><div class="vignette"></div><p class="cred">Photo: Anastasiia Chepinska / Unsplash</p></figure>
-  <div class="runhead" style="left:740px"><b>CDIC</b><span>04 · The CDIC Opportunity</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs" style="left:740px;top:150px;width:1060px">
-    <span class="num rv" style="color:var(--brass-2)">04 · The CDIC Opportunity</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px;color:var(--cream)">Already built on <em>what the premium market wants.</em></h2>
-  </div>
-  <div class="abs rv d2" style="left:740px;top:400px;width:1060px;display:grid;grid-template-columns:1fr 1fr;gap:26px">
-    <div class="card"><span class="tag owner" style="margin-bottom:16px">Owner-reported</span><h4>Premium Franke installations</h4><p>The Franke A1000 at the core: programmable recipes, barista-quality drinks, rated for up to 300 cups a day.</p></div>
-    <div class="card"><span class="tag owner" style="margin-bottom:16px">Owner-reported</span><h4>Fresh-roasted coffee</h4><p>A coffee program built around freshness, the quality signal buyers notice first.</p></div>
-    <div class="card"><span class="tag owner" style="margin-bottom:16px">Owner-reported</span><h4>Established relationships</h4><p>A history of serving major corporate workplaces. With permission, these become CDIC's strongest proof.</p></div>
-    <div class="card"><span class="tag research" style="margin-bottom:16px">Research</span><h4>A deep San Francisco story</h4><p>A name in the city's records for about a century, rare among workplace coffee providers.</p></div>
-  </div>
-  <p class="abs small rv d3" style="left:740px;bottom:110px;width:1060px;color:rgba(244,237,225,.7)"><span class="tag rec" style="margin-right:16px">Opportunity</span>Present these strengths clearly, consistently and with proof, and they become a competitive edge.</p>
-  <div class="foot" style="left:740px"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Equipment capacity: Franke A1000 US specification sheet</span></div>
-</section>
-
-<!-- ============================ 12 · GROWTH AVENUES ============================ -->
-<section class="slide" data-title="Growth avenues">
-  <div class="runhead"><b>CDIC</b><span>04 · The CDIC Opportunity</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs" style="left:120px;top:150px;width:1200px">
-    <span class="num rv">Growth avenues</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px">Five ways to grow, <em>in order of fit.</em></h2>
-  </div>
-  <div class="abs rv d2" style="left:120px;top:390px;width:1040px">
-    <div class="comp" style="position:static;width:auto">
-      <div class="row" style="grid-template-columns:60px 330px 1fr"><span class="num" style="font-size:34px">1</span><span class="n">Premium managed coffee</span><span class="d">CDIC's core offer: installation, coffee and named account care, with customer-owned or CDIC-supplied equipment.</span></div>
-      <div class="row" style="grid-template-columns:60px 330px 1fr"><span class="num" style="font-size:34px">2</span><span class="n">Equipment care + coffee</span><span class="d">For offices that already own qualified commercial machines: assessment, preventive care and supply.</span></div>
-      <div class="row" style="grid-template-columns:60px 330px 1fr"><span class="num" style="font-size:34px">3</span><span class="n">Design-integrated installs</span><span class="d">New offices and renovations: coffee planned into the space with designers and architects.</span></div>
-      <div class="row" style="grid-template-columns:60px 330px 1fr"><span class="num" style="font-size:34px">4</span><span class="n">Property &amp; shared amenities</span><span class="d">Programs for building lounges and flex spaces that serve many tenants at once.</span></div>
-      <div class="row" style="grid-template-columns:60px 330px 1fr"><span class="num" style="font-size:34px">5</span><span class="n">Hospitality &amp; events</span><span class="d">Staffed coffee for meetings and launches, best piloted with a partner first.</span></div>
+<!-- ======================= WHO BUYS ======================= -->
+<section class="sec" data-title="The Bay Area opportunity">
+  <div class="runhead pchrome"><b>CDIC</b><span>02 · The Corporate Coffee Market Today</span><span class="rule"></span><span class="pg"></span></div>
+  <div class="wrap">
+    <div class="head solo"><div><span class="num rv">The Bay Area opportunity</span><h2 class="h2 wide rv d1">The best-fit workplaces <em>value quality and reliability.</em></h2></div></div>
+    <div class="grid g-main rv d2">
+      <div class="rows">
+        <div class="row"><span class="n">Premium headquarters</span><span class="d">Concentrated offices with roughly 100–300 regular on-site users. Peak queues may call for more than one station.</span></div>
+        <div class="row"><span class="n">Law, finance &amp; professional firms</span><span class="d">Roughly 60–200 on site plus client visitors. Presentation matters as much as volume.</span></div>
+        <div class="row"><span class="n">Multi-floor corporate &amp; tech</span><span class="d">200–600+ on site. Multi-station programs with consistent service across floors.</span></div>
+        <div class="row"><span class="n">Property &amp; flex amenities</span><span class="d">Shared tenant lounges, sized to the actual space, with clear agreements on who pays and who has access.</span></div>
+        <div class="row"><span class="n">Customer-owned equipment</span><span class="d">Offices that already own commercial machines and need expert care and coffee supply.</span></div>
+      </div>
+      <div>
+        <span class="k">Moments when companies choose</span>
+        <p class="body">New offices and expansions · renovations · replacing an unreliable provider · client-facing upgrades</p>
+        <div style="height:1px;background:var(--line);margin:26px 0"></div>
+        <span class="k">Who's involved in the decision</span>
+        <p class="body">Workplace experience · facilities · office managers · procurement · finance · IT for connected equipment</p>
+        <div style="height:1px;background:var(--line);margin:26px 0"></div>
+        <p class="small" style="color:var(--ink-3)">A Franke A1000 is rated for up to 300 cups a day. Sizing is based on real daily drinks, peaks and layout, not headcount alone.</p>
+      </div>
     </div>
   </div>
-  <div class="abs rv d3" style="left:1260px;top:390px;width:540px">
-    <span class="k">Where new accounts come from</span>
-    <ul style="list-style:none">
-      <li class="small" style="padding:14px 0;border-top:1px solid var(--line)"><b style="color:var(--ink)">Reconnect</b> with past and existing relationships first</li>
-      <li class="small" style="padding:14px 0;border-top:1px solid var(--line)"><b style="color:var(--ink)">Referrals</b> from service partners, facilities and property managers</li>
-      <li class="small" style="padding:14px 0;border-top:1px solid var(--line)"><b style="color:var(--ink)">Designers &amp; architects</b> planning new workplaces</li>
-      <li class="small" style="padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><b style="color:var(--ink)">A focused target list</b> built around moves, renovations and expansions</li>
-    </ul>
-    <p class="caption" style="margin-top:18px">Tasting → demo → proposal → pilot where warranted → install → review &amp; renew</p>
-  </div>
-  <div class="foot"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span><span class="tag rec" style="padding:5px 8px;font-size:10px">Recommendation</span> &nbsp;Ranked by fit with CDIC's current offering · Research, Nov 2026</span></div>
+  <div class="pfoot pchrome"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span><span class="tag research" style="padding:5px 8px;font-size:10px">Research</span> &nbsp;Segment sizes are planning ranges, not manufacturer guarantees</span></div>
 </section>
 
-<!-- ============================ 13 · CUSTOMER EXPERIENCE ============================ -->
-<section class="slide" data-title="05 · Strengthening the Customer Experience">
-  <div class="runhead"><b>CDIC</b><span>05 · Strengthening the Customer Experience</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs" style="left:120px;top:150px;width:1120px">
-    <span class="num rv">05 · Strengthening the Customer Experience</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px">A consistent experience, <em>from the first tasting to every renewal.</em></h2>
-  </div>
-  <figure class="photo rv d1" style="left:1360px;top:120px;width:440px;height:330px"><img src="cdic-assets/img/c3-latte.jpg" alt="Latte with latte art on a saucer" style="object-position:62% 50%"><p class="cred">Photo: nameless 3791 / Unsplash. Representative.</p></figure>
-  <div class="pillars rv d2" style="top:520px">
-    <div class="pillar"><span class="ix">i.</span><h4>Every machine, on record</h4><p>One register for each site and station: serial number, install date, warranty and full service history.</p></div>
-    <div class="pillar"><span class="ix">ii.</span><h4>Preventive care, scheduled</h4><p>The A1000 calls for at least daily cleaning and technician service every 6 months or 80,000 drinks, scheduled and recorded at every site.</p></div>
-    <div class="pillar"><span class="ix">iii.</span><h4>Supplies always on hand</h4><p>Coffee, milk and cups tracked per site and reordered against real usage.</p></div>
-    <div class="pillar"><span class="ix">iv.</span><h4>One simple way to reach us</h4><p>Customers request service through one channel, get a prompt acknowledgment, and see it resolved.</p></div>
-  </div>
-  <div class="flow rv d3" style="top:842px">
-    <span class="st">Site survey</span><span class="ar"></span><span class="st">Install &amp; commission</span><span class="ar"></span><span class="st">Train site staff</span><span class="ar"></span><span class="st">Recurring care</span><span class="ar"></span><span class="st">Service updates</span><span class="ar"></span><span class="st">Review &amp; renew</span>
-  </div>
-  <p class="abs small rv d4" style="left:120px;bottom:104px;width:1680px"><span class="tag rec" style="margin-right:16px">Goal</span>Every site, machine and request is documented, so every customer gets the same standard of care.</p>
-  <div class="foot"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Maintenance figures: Franke A1000 manual (2016 revision), to be confirmed against current unit manuals</span></div>
-</section>
-
-<!-- ============================ 14 · MODERNIZING SYSTEMS ============================ -->
-<section class="slide" data-title="06 · Modernizing the Brand & Business">
-  <figure class="photo" style="left:0;top:0;width:1920px;height:400px"><img class="kb" src="cdic-assets/img/c5-office.jpg" alt="Modern office lounge" style="object-position:50% 60%"><div style="position:absolute;inset:0;background:linear-gradient(0deg,var(--paper) 0%,var(--paper) 6%,rgba(242,236,226,.55) 38%,rgba(242,236,226,0) 80%)"></div><p class="cred" style="color:var(--ink-3);text-shadow:none;left:auto;right:120px;bottom:auto;top:24px;width:auto">Photo: Aalo Lens / Unsplash. Representative workplace.</p></figure>
-  <div class="abs" style="left:120px;top:340px;width:1500px">
-    <span class="num rv">06 · Modernizing the Brand &amp; Business</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px">Modern where it helps the customer. <em>Simple everywhere else.</em></h2>
-  </div>
-  <div class="abs rv d2" style="left:120px;top:580px;width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:0 48px">
-    <div><span class="k">Customer-facing</span>
-      <div class="chk" style="grid-template-columns:1fr;padding:14px 0"><h5>A clear website and inquiry path</h5><p>Who CDIC is today, what it offers, where it serves, how to get in touch.</p></div>
-      <div class="chk" style="grid-template-columns:1fr;padding:14px 0"><h5>CRM and follow-up</h5><p>Inquiries, proposals and renewals tracked in one place, using GoHighLevel, which DGM already runs.</p></div>
-      <div class="chk" style="grid-template-columns:1fr;padding:14px 0"><h5>Helpful automation</h5><p>Inquiry acknowledgments, proposal reminders, service updates and renewal prompts.</p></div>
-    </div>
-    <div><span class="k">Behind the scenes</span>
-      <div class="chk" style="grid-template-columns:1fr;padding:14px 0"><h5>Equipment and service history</h5><p>Test GoHighLevel side by side with a field-service tool (Zoho FSM or Jobber) on one real account.</p></div>
-      <div class="chk" style="grid-template-columns:1fr;padding:14px 0"><h5>Keep the accounting that works</h5><p>Existing accounting stays in place, with one source for invoices.</p></div>
-      <div class="chk" style="grid-template-columns:1fr;padding:14px 0"><h5>Build only what's needed</h5><p>No custom apps or new subscriptions until a real need is proven.</p></div>
+<!-- ======================= 03 COMPETITION ======================= -->
+<section class="sec" id="competition" data-title="03 · Competitive Landscape & Positioning">
+  <div class="runhead pchrome"><b>CDIC</b><span>03 · Competitive Landscape &amp; Positioning</span><span class="rule"></span><span class="pg"></span></div>
+  <div class="wrap">
+    <div class="head solo"><div><span class="num rv">03 · Competitive Landscape &amp; Positioning</span><h2 class="h2 rv d1">A crowded field, <em>with very different approaches.</em></h2></div></div>
+    <div class="grid g-main rv d2">
+      <div class="rows">
+        <div class="row"><span class="n">Canteen · First Choice</span><span class="d">National-scale breadth: coffee, pantry, vending, micro-markets and large route networks.</span></div>
+        <div class="row"><span class="n">Royal Cup</span><span class="d">Roaster-distributor with SF service and heritage "since 1896." Heritage alone isn't unique in this market.</span></div>
+        <div class="row"><span class="n">C&amp;S · BayCo · Blaisdell's</span><span class="d">Local refreshment providers, often placing basic brewers within supply contracts.</span></div>
+        <div class="row"><span class="n">Reliant · Break Coffee</span><span class="d">Managed automatic programs with advertised per-drink pricing, trials and response promises.</span></div>
+        <div class="row"><span class="n">Equator · Red Bay</span><span class="d">Bay Area specialty roasters. Possible competitors, or possible coffee partners.</span></div>
+        <div class="row"><span class="n">Nood Coffee</span><span class="d">Mobile espresso for events and launches. A hospitality benchmark, not a permanent program.</span></div>
+      </div>
+      <div>
+        <figure class="media fig"><img src="cdic-assets/img/c2-cups.jpg" alt="Two espresso shots pulling" loading="lazy" style="object-position:50% 60%"><figcaption class="cred">Photo: Kevin Butz / Unsplash. Representative.</figcaption></figure>
+        <span class="k" style="margin-top:28px">The pattern</span>
+        <p class="body">Large providers compete on breadth. Roasters compete on coffee. Automated programs compete on convenience. Few combine all three with a premium installation and a personal relationship.</p>
+      </div>
     </div>
   </div>
-  <div class="abs rv d3" style="left:1300px;top:580px;width:500px">
-    <span class="k">How it connects</span>
-    <div class="flow" style="position:static;flex-direction:column;gap:0">
-      <span class="st" style="width:100%">Website &amp; inquiries</span><span class="ar" style="width:1px;height:20px"></span>
-      <span class="st" style="width:100%">Sales &amp; communication</span><span class="ar" style="width:1px;height:20px"></span>
-      <span class="st" style="width:100%">Service &amp; machine record</span><span class="ar" style="width:1px;height:20px"></span>
-      <span class="st" style="width:100%">Billing</span><span class="ar" style="width:1px;height:20px"></span>
-      <span class="st" style="width:100%;background:var(--ink);color:var(--paper);border-color:var(--ink)">Accounting</span>
+  <div class="pfoot pchrome"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Provider claims are their own published marketing, not tested performance · Research, Nov 2026</span></div>
+</section>
+
+<!-- ======================= POSITIONING ======================= -->
+<section class="sec dark" data-title="Positioning">
+  <div class="runhead pchrome"><b>CDIC</b><span>03 · Competitive Landscape &amp; Positioning</span><span class="rule"></span><span class="pg"></span></div>
+  <div class="wrap">
+    <div class="head solo"><div><span class="num rv">Positioning</span><h2 class="h2 wide rv d1">Premium corporate coffee experiences, <em>fully managed.</em></h2>
+      <p class="body rv d2" style="margin-top:22px">A working positioning line for CDIC: a refined coffee bar experience inside the workplace, backed by accountable local service.</p></div></div>
+    <div class="grid g5 rv d2">
+      <div class="card"><span class="k">01</span><h4>Family heritage</h4><p>A San Francisco story few providers can tell.</p></div>
+      <div class="card"><span class="k">02</span><h4>Refined installations</h4><p>Swiss Franke systems, thoughtfully designed into the space.</p></div>
+      <div class="card"><span class="k">03</span><h4>Fresh-roasted coffee</h4><p>Quality the customer can taste in every cup.</p></div>
+      <div class="card"><span class="k">04</span><h4>Accountable service</h4><p>Clear standards, documented care, prompt follow-through.</p></div>
+      <div class="card"><span class="k">05</span><h4>Personal relationships</h4><p>A local partner who knows each account by name.</p></div>
+    </div>
+    <div class="note push rv d3"><span class="tag rec">The advantage</span><p>Each ingredient exists somewhere in the market. The combination, shown through real installations, documented service and permissioned references, is what competitors find hard to copy. Proof is the advantage, not the slogan.</p></div>
+  </div>
+  <div class="pfoot pchrome"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Claims such as "authorized dealer" or "zero downtime" are used only with documentation</span></div>
+</section>
+
+<!-- ======================= 04 OPPORTUNITY ======================= -->
+<section class="sec v-split left dark" id="opportunity" data-title="04 · The CDIC Opportunity">
+  <figure class="media"><img src="cdic-assets/img/c4-beans.jpg" alt="Roasted coffee beans" loading="lazy"><div class="vig"></div><figcaption class="cred">Photo: Anastasiia Chepinska / Unsplash</figcaption></figure>
+  <div class="wrap">
+    <div class="runhead pchrome"><b>CDIC</b><span>04 · The CDIC Opportunity</span><span class="rule"></span><span class="pg"></span></div>
+    <div class="head solo"><div><span class="num rv">04 · The CDIC Opportunity</span><h2 class="h2 rv d1">Already built on <em>what the premium market wants.</em></h2></div></div>
+    <div class="grid g2 rv d2" style="gap:24px">
+      <div class="card"><span class="tag owner">Owner-reported</span><h4>Premium Franke installations</h4><p>The Franke A1000 at the core: programmable recipes, barista-quality drinks, rated for up to 300 cups a day.</p></div>
+      <div class="card"><span class="tag owner">Owner-reported</span><h4>Fresh-roasted coffee</h4><p>A coffee program built around freshness, the quality signal buyers notice first.</p></div>
+      <div class="card"><span class="tag owner">Owner-reported</span><h4>Established relationships</h4><p>A history of serving major corporate workplaces. With permission, these become CDIC's strongest proof.</p></div>
+      <div class="card"><span class="tag research">Research</span><h4>A deep San Francisco story</h4><p>A name in the city's records for about a century, rare among workplace coffee providers.</p></div>
+    </div>
+    <p class="small push rv d3" style="margin-top:40px"><span class="tag rec" style="margin-right:14px">Opportunity</span>Present these strengths clearly, consistently and with proof, and they become a competitive edge.</p>
+    <div class="pfoot pchrome inflow"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Equipment capacity: Franke A1000 US specification sheet</span></div>
+  </div>
+</section>
+
+<!-- ======================= GROWTH ======================= -->
+<section class="sec" data-title="Growth avenues">
+  <div class="runhead pchrome"><b>CDIC</b><span>04 · The CDIC Opportunity</span><span class="rule"></span><span class="pg"></span></div>
+  <div class="wrap">
+    <div class="head solo"><div><span class="num rv">Growth avenues</span><h2 class="h2 rv d1">Five ways to grow, <em>in order of fit.</em></h2></div></div>
+    <div class="grid g-main rv d2">
+      <div class="rows numbered">
+        <div class="row"><span class="ix">1</span><span class="n">Premium managed coffee</span><span class="d">CDIC's core offer: installation, coffee and named account care, with customer-owned or CDIC-supplied equipment.</span></div>
+        <div class="row"><span class="ix">2</span><span class="n">Equipment care + coffee</span><span class="d">For offices that already own qualified commercial machines: assessment, preventive care and supply.</span></div>
+        <div class="row"><span class="ix">3</span><span class="n">Design-integrated installs</span><span class="d">New offices and renovations: coffee planned into the space with designers and architects.</span></div>
+        <div class="row"><span class="ix">4</span><span class="n">Property &amp; shared amenities</span><span class="d">Programs for building lounges and flex spaces that serve many tenants at once.</span></div>
+        <div class="row"><span class="ix">5</span><span class="n">Hospitality &amp; events</span><span class="d">Staffed coffee for meetings and launches, best piloted with a partner first.</span></div>
+      </div>
+      <div>
+        <span class="k">Where new accounts come from</span>
+        <div class="chk plain"><p style="margin:0;color:var(--ink-2)"><b class="ink">Reconnect</b> with past and existing relationships first</p></div>
+        <div class="chk plain"><p style="margin:0;color:var(--ink-2)"><b class="ink">Referrals</b> from service partners, facilities and property managers</p></div>
+        <div class="chk plain"><p style="margin:0;color:var(--ink-2)"><b class="ink">Designers &amp; architects</b> planning new workplaces</p></div>
+        <div class="chk plain" style="border-bottom:1px solid var(--line)"><p style="margin:0;color:var(--ink-2)"><b class="ink">A focused target list</b> built around moves, renovations and expansions</p></div>
+        <p class="caption" style="margin-top:18px">Tasting → demo → proposal → pilot where warranted → install → review &amp; renew</p>
+      </div>
     </div>
   </div>
-  <div class="foot"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span><span class="tag rec" style="padding:5px 8px;font-size:10px">Recommendation</span> &nbsp;Nothing is purchased or built without ownership approval</span></div>
+  <div class="pfoot pchrome"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span><span class="tag rec" style="padding:5px 8px;font-size:10px">Recommendation</span> &nbsp;Ranked by fit with CDIC's current offering · Research, Nov 2026</span></div>
 </section>
 
-<!-- ============================ 15 · BRAND & DIGITAL PRESENCE ============================ -->
-<section class="slide" data-title="Bringing the brand to life">
-  <div class="runhead" style="right:740px"><b>CDIC</b><span>06 · Modernizing the Brand &amp; Business</span><span class="rule"></span><span class="pgno"></span></div>
-  <figure class="photo hist rv" style="left:1300px;top:0;width:620px;height:1080px"><img src="cdic-assets/img/h3-market-st.jpg" alt="Market Street, San Francisco, early 1900s" style="object-position:30% 50%"><div class="vignette"></div><p class="cred">Market Street, early 1900s. Detroit Photographic Co., NYPL (public domain). Context only. Not CDIC premises.</p></figure>
-  <div class="abs" style="left:120px;top:150px;width:1080px">
-    <span class="num rv">Bringing the brand to life</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px">Let CDIC tell <em>its own story.</em></h2>
-    <p class="body rv d2" style="margin-top:22px;font-size:21px">Today, searches for the company mostly return third-party records and customs listings. A company-controlled presence puts CDIC's heritage, offer and service front and center.</p>
+<!-- ======================= 05 EXPERIENCE ======================= -->
+<section class="sec" id="experience" data-title="05 · Strengthening the Customer Experience">
+  <div class="runhead pchrome"><b>CDIC</b><span>05 · Strengthening the Customer Experience</span><span class="rule"></span><span class="pg"></span></div>
+  <div class="wrap">
+    <div class="head" style="grid-template-columns:minmax(0,1fr) minmax(260px,440px)">
+      <div><span class="num rv">05 · Strengthening the Customer Experience</span><h2 class="h2 rv d1">A consistent experience, <em>from the first tasting to every renewal.</em></h2></div>
+      <figure class="media fig rv d2" style="aspect-ratio:4/3"><img src="cdic-assets/img/c3-latte.jpg" alt="Latte with latte art on a saucer" loading="lazy" style="object-position:62% 50%"><figcaption class="cred">Photo: nameless 3791 / Unsplash. Representative.</figcaption></figure>
+    </div>
+    <div class="pillars rv d2">
+      <div class="pillar"><span class="ix">i.</span><h4>Every machine, on record</h4><p>One register for each site and station: serial number, install date, warranty and full service history.</p></div>
+      <div class="pillar"><span class="ix">ii.</span><h4>Preventive care, scheduled</h4><p>The A1000 calls for at least daily cleaning and technician service every 6 months or 80,000 drinks, scheduled and recorded at every site.</p></div>
+      <div class="pillar"><span class="ix">iii.</span><h4>Supplies always on hand</h4><p>Coffee, milk and cups tracked per site and reordered against real usage.</p></div>
+      <div class="pillar"><span class="ix">iv.</span><h4>One simple way to reach us</h4><p>Customers request service through one channel, get a prompt acknowledgment, and see it resolved.</p></div>
+    </div>
+    <div class="flow rv d3"><span class="st">Site survey</span><span class="ar"></span><span class="st">Install &amp; commission</span><span class="ar"></span><span class="st">Train site staff</span><span class="ar"></span><span class="st">Recurring care</span><span class="ar"></span><span class="st">Service updates</span><span class="ar"></span><span class="st">Review &amp; renew</span></div>
+    <p class="small push rv d4" style="margin-top:32px"><span class="tag rec" style="margin-right:14px">Goal</span>Every site, machine and request is documented, so every customer gets the same standard of care.</p>
   </div>
-  <div class="abs rv d2" style="left:120px;top:470px;width:1080px">
-    <span class="k">Proposed website</span>
-    <div style="display:flex;flex-wrap:wrap;gap:10px">
-      <span class="chip home">Home</span><span class="chip">About &amp; Heritage</span><span class="chip">Solutions</span><span class="chip">Workplaces we serve</span><span class="chip">Installation &amp; Support</span><span class="chip">Resources</span><span class="chip">Contact &amp; Quote</span>
+  <div class="pfoot pchrome"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Maintenance figures: Franke A1000 manual (2016 revision), to be confirmed against current unit manuals</span></div>
+</section>
+
+<!-- ======================= 06 MODERNIZE ======================= -->
+<section class="sec v-banner" id="modernize" data-title="06 · Modernizing the Brand & Business">
+  <figure class="media"><img src="cdic-assets/img/c5-office.jpg" alt="Modern office lounge" loading="lazy" style="object-position:50% 60%"><div class="fade"></div><figcaption class="cred">Photo: Aalo Lens / Unsplash. Representative workplace.</figcaption></figure>
+  <div class="wrap">
+    <div class="head solo"><div><span class="num rv">06 · Modernizing the Brand &amp; Business</span><h2 class="h2 wide rv d1">Modern where it helps the customer. <em>Simple everywhere else.</em></h2></div></div>
+    <div class="grid g-mod rv d2">
+      <div class="grid g2" style="gap:0 48px">
+        <div><span class="k">Customer-facing</span>
+          <div class="chk plain"><div><h5>A clear website and inquiry path</h5><p>Who CDIC is today, what it offers, where it serves, how to get in touch.</p></div></div>
+          <div class="chk plain"><div><h5>CRM and follow-up</h5><p>Inquiries, proposals and renewals tracked in one place, using GoHighLevel, which DGM already runs.</p></div></div>
+          <div class="chk plain"><div><h5>Helpful automation</h5><p>Inquiry acknowledgments, proposal reminders, service updates and renewal prompts.</p></div></div>
+        </div>
+        <div><span class="k">Behind the scenes</span>
+          <div class="chk plain"><div><h5>Equipment and service history</h5><p>Test GoHighLevel side by side with a field-service tool (Zoho FSM or Jobber) on one real account.</p></div></div>
+          <div class="chk plain"><div><h5>Keep the accounting that works</h5><p>Existing accounting stays in place, with one source for invoices.</p></div></div>
+          <div class="chk plain"><div><h5>Build only what's needed</h5><p>No custom apps or new subscriptions until a real need is proven.</p></div></div>
+        </div>
+      </div>
+      <div><span class="k">How it connects</span>
+        <div class="flow v"><span class="st">Website &amp; inquiries</span><span class="ar"></span><span class="st">Sales &amp; communication</span><span class="ar"></span><span class="st">Service &amp; machine record</span><span class="ar"></span><span class="st">Billing</span><span class="ar"></span><span class="st ink">Accounting</span></div>
+      </div>
     </div>
   </div>
-  <div class="abs rv d3" style="left:120px;top:640px;width:1080px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
-    <div class="card"><h4>Real photography</h4><p>Actual installations, people and process, photographed with each site's permission.</p></div>
-    <div class="card"><h4>Sales materials</h4><p>A one-page capabilities sheet, an 8–10 slide deck, readiness checklists and care guides.</p></div>
-    <div class="card"><h4>Heritage storytelling</h4><p>Archival finds and family records, published with provenance and permission.</p></div>
-  </div>
-  <div class="foot" style="right:740px"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Refine the existing identity first; no full rebrand is assumed</span></div>
+  <div class="pfoot pchrome"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span><span class="tag rec" style="padding:5px 8px;font-size:10px">Recommendation</span> &nbsp;Nothing is purchased or built without ownership approval</span></div>
 </section>
 
-<!-- ============================ 16 · NEXT CHAPTER ============================ -->
-<section class="slide dark" data-title="07 · Building the Next Chapter">
-  <figure class="photo hist" style="left:1300px;top:0;width:620px;height:1080px"><img class="kb" src="cdic-assets/img/h4-california-st.jpg" alt="Looking down California Street from Nob Hill toward the Ferry Building and the Bay, early 1900s" style="object-position:40% 50%"><div class="vignette"></div><p class="cred">California St. from Nob Hill toward the Ferry Building and Bay, c. 1903. H.C. White Co. stereograph, NYPL (public domain). Context only.</p></figure>
-  <div class="runhead" style="right:740px"><b>CDIC</b><span>07 · Building the Next Chapter</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs" style="left:120px;top:150px;width:1080px">
-    <span class="num rv" style="color:var(--brass-2)">07 · Building the Next Chapter</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px;color:var(--cream)">A practical, collaborative <em>starting point.</em></h2>
+<!-- ======================= BRAND ======================= -->
+<section class="sec v-split" data-title="Bringing the brand to life">
+  <div class="wrap">
+    <div class="runhead pchrome"><b>CDIC</b><span>06 · Modernizing the Brand &amp; Business</span><span class="rule"></span><span class="pg"></span></div>
+    <div class="head solo"><div><span class="num rv">Bringing the brand to life</span><h2 class="h2 rv d1">Let CDIC tell <em>its own story.</em></h2>
+      <p class="body rv d2" style="margin-top:22px">Today, searches for the company mostly return third-party records and customs listings. A company-controlled presence puts CDIC's heritage, offer and service front and center.</p></div></div>
+    <div class="rv d2"><span class="k">Proposed website</span>
+      <div class="chips"><span class="chip home">Home</span><span class="chip">About &amp; Heritage</span><span class="chip">Solutions</span><span class="chip">Workplaces we serve</span><span class="chip">Installation &amp; Support</span><span class="chip">Resources</span><span class="chip">Contact &amp; Quote</span></div></div>
+    <div class="grid g3 rv d3" style="gap:22px;margin-top:var(--head-gap)">
+      <div class="card"><h4>Real photography</h4><p>Actual installations, people and process, photographed with each site's permission.</p></div>
+      <div class="card"><h4>Sales materials</h4><p>A one-page capabilities sheet, an 8–10 slide deck, readiness checklists and care guides.</p></div>
+      <div class="card"><h4>Heritage storytelling</h4><p>Archival finds and family records, published with provenance and permission.</p></div>
+    </div>
+    <div class="pfoot pchrome inflow push"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Refine the existing identity first; no full rebrand is assumed</span></div>
   </div>
-  <div class="steps rv d2" style="top:380px">
-    <div class="stp"><span class="pn">Step 1</span><h4>Review &amp; confirm</h4><p>Walk through these findings together, confirm company details, and gather brand and history materials.</p></div>
-    <div class="stp"><span class="pn">Step 2</span><h4>Organize the service record</h4><p>One register for accounts and equipment, one channel for service requests, and care routines documented per site.</p></div>
-    <div class="stp"><span class="pn">Step 3</span><h4>Refine the offer</h4><p>Define service packages and standards, and confirm qualified Franke technical coverage.</p></div>
-    <div class="stp"><span class="pn">Step 4</span><h4>Present CDIC</h4><p>Website, capabilities materials, real photography and the heritage story.</p></div>
-    <div class="stp"><span class="pn">Step 5</span><h4>Pursue growth</h4><p>Reconnect relationships, build referral partners and target new offices and renovations.</p></div>
-  </div>
-  <div class="foot" style="right:740px"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span><span class="tag rec" style="padding:5px 8px;font-size:10px">Recommendation</span> &nbsp;Each step begins when the one before is in place</span></div>
+  <figure class="media"><img src="cdic-assets/img/h3-market-st.jpg" alt="Market Street, San Francisco, early 1900s" loading="lazy" style="object-position:30% 50%"><div class="vig"></div><figcaption class="cred">Market Street, early 1900s. Detroit Photographic Co., NYPL (public domain). Context only. Not CDIC premises.</figcaption></figure>
 </section>
 
-<!-- ============================ 17 · FIRST WORKING SESSION ============================ -->
-<section class="slide" data-title="Our first working session">
-  <div class="runhead"><b>CDIC</b><span>07 · Building the Next Chapter</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs" style="left:120px;top:150px;width:1300px">
-    <span class="num rv">Our first working session</span>
-    <h2 class="h-slide rv d1" style="margin-top:18px">What we'd <em>review together.</em></h2>
+<!-- ======================= 07 NEXT ======================= -->
+<section class="sec v-split dark" id="next" data-title="07 · Building the Next Chapter">
+  <div class="wrap">
+    <div class="runhead pchrome"><b>CDIC</b><span>07 · Building the Next Chapter</span><span class="rule"></span><span class="pg"></span></div>
+    <div class="head solo"><div><span class="num rv">07 · Building the Next Chapter</span><h2 class="h2 rv d1">A practical, collaborative <em>starting point.</em></h2></div></div>
+    <div class="rv d2">
+      <div class="stp"><span class="pn">Step 1</span><h4>Review &amp; confirm</h4><p>Walk through these findings together, confirm company details, and gather brand and history materials.</p></div>
+      <div class="stp"><span class="pn">Step 2</span><h4>Organize the service record</h4><p>One register for accounts and equipment, one channel for service requests, and care routines documented per site.</p></div>
+      <div class="stp"><span class="pn">Step 3</span><h4>Refine the offer</h4><p>Define service packages and standards, and confirm qualified Franke technical coverage.</p></div>
+      <div class="stp"><span class="pn">Step 4</span><h4>Present CDIC</h4><p>Website, capabilities materials, real photography and the heritage story.</p></div>
+      <div class="stp"><span class="pn">Step 5</span><h4>Pursue growth</h4><p>Reconnect relationships, build referral partners and target new offices and renovations.</p></div>
+    </div>
+    <div class="pfoot pchrome inflow push"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span><span class="tag rec" style="padding:5px 8px;font-size:10px">Recommendation</span> &nbsp;Each step begins when the one before is in place</span></div>
   </div>
-  <p class="abs body rv d2" style="left:1360px;top:190px;width:440px;font-size:19px">Whatever exists is enough to start, whether that's a folder, a notebook or conversation.</p>
-  <div class="checks rv d2" style="top:400px">
-    <div class="chk"><span class="bx"></span><div><h5>Company details</h5><p>The approved company name, entity and how CDIC wants to be described.</p></div></div>
-    <div class="chk"><span class="bx"></span><div><h5>Customer references</h5><p>Which relationships may be referenced publicly, with permission.</p></div></div>
-    <div class="chk"><span class="bx"></span><div><h5>Equipment</h5><p>Installed Franke models and configurations, serials and warranty records.</p></div></div>
-    <div class="chk"><span class="bx"></span><div><h5>Technical service</h5><p>Franke relationship, service partners and maintenance records.</p></div></div>
-    <div class="chk"><span class="bx"></span><div><h5>Coffee program</h5><p>Roaster, blends and recipes that define the CDIC experience.</p></div></div>
-    <div class="chk"><span class="bx"></span><div><h5>Service standards</h5><p>Visit routines, daily-care arrangements and response expectations.</p></div></div>
-    <div class="chk"><span class="bx"></span><div><h5>Digital assets</h5><p>Domains, email, logos, existing materials and photography.</p></div></div>
-    <div class="chk"><span class="bx"></span><div><h5>Photo opportunities</h5><p>Sites where installations could be photographed with permission.</p></div></div>
-    <div class="chk"><span class="bx"></span><div><h5>Family history</h5><p>Photos, letterhead, invoices, signs, and the story of "Oh's" and the move into coffee.</p></div></div>
-  </div>
-  <div class="abs rv d3" style="left:120px;right:120px;bottom:112px;padding:22px 28px;background:var(--ink);color:var(--paper);display:flex;gap:28px;align-items:center">
-    <span style="font:500 13px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--brass-2);white-space:nowrap">The key question</span>
-    <p style="font:400 italic 28px/1.3 var(--serif)">Which of these opportunities feel most worth pursuing first?</p>
-  </div>
-  <div class="foot"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>A starting list, to shape together</span></div>
+  <figure class="media"><img src="cdic-assets/img/h4-california-st.jpg" alt="Looking down California Street from Nob Hill toward the Ferry Building and the Bay, early 1900s" loading="lazy" style="object-position:40% 50%"><div class="vig"></div><figcaption class="cred">California St. from Nob Hill toward the Ferry Building and Bay, c. 1903. H.C. White Co. stereograph, NYPL (public domain). Context only.</figcaption></figure>
 </section>
 
-<!-- ============================ 18 · CLOSING ============================ -->
-<section class="slide s-cover" data-title="The next chapter">
-  <figure class="photo"><img class="kb" src="cdic-assets/img/c3-latte.jpg" alt="A cup of coffee with latte art" style="object-position:70% 50%;filter:brightness(.8)"><div class="vignette"></div></figure>
+<!-- ======================= WORKING SESSION ======================= -->
+<section class="sec" data-title="Our first working session">
+  <div class="runhead pchrome"><b>CDIC</b><span>07 · Building the Next Chapter</span><span class="rule"></span><span class="pg"></span></div>
+  <div class="wrap">
+    <div class="head">
+      <div><span class="num rv">Our first working session</span><h2 class="h2 rv d1">What we'd <em>review together.</em></h2></div>
+      <p class="aside rv d2">Whatever exists is enough to start, whether that's a folder, a notebook or conversation.</p>
+    </div>
+    <div class="grid g3 rv d2" style="gap:0 clamp(28px,3.5vw,56px)">
+      <div class="chk"><span class="bx"></span><div><h5>Company details</h5><p>The approved company name, entity and how CDIC wants to be described.</p></div></div>
+      <div class="chk"><span class="bx"></span><div><h5>Customer references</h5><p>Which relationships may be referenced publicly, with permission.</p></div></div>
+      <div class="chk"><span class="bx"></span><div><h5>Equipment</h5><p>Installed Franke models and configurations, serials and warranty records.</p></div></div>
+      <div class="chk"><span class="bx"></span><div><h5>Technical service</h5><p>Franke relationship, service partners and maintenance records.</p></div></div>
+      <div class="chk"><span class="bx"></span><div><h5>Coffee program</h5><p>Roaster, blends and recipes that define the CDIC experience.</p></div></div>
+      <div class="chk"><span class="bx"></span><div><h5>Service standards</h5><p>Visit routines, daily-care arrangements and response expectations.</p></div></div>
+      <div class="chk"><span class="bx"></span><div><h5>Digital assets</h5><p>Domains, email, logos, existing materials and photography.</p></div></div>
+      <div class="chk"><span class="bx"></span><div><h5>Photo opportunities</h5><p>Sites where installations could be photographed with permission.</p></div></div>
+      <div class="chk"><span class="bx"></span><div><h5>Family history</h5><p>Photos, letterhead, invoices, signs, and the story of "Oh's" and the move into coffee.</p></div></div>
+    </div>
+    <div class="bar-ink push rv d3"><span class="k">The key question</span><p>Which of these opportunities feel most worth pursuing first?</p></div>
+  </div>
+  <div class="pfoot pchrome"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>A starting list, to shape together</span></div>
+</section>
+
+<!-- ======================= CLOSING ======================= -->
+<section class="sec v-hero" data-title="The next chapter">
+  <figure class="media"><img src="cdic-assets/img/c3-latte.jpg" alt="A cup of coffee with latte art" loading="lazy" style="object-position:70% 50%;filter:brightness(.8)"><div class="vig"></div></figure>
   <div class="shade"></div>
-  <div class="wordmark rv">California Direct Importing Company<strong>CDIC</strong></div>
-  <h1 class="h-display rv d1" style="top:330px;font-size:132px">Let's build the<br><em>next chapter.</em></h1>
-  <div class="sub rv d2" style="top:660px;width:820px"><div class="rule-red" style="margin-bottom:28px;background:var(--brass-2)"></div>
-    <p>A remarkable history, an established place in a valuable market, and real opportunities ahead. I'd welcome the chance to walk through this research, hear what it's missed, and choose together where to begin.</p>
-    <p style="font:500 italic 40px/1 var(--serif);color:var(--brass-2);margin-top:34px">— Lo</p>
+  <div class="wrap">
+    <div class="wordmark rv">California Direct Importing Company<strong>CDIC</strong></div>
+    <h2 class="h-display rv d1">Let's build the<br><em>next chapter.</em></h2>
+    <div class="sub rv d2"><div class="rule"></div><p>A remarkable history, an established place in a valuable market, and real opportunities ahead. I'd welcome the chance to walk through this research, hear what it's missed, and choose together where to begin.</p><p class="sig">— Lo</p></div>
+    <div class="meta rv d3"><div>Prepared by<b><span class="dgm"><i>DGM</i>Daily Grind Media</span></b></div></div>
+    <p class="hero-cred">Photo: nameless 3791 / Unsplash</p>
   </div>
-  <div class="meta rv d3"><div>Prepared by<b><span class="dgm" style="color:var(--cream)"><i style="color:var(--cream);border-color:rgba(244,237,225,.3)">DGM</i>Daily Grind Media</span></b></div></div>
-  <p class="caption cred">Photo: nameless 3791 / Unsplash</p>
 </section>
 
-<!-- ============================ 19 · SOURCES ============================ -->
-<section class="slide" data-title="Sources & image credits">
-  <div class="runhead"><b>CDIC</b><span>Sources &amp; image credits</span><span class="rule"></span><span class="pgno"></span></div>
-  <div class="abs" style="left:120px;top:140px"><span class="num">Sources &amp; image credits</span></div>
-  <div class="credits">
-    <div><b>Research basis.</b> Daily Grind Media research on company records, the corporate coffee market, competitors, Franke A1000 service and business systems (Nov 2026). Findings are research, not audited company records.</div>
-    <div><b>Market &amp; competitors.</b> National Coffee Association, Fall 2026 release; Savills SF Office Q3 2026; CBRE 2025 Americas Occupier Survey and 2026 workplace research; provider websites as published, Nov 2026.</div>
-    <div><b>Company records.</b> OpenCorporates (LLC 201326310117; corp. C0095574); OpenGovUS SF business listing; SF city directories 1917, 1920 (sfgenealogy.org); Polk directories 1954, 1961–72 (archive.org, ldsgenealogy.com); <i>Vestkusten</i> 13 Dec 1923 (CDNC/UCR); Digger Archives leaflet (diggers.org).</div>
-    <div><b>Equipment.</b> Franke A1000 US specification sheet; Franke A1000 manual (2016 revision); Franke cleaning resources. Installed-unit requirements govern.</div>
-    <div><b>Cover.</b> Bird's-eye view of San Francisco up Powell Street, Fairmont Hotel, 1920. Library of Congress Prints &amp; Photographs, LCCN 96514400. Public domain, via Wikimedia Commons. Toned and cropped.</div>
-    <div><b>Banking Center, San Francisco, Calif.</b> c. 1920. Library of Congress, LCCN 2002711388. Public domain, via Wikimedia Commons. Toned and cropped.</div>
-    <div><b>Market Street, San Francisco, Cal.</b> Detroit Photographic Co. postcard, early 1900s. NYPL Digital Collections (b12647398-67860). Public domain. Toned and cropped.</div>
-    <div><b>Looking down California St. from Nob Hill.</b> H.C. White Co. stereograph, c. 1903. NYPL Digital Collections. Public domain. One frame, toned and cropped.</div>
-    <div><b>Contemporary photography</b> (Unsplash License): Scott K (espresso pour); Kevin Butz (espresso cups); nameless 3791 (latte); Anastasiia Chepinska (coffee beans); Aalo Lens (office lounge). Representative imagery, not CDIC installations.</div>
-    <div><b>Image honesty.</b> No AI-generated or retouched-to-invent historical imagery is used. Historical photographs show San Francisco context; none is known to depict CDIC, its premises, people or vehicles.</div>
+<!-- ======================= SOURCES ======================= -->
+<section class="sec" id="sources" data-title="Sources & image credits">
+  <div class="runhead pchrome"><b>CDIC</b><span>Sources &amp; image credits</span><span class="rule"></span><span class="pg"></span></div>
+  <div class="wrap">
+    <div class="head solo" style="margin-bottom:36px"><div><span class="num">Sources &amp; image credits</span></div></div>
+    <div class="credits">
+      <div><b>Research basis.</b> Daily Grind Media research on company records, the corporate coffee market, competitors, Franke A1000 service and business systems (Nov 2026). Findings are research, not audited company records.</div>
+      <div><b>Market &amp; competitors.</b> National Coffee Association, Fall 2026 release; Savills SF Office Q3 2026; CBRE 2025 Americas Occupier Survey and 2026 workplace research; provider websites as published, Nov 2026.</div>
+      <div><b>Company records.</b> OpenCorporates (LLC 201326310117; corp. C0095574); OpenGovUS SF business listing; SF city directories 1917, 1920 (sfgenealogy.org); Polk directories 1954, 1961–72 (archive.org, ldsgenealogy.com); <i>Vestkusten</i> 13 Dec 1923 (CDNC/UCR); Digger Archives leaflet (diggers.org).</div>
+      <div><b>Equipment.</b> Franke A1000 US specification sheet; Franke A1000 manual (2016 revision); Franke cleaning resources. Installed-unit requirements govern.</div>
+      <div><b>Cover.</b> Bird's-eye view of San Francisco up Powell Street, Fairmont Hotel, 1920. Library of Congress Prints &amp; Photographs, LCCN 96514400. Public domain, via Wikimedia Commons. Toned and cropped.</div>
+      <div><b>Banking Center, San Francisco, Calif.</b> c. 1920. Library of Congress, LCCN 2002711388. Public domain, via Wikimedia Commons. Toned and cropped.</div>
+      <div><b>Market Street, San Francisco, Cal.</b> Detroit Photographic Co. postcard, early 1900s. NYPL Digital Collections (b12647398-67860). Public domain. Toned and cropped.</div>
+      <div><b>Looking down California St. from Nob Hill.</b> H.C. White Co. stereograph, c. 1903. NYPL Digital Collections. Public domain. One frame, toned and cropped.</div>
+      <div><b>Contemporary photography</b> (Unsplash License): Scott K (espresso pour); Kevin Butz (espresso cups); nameless 3791 (latte); Anastasiia Chepinska (coffee beans); Aalo Lens (office lounge). Representative imagery, not CDIC installations.</div>
+      <div><b>Image honesty.</b> No AI-generated or retouched-to-invent historical imagery is used. Historical photographs show San Francisco context; none is known to depict CDIC, its premises, people or vehicles.</div>
+    </div>
   </div>
-  <div class="foot"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Research briefing · Prepared November 2026 · Daily Grind Media</span></div>
+  <div class="pfoot pchrome"><span class="dgm"><i>DGM</i>Daily Grind Media</span><span>Research briefing · Prepared November 2026 · Daily Grind Media</span></div>
 </section>
 
-</div></div>
+</main>
 
-<div id="ui">
-  <div class="grp"><button id="bOv" title="Overview (G)">GRID</button><button id="bFs" title="Fullscreen (F)">FULL</button><button id="bPr" title="Print / PDF (P)">PDF</button></div>
-  <div class="grp"><button id="bPrev" aria-label="Previous slide">←</button><span class="count" id="count">1 / 19</span><button id="bNext" aria-label="Next slide">→</button></div>
-</div>
+<footer class="site-foot">
+  <span class="dgm"><i>DGM</i>Daily Grind Media</span>
+  <span>California Direct Importing Company · Research briefing · November 2026</span>
+  <span><a href="cdic-assets/CDIC_Research_Briefing.pdf" download>Download the PDF</a> &nbsp;·&nbsp; <a href="#sources">Sources &amp; credits</a></span>
+</footer>
+
+<div class="pctl tr"><button id="pExit" type="button">Exit · Esc</button></div>
+<div class="pctl br"><button id="pPrev" type="button" aria-label="Previous slide">←</button><span class="cnt" id="pCnt">1 / 19</span><button id="pNext" type="button" aria-label="Next slide">→</button></div>
 
 <script>
-/* ---------- Deck engine ---------- */
 (function(){
-  const body=document.body,deck=document.getElementById('deck'),slides=[...deck.querySelectorAll('.slide')],N=slides.length;
-  let i=0;
-  // page numbers
-  slides.forEach((s,k)=>s.querySelectorAll('.pgno').forEach(p=>p.textContent=String(k+1).padStart(2,'0')+' / '+String(N).padStart(2,'0')));
-  const fromHash=()=>{const m=location.hash.match(/^#(\d+)$/);return m?Math.min(N-1,Math.max(0,+m[1]-1)):0};
-  function go(n,push){i=Math.max(0,Math.min(N-1,n));
-    slides.forEach((s,k)=>{s.classList.toggle('is-active',k===i);s.classList.toggle('is-past',k<i);s.setAttribute('aria-hidden',k!==i)});
-    document.getElementById('count').textContent=(i+1)+' / '+N;
-    document.getElementById('progress').style.width=((i+1)/N*100)+'%';
-    if(push!==false)history.replaceState(null,'','#'+(i+1));}
-  // scaling & mode
-  function isScrollMode(){return window.innerWidth<760&&window.innerHeight>window.innerWidth}
-  let wrapped=false;
-  function layout(){
-    if(body.classList.contains('overview')){const w=(deck.clientWidth||1200);const cols=Math.max(1,Math.floor((w+24)/384));deck.style.setProperty('--oz',((w-(cols-1)*24)/cols/1920).toFixed(4));return}
-    if(isScrollMode()){if(!wrapped){slides.forEach(s=>{const w=document.createElement('div');w.className='slide-wrap';s.parentNode.insertBefore(w,s);w.appendChild(s)});wrapped=true}
-      body.classList.add('scroll');document.documentElement.style.setProperty('--ws',(window.innerWidth/1920).toFixed(5));return}
-    if(wrapped){document.querySelectorAll('.slide-wrap').forEach(w=>{w.parentNode.insertBefore(w.firstChild,w);w.remove()});wrapped=false}
-    body.classList.remove('scroll');
-    const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);document.documentElement.style.setProperty('--s',s.toFixed(5));}
-  window.addEventListener('resize',layout);
-  // keys
-  document.addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey)return;const k=e.key;
-    if(['ArrowRight','PageDown',' ','Enter'].includes(k)){e.preventDefault();go(i+1)}
-    else if(['ArrowLeft','PageUp','Backspace'].includes(k)){e.preventDefault();go(i-1)}
-    else if(k==='Home')go(0);else if(k==='End')go(N-1);
-    else if(k==='g'||k==='G'||k==='Escape'&&body.classList.contains('overview'))toggleOverview();
-    else if(k==='f'||k==='F')toggleFs();else if(k==='p'||k==='P')window.print();});
-  // touch
-  let tx=null,ty=null;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
-  document.addEventListener('touchend',e=>{if(tx==null||body.classList.contains('scroll'))return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))go(i+(dx<0?1:-1));tx=null});
-  // click to advance on stage edges
-  document.getElementById('viewport').addEventListener('click',e=>{if(body.classList.contains('overview')){const s=e.target.closest('.slide');if(s){toggleOverview();go(slides.indexOf(s))}return}
-    if(body.classList.contains('scroll')||e.target.closest('a,button'))return;const x=e.clientX/window.innerWidth;if(x>.82)go(i+1);else if(x<.18)go(i-1)});
-  function toggleOverview(){body.classList.toggle('overview');layout();if(body.classList.contains('overview'))slides[i].scrollIntoView({block:'center'})}
-  function toggleFs(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen()}
-  document.getElementById('bNext').onclick=e=>{e.stopPropagation();go(i+1)};
-  document.getElementById('bPrev').onclick=e=>{e.stopPropagation();go(i-1)};
-  document.getElementById('bOv').onclick=e=>{e.stopPropagation();toggleOverview()};
-  document.getElementById('bFs').onclick=e=>{e.stopPropagation();toggleFs()};
-  document.getElementById('bPr').onclick=e=>{e.stopPropagation();window.print()};
-  // print: leave overview/scroll so every slide prints full size
-  window.addEventListener('beforeprint',()=>{body.dataset.ov=body.classList.contains('overview');body.classList.remove('overview')});
-  window.addEventListener('afterprint',()=>{if(body.dataset.ov==='true')body.classList.add('overview');layout()});
-  window.addEventListener('hashchange',()=>go(fromHash(),false));
-  // UI auto-show
-  let t;document.addEventListener('mousemove',()=>{body.classList.add('ui-on');clearTimeout(t);t=setTimeout(()=>body.classList.remove('ui-on'),2200)});
-  setTimeout(()=>{const h=document.getElementById('hint');if(h)h.style.opacity=0},4500);
-  layout();go(fromHash(),false);
-  window.CDIC={go,count:N};
+  const body=document.body, secs=[...document.querySelectorAll('main > .sec')], N=secs.length;
+  const bar=document.getElementById('topbar'), prog=document.getElementById('prog');
+  const navLinks=[...document.querySelectorAll('#nav a')];
+  secs.forEach((s,k)=>s.querySelectorAll('.pg').forEach(p=>p.textContent=String(k+1).padStart(2,'0')+' / '+String(N).padStart(2,'0')));
+
+  /* ---------- Website: scroll reveal ---------- */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('seen')}),{threshold:.2});
+  document.querySelectorAll('.v-hero,.v-div').forEach(el=>io2.observe(el));
+
+  /* ---------- Website: top bar, progress, active section ---------- */
+  const anchors=navLinks.map(a=>document.querySelector(a.getAttribute('href')));
+  function onScroll(){ if(body.classList.contains('present'))return;
+    const y=window.scrollY, h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(h>0?y/h*100:0)+'%';
+    bar.classList.toggle('solid', y>secs[0].offsetHeight-80);
+    let on=-1; anchors.forEach((s,k)=>{if(s&&s.getBoundingClientRect().top<window.innerHeight*.4)on=k});
+    navLinks.forEach((a,k)=>a.classList.toggle('on',k===on));
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll); onScroll();
+
+  /* ---------- Presentation mode ---------- */
+  let cur=0, savedY=0, fsEntered=false, uiT;
+  function scale(){ document.documentElement.style.setProperty('--s', Math.min(window.innerWidth/1920, window.innerHeight/1080).toFixed(5)); }
+  function show(n){ cur=Math.max(0,Math.min(N-1,n)); secs.forEach((s,k)=>s.classList.toggle('cur',k===cur)); document.getElementById('pCnt').textContent=(cur+1)+' / '+N; }
+  function currentIndex(){ let best=0; secs.forEach((s,k)=>{ if(s.getBoundingClientRect().top<=window.innerHeight*.35) best=k; }); return best; }
+  function pokeUI(){ body.classList.add('ui'); clearTimeout(uiT); uiT=setTimeout(()=>body.classList.remove('ui'),2600); }
+  function enter(n){
+    if(body.classList.contains('present'))return;
+    savedY=window.scrollY; const start=(typeof n==='number')?n:currentIndex();
+    body.classList.add('canvas','present'); scale(); show(start); pokeUI();
+    const el=document.documentElement;
+    if(el.requestFullscreen && !document.fullscreenElement){ el.requestFullscreen().then(()=>{fsEntered=true;scale()}).catch(()=>{fsEntered=false}); }
+  }
+  function exit(){
+    if(!body.classList.contains('present'))return;
+    body.classList.remove('present','canvas','ui'); secs.forEach(s=>s.classList.remove('cur'));
+    const wasFs=fsEntered; fsEntered=false;
+    if(wasFs && document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+    const html=document.documentElement, prev=html.style.scrollBehavior; html.style.scrollBehavior='auto';
+    window.scrollTo(0,savedY); requestAnimationFrame(()=>{window.scrollTo(0,savedY); html.style.scrollBehavior=prev; onScroll();});
+  }
+  document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement && fsEntered && body.classList.contains('present')){ fsEntered=false; exit(); } else if(body.classList.contains('present')) scale(); });
+  window.addEventListener('resize',()=>{ if(body.classList.contains('present')) scale(); });
+  document.addEventListener('keydown',e=>{
+    if(!body.classList.contains('present')) return;
+    const k=e.key;
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(k)){e.preventDefault();show(cur+1)}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(k)){e.preventDefault();show(cur-1)}
+    else if(k==='Home'){e.preventDefault();show(0)} else if(k==='End'){e.preventDefault();show(N-1)}
+    else if(k==='Escape'){e.preventDefault();exit();return}
+    pokeUI();
+  });
+  let tx=null,ty=null;
+  document.addEventListener('touchstart',e=>{if(!body.classList.contains('present'))return;tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{if(tx==null)return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))show(cur+(dx<0?1:-1));pokeUI();tx=null});
+  document.addEventListener('mousemove',()=>{if(body.classList.contains('present'))pokeUI()});
+  document.getElementById('btnPresent').addEventListener('click',()=>enter());
+  document.getElementById('pExit').addEventListener('click',exit);
+  document.getElementById('pPrev').addEventListener('click',()=>{show(cur-1);pokeUI()});
+  document.getElementById('pNext').addEventListener('click',()=>{show(cur+1);pokeUI()});
+
+  /* ---------- Print / PDF: always the 16:9 canvas layout ---------- */
+  let wasPresent=false;
+  window.addEventListener('beforeprint',()=>{ wasPresent=body.classList.contains('present'); body.classList.add('canvas','printing'); body.classList.remove('present'); });
+  window.addEventListener('afterprint',()=>{ body.classList.remove('printing'); if(wasPresent) body.classList.add('present'); else body.classList.remove('canvas'); });
+
+  /* Preload remaining images once the page is idle, so presentation and print never wait on lazy loading */
+  window.addEventListener('load',()=>setTimeout(()=>document.querySelectorAll('img[loading=lazy]').forEach(i=>i.loading='eager'),1800));
+
+  window.CDIC={enter,exit,show,count:N,get index(){return cur}};
 })();
 </script>
 </body>
