@@ -1082,6 +1082,201 @@ body.pres #s-bridge{min-height:0}
   .js .rv.up,.js .rv.mask{transform:none;clip-path:none}
   .wipe.go{animation:none;visibility:hidden}
 }
+
+/* ===== V6 · CH2 · THE DGM AUTHORITY SYSTEM ===== */
+.st-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.5fr);gap:24px;align-items:end;margin-bottom:clamp(32px,4vw,56px)}
+.st-comp{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(8px,1vw,14px);height:clamp(300px,34vw,560px)}
+.st-comp .frame{height:100%}
+.st-comp .frame img{width:100%;height:100%;object-fit:cover}
+.st-comp .frame:nth-child(2){margin-top:14%}
+.st-comp .frame:nth-child(3){margin-bottom:10%}
+.st-comp .credit{position:absolute;left:16px;bottom:14px;z-index:2}
+.st-comp .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,12,13,.55),transparent 38%);pointer-events:none}
+.st-foot{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) minmax(0,1.05fr);gap:clamp(16px,2.4vw,40px);align-items:start;margin-top:clamp(28px,3.4vw,48px);padding-top:24px;border-top:1px solid var(--hair-n)}
+.st-foot .pair{display:grid;gap:8px;min-width:0}
+.st-foot .pair b{font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(26px,2.3vw,38px);line-height:.88;letter-spacing:-.005em}
+.st-foot .pair p{font-size:14.5px;line-height:1.5;color:var(--on-night-soft)}
+.st-foot .plus{font-stretch:62%;font-weight:300;font-size:clamp(34px,3vw,52px);line-height:.8;color:var(--brass)}
+.st-foot .loc{font-size:14.5px;line-height:1.55;color:var(--on-night-soft);border-left:1px solid var(--brass);padding-left:16px}
+.st-foot .loc b{display:block;color:var(--on-night);font-weight:500;margin-bottom:4px}
+@media (max-width:960px){.st-head{grid-template-columns:minmax(0,1fr)}.st-foot{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}.st-foot .loc{grid-column:1/-1}}
+@media (max-width:760px){.st-comp{grid-template-columns:minmax(0,1fr) minmax(0,1fr);height:auto}.st-comp .frame:first-child{grid-column:1/-1;aspect-ratio:3/2}.st-comp .frame:nth-child(n+2){aspect-ratio:3/4;margin:0}.st-foot{grid-template-columns:minmax(0,1fr)}.st-foot .plus{line-height:1}}
+
+/* the journey */
+.aj-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.5fr);gap:24px;align-items:end;margin-bottom:clamp(30px,3.6vw,52px)}
+.aj{display:grid;grid-template-columns:minmax(0,.4fr) minmax(0,1fr);gap:clamp(24px,3.4vw,64px);align-items:start}
+.aj-steps{display:grid;border-top:1px solid var(--hair-n)}
+.aj-steps button{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:baseline;text-align:left;background:none;border:0;border-bottom:1px solid var(--hair-n);padding:15px 0 15px 14px;color:var(--on-night-soft);transition:color .3s}
+.aj-steps button::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brass);transform:scaleY(0);transform-origin:top;transition:transform .5s var(--out)}
+.aj-steps button i{font-style:normal;font-stretch:62%;font-weight:700;font-size:26px;line-height:1}
+.aj-steps button b{display:block;font-stretch:108%;font-weight:300;font-size:clamp(16px,1.3vw,19px);letter-spacing:-.02em;line-height:1.15;color:inherit}
+.aj-steps button small{display:block;font-size:11.5px;margin-top:4px;opacity:.75}
+.aj-steps button:hover{color:var(--on-night)}
+.aj-steps button[aria-selected="true"]{color:var(--on-night)}
+.aj-steps button[aria-selected="true"] i{color:var(--brass)}
+.aj-steps button[aria-selected="true"]::before{transform:scaleY(1)}
+.aj-panel{min-width:0;border-top:1px solid var(--hair-n);padding-top:22px;display:grid}
+.aj-p{grid-area:1/1;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);gap:clamp(20px,2.6vw,44px);align-items:start}
+.aj-p.on{animation:ajIn .7s var(--out) both}
+.aj-p.off{visibility:hidden;pointer-events:none}
+@keyframes ajIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.aj-p .t{display:grid;gap:14px;align-content:start;min-width:0}
+.aj-p .t .lab{color:var(--brass)}
+.aj-p h3{font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(38px,3.6vw,62px);line-height:.84;letter-spacing:-.005em}
+.aj-p .t p{font-size:15.5px;line-height:1.6;color:var(--on-night-soft);max-width:46ch}
+.aj-p .t p b{color:var(--on-night);font-weight:500}
+.aj-next{justify-self:start;margin-top:6px;background:none;border:0;border-bottom:1px solid var(--brass);padding:4px 0;font:600 10px/1 var(--f);letter-spacing:.22em;text-transform:uppercase;color:var(--brass-lt)}
+.aj-v{min-width:0;background:var(--night-3);border:1px solid var(--hair-n);padding:clamp(16px,1.8vw,26px)}
+.aj-v .vh{display:flex;justify-content:space-between;gap:12px;align-items:center;padding-bottom:12px;margin-bottom:6px;border-bottom:1px solid var(--hair-n)}
+.aj-v .vf{margin-top:12px;font-size:12px;color:var(--on-night-soft)}
+.qb{display:grid}
+.qb div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--hair-n)}
+.qb div:last-child{border-bottom:0}
+.qb span{font-size:14.5px;line-height:1.4;color:var(--on-night)}
+.qb em{font-style:normal;font:500 9.5px/1.2 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brass-lt);white-space:nowrap}
+.qb em.hi{color:var(--night);background:var(--brass);padding:3px 6px}
+.ol{display:grid}
+.ol div{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--hair-n)}
+.ol div:last-child{border-bottom:0}
+.ol i{font-style:normal;font:500 10px/1 var(--f-mono);color:var(--on-night-soft)}
+.ol span{font-size:14.5px;line-height:1.4}
+.ol span q{display:block;font-size:13px;color:var(--on-night-soft);margin-top:3px;quotes:"“" "”"}
+.ol em{font-style:normal;font:500 9px/1.2 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brass-lt);white-space:nowrap}
+.ol .cta span{color:var(--brass-lt)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chips span{font:500 9.5px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--hair-n);padding:6px 8px;color:var(--on-night-soft)}
+.aj-ph{padding:0;overflow:hidden}
+.aj-ph .frame{aspect-ratio:4/3}
+.aj-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.facts3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.facts3 div{padding:14px 16px;display:grid;gap:6px}
+.facts3 div+div{border-left:1px solid var(--hair-n)}
+.facts3 b{font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(22px,1.9vw,30px);line-height:.9}
+.facts3 span{font-size:11.5px;color:var(--on-night-soft);line-height:1.35}
+.tree{display:grid;gap:10px}
+.tree .src{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--night);border:1px solid var(--brass)}
+.tree .src b{font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:26px;line-height:.9}
+.tree .src span{font-size:12.5px;color:var(--on-night-soft)}
+.tree .kids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;position:relative;padding-top:14px}
+.tree .kids::before{content:"";position:absolute;left:24px;right:24px;top:0;height:14px;border:1px solid var(--hair-n);border-bottom:0}
+.tree .kids div{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:baseline;padding:10px 12px;border:1px solid var(--hair-n)}
+.tree .kids b{font-stretch:62%;font-weight:800;font-size:24px;line-height:.9;color:var(--brass)}
+.tree .kids span{font-size:13px;line-height:1.35}
+.layers{display:grid;gap:8px}
+.layers div{display:grid;grid-template-columns:minmax(0,.36fr) minmax(0,1fr);gap:14px;align-items:baseline;padding:12px 14px;border:1px solid var(--hair-n);background:linear-gradient(90deg,rgba(184,151,94,.12),transparent 60%)}
+.layers div:nth-child(2){margin-left:4%}.layers div:nth-child(3){margin-left:8%}.layers div:nth-child(4){margin-left:12%}
+.layers b{font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:22px;line-height:.92;color:var(--brass-lt)}
+.layers span{font-size:13.5px;line-height:1.45;color:var(--on-night)}
+.dist{display:grid}
+.dist .hub{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 14px;background:var(--night);border:1px solid var(--brass);margin-bottom:8px}
+.dist .hub b{font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:24px;line-height:.9}
+.dist div.ch{display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,1fr);gap:12px;align-items:baseline;padding:10px 0 10px 14px;border-bottom:1px solid var(--hair-n);position:relative}
+.dist div.ch::before{content:"";position:absolute;left:0;top:50%;width:8px;height:1px;background:var(--brass)}
+.dist div.ch:last-child{border-bottom:0}
+.dist div.ch b{font-weight:500;font-size:14.5px}
+.dist div.ch span{font-size:13px;color:var(--on-night-soft)}
+@media (max-width:1100px){.aj{grid-template-columns:minmax(0,1fr)}.aj-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;border-top:0}.aj-steps button{grid-template-columns:minmax(0,1fr);gap:6px;border:1px solid var(--hair-n);padding:12px}.aj-steps button::before{top:auto;left:0;right:0;width:auto;height:2px;transform:scaleX(0);transform-origin:left}.aj-steps button[aria-selected="true"]::before{transform:scaleX(1)}.aj-steps button small{display:none}}
+@media (max-width:900px){.aj-head{grid-template-columns:minmax(0,1fr)}.aj-p{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.aj-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.tree .kids{grid-template-columns:minmax(0,1fr)}.layers div{grid-template-columns:minmax(0,1fr);gap:6px;margin-left:0!important}.facts3{grid-template-columns:minmax(0,1fr)}.facts3 div+div{border-left:0;border-top:1px solid var(--hair-n)}.dist div.ch{grid-template-columns:minmax(0,1fr);gap:2px}}
+
+/* multiplication */
+.mx-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.5fr);gap:24px;align-items:end;margin-bottom:clamp(30px,3.6vw,52px)}
+.mx{display:grid;grid-template-columns:minmax(0,.8fr) 32px minmax(0,1.25fr) 32px minmax(0,1fr);gap:clamp(8px,1vw,16px);align-items:stretch}
+.mx-col{display:grid;gap:8px;align-content:start;min-width:0}
+.mx-col>.lab{margin-bottom:4px}
+.mx-arrow{display:grid;place-items:center;color:var(--brass);font-size:22px}
+.mx-src{position:relative;overflow:hidden;border:1px solid var(--brass);background:var(--night-3);display:grid}
+.mx-src .frame{aspect-ratio:4/5}
+.mx-src .wave{display:grid;align-items:center;padding:18px;background:radial-gradient(120% 80% at 50% 100%,rgba(184,151,94,.16),transparent 60%),var(--night-3)}
+.wv{display:flex;align-items:center;gap:3px;height:58%}
+.wv i{flex:1;min-width:2px;background:var(--brass);opacity:.85;border-radius:1px;transform-origin:center;animation:wvb 2.4s ease-in-out infinite alternate}
+.wv i.m{background:var(--on-night);opacity:1}
+@keyframes wvb{from{transform:scaleY(.55)}to{transform:scaleY(1)}}
+.mx-src .tcode{position:absolute;left:16px;bottom:14px;font:500 10px/1 var(--f-mono);letter-spacing:.1em;color:var(--on-night-soft)}
+.mx-src .rec{position:absolute;right:16px;top:14px;display:flex;align-items:center;gap:7px;font:600 9px/1 var(--f);letter-spacing:.22em;text-transform:uppercase;color:var(--on-night)}
+.mx-src .rec i{width:7px;height:7px;border-radius:50%;background:#C8553D;animation:blink 1.6s steps(2) infinite}
+@keyframes blink{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.wv i,.mx-src .rec i{animation:none}}
+.mx-src .cap{padding:14px 16px;display:grid;gap:6px}
+.mx-src .cap b{font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(26px,2.3vw,36px);line-height:.88}
+.mx-src .cap span{font-size:12.5px;color:var(--on-night-soft)}
+.mx-a,.mx-c{display:grid;align-items:baseline;text-align:left;background:transparent;border:1px solid var(--hair-n);color:var(--on-night);padding:12px 14px;transition:border-color .35s,background .35s,opacity .35s,transform .45s var(--out)}
+.mx-a{grid-template-columns:44px minmax(0,1fr);gap:12px}
+.mx-a b{font-stretch:62%;font-weight:800;font-size:34px;line-height:.85;color:var(--brass)}
+.mx-a strong,.mx-c strong{display:block;font-weight:500;font-size:15px;line-height:1.25}
+.mx-a span,.mx-c span{display:block;font-size:12.5px;line-height:1.4;color:var(--on-night-soft);margin-top:3px}
+.mx-c{grid-template-columns:minmax(0,1fr)}
+.mx.focus .mx-a,.mx.focus .mx-c{opacity:.32}
+.mx.focus .mx-a.on,.mx.focus .mx-c.on{opacity:1;border-color:var(--brass);background:rgba(184,151,94,.09)}
+.mx.focus .mx-c.on{transform:translateX(4px)}
+.mx.focus .mx-a.on{transform:translateX(4px)}
+.mx-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;align-items:center;margin-top:22px;padding-top:18px;border-top:1px solid var(--hair-n)}
+.mx-foot p{font-size:13px;color:var(--on-night-soft);max-width:70ch}
+@media (max-width:1000px){.mx-head{grid-template-columns:minmax(0,1fr)}.mx{grid-template-columns:minmax(0,1fr)}.mx-arrow{transform:rotate(90deg);height:28px}.mx-src{grid-template-columns:minmax(0,.8fr) minmax(0,1fr)}.mx-src .frame{aspect-ratio:auto;min-height:150px}.mx-src .cap{align-content:center}}
+
+/* ===== V6 · CH6 · YOUR FIRST 90 DAYS ===== */
+.rm-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);gap:24px;align-items:end;margin-bottom:clamp(36px,4.4vw,64px)}
+.rm-pos{display:grid;gap:12px}
+.rm-pos p{font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-soft)}
+.rm-pos p:first-child{font-stretch:108%;font-weight:300;font-size:clamp(19px,1.6vw,24px);line-height:1.35;letter-spacing:-.015em;color:var(--ink)}
+.rm-axis{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink);margin-bottom:0}
+.rm-axis span{position:relative;padding-top:12px;font:500 10px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.rm-axis span::before{content:"";position:absolute;left:0;top:-5px;width:9px;height:9px;background:var(--bronze);border-radius:50%}
+.rm-axis span:last-child::after{content:"Day 90";position:absolute;right:0;top:12px}
+.rm-axis span:last-child i{position:absolute;right:0;top:-5px;width:9px;height:9px;background:var(--ink);border-radius:50%}
+.rm-months{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:22px}
+.rm-m{display:grid;gap:14px;align-content:start;padding:0 28px 6px 0;min-width:0}
+.rm-m + .rm-m{padding-left:28px;border-left:1px solid var(--hair)}
+.rm-m .n{display:flex;align-items:flex-end;gap:12px}
+.rm-m .n b{font-stretch:62%;font-weight:800;font-size:clamp(84px,8.4vw,150px);line-height:.74;letter-spacing:-.02em;color:var(--ink)}
+.rm-m .n span{font:600 10px/1.3 var(--f);letter-spacing:.22em;text-transform:uppercase;color:var(--bronze);padding-bottom:4px}
+.rm-m h3{font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(28px,2.5vw,42px);line-height:.88}
+.rm-m > p{font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+.rm-m dl{margin:6px 0 0;display:grid;border-top:1px solid var(--hair)}
+.rm-m dl div{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--hair)}
+.rm-m dt{font:600 9.5px/1.3 var(--f);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.rm-m dd{margin:0;font-size:13.5px;line-height:1.4;color:var(--ink)}
+.dots{display:inline-flex;gap:6px;vertical-align:middle;margin-right:8px}
+.dots i{width:10px;height:10px;border-radius:50%;border:1px solid var(--bronze)}
+.dots i.f{background:var(--bronze)}
+.rm-note{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:clamp(26px,3vw,40px);padding-top:16px;border-top:1px solid var(--hair)}
+.rm-note span{font-size:12.5px;color:var(--ink-soft);padding-left:14px;position:relative}
+.rm-note span::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:var(--bronze)}
+@media (max-width:960px){.rm-head{grid-template-columns:minmax(0,1fr)}.rm-axis{display:none}.rm-months{grid-template-columns:minmax(0,1fr);margin-top:0;border-top:1px solid var(--ink)}.rm-m,.rm-m + .rm-m{padding:26px 0 18px;border-left:0}.rm-m + .rm-m{border-top:1px solid var(--hair)}}
+
+.rmg-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;margin-bottom:clamp(26px,3vw,40px)}
+.rm-tabs{display:inline-flex;border:1px solid var(--hair-n)}
+.rm-tabs button{background:none;border:0;padding:10px 16px;font:600 10px/1 var(--f);letter-spacing:.2em;text-transform:uppercase;color:var(--on-night-soft);transition:background .3s,color .3s}
+.rm-tabs button + button{border-left:1px solid var(--hair-n)}
+.rm-tabs button[aria-pressed="true"]{background:var(--brass);color:var(--night)}
+.rmg{display:grid;grid-template-columns:minmax(150px,.62fr) repeat(3,minmax(0,1fr));border-top:1px solid var(--hair-n)}
+.rmg > div{padding:14px 18px 14px 0;border-bottom:1px solid var(--hair-n);min-width:0;transition:opacity .45s}
+.rmg > .c{padding-left:18px;border-left:1px solid var(--hair-n)}
+.rmg .mh{display:grid;gap:6px;padding-top:4px;padding-bottom:16px}
+.rmg .mh b{font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(22px,2vw,32px);line-height:.9}
+.rmg .mh span{font:600 9.5px/1.3 var(--f);letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
+.rmg .ws{display:grid;gap:6px;align-content:start}
+.rmg .ws b{font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(20px,1.7vw,27px);line-height:.9}
+.rmg .ws span{font-size:11.5px;color:var(--on-night-soft);line-height:1.35}
+.rmg ul{margin:0;padding:0;display:grid;gap:7px}
+.rmg li{list-style:none;font-size:13.5px;line-height:1.42;color:var(--on-night);padding-left:15px;position:relative}
+.rmg li::before{content:"";position:absolute;left:0;top:.66em;width:8px;height:1px;background:var(--brass)}
+.rmg li.rmk{color:var(--brass-lt)}
+.rmg .ml{display:none}
+.rmg .ms{font-size:12.5px;color:var(--on-night-soft)}
+.rmg[data-focus="1"] > .m2,.rmg[data-focus="1"] > .m3,.rmg[data-focus="2"] > .m1,.rmg[data-focus="2"] > .m3,.rmg[data-focus="3"] > .m1,.rmg[data-focus="3"] > .m2{opacity:.22}
+.rmg-foot{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:20px}
+.rmg-foot span{font-size:12.5px;color:var(--on-night-soft)}
+@media (max-width:860px){
+  .rmg-head{grid-template-columns:minmax(0,1fr)}
+  .rm-tabs{width:100%}.rm-tabs button{flex:1;padding:10px 6px}
+  .rmg{grid-template-columns:minmax(0,1fr)}
+  .rmg > .mh{display:none}
+  .rmg > div,.rmg > .c{padding:12px 0;border-left:0}
+  .rmg > .ws{padding-top:22px;border-bottom:0}
+  .rmg .ml{display:block;font:600 9.5px/1.3 var(--f);letter-spacing:.22em;text-transform:uppercase;color:var(--brass);margin-bottom:8px}
+  .rmg[data-focus="1"] > .m2,.rmg[data-focus="1"] > .m3,.rmg[data-focus="2"] > .m1,.rmg[data-focus="2"] > .m3,.rmg[data-focus="3"] > .m1,.rmg[data-focus="3"] > .m2{display:none}
+}
 </style>
 
 <header class="nav" id="nav">
@@ -1296,6 +1491,136 @@ body.pres #s-bridge{min-height:0}
     </table></div>
   </div>
 </section>
+
+<!-- ======================= CH2 · THE DGM AUTHORITY SYSTEM (V6) ======================= -->
+<section class="sec" id="s-authority-system" data-ch="2" data-title="The DGM Authority System">
+  <div class="wrap">
+    <div class="st-head"><div><span class="ey"><span>02</span><i>The DGM Authority System</i></span><h2 class="h2" style="margin-top:20px">Premium production establishes the brand. <b>The Authority System multiplies its reach.</b></h2></div><p class="body">Omri’s expertise is Enclave’s most persuasive asset, and most of it is never published. Once a month, DGM records a founder interview and turns it into a steady, coordinated stream of content across every channel.</p></div>
+    <div class="st-comp">
+      <figure class="frame rv mask" style="margin:0"><img src="/enclave-assets/studio-wide.jpg" alt="DGM podcast studio: two leather chairs, a walnut table and two Shure microphones against a lit slatted wall" loading="lazy"><span class="credit">DGM podcast studio</span></figure>
+      <figure class="frame rv mask" style="margin:0"><img src="/enclave-assets/studio-mics.jpg" alt="Two Shure broadcast microphones facing each other across the studio table" loading="lazy" style="object-position:50% 45%"></figure>
+      <figure class="frame rv mask" style="margin:0"><img src="/enclave-assets/studio-mirror.jpg" alt="Behind the scenes in the DGM studio: the interview set, lighting and production gear reflected in a mirror wall" loading="lazy" style="object-position:45% 55%"></figure>
+    </div>
+    <div class="st-foot">
+      <div class="pair"><span class="lab">Flagship creative · continues</span><b>Films, photography, drone, testimonials</b><p>The premium project work that establishes Enclave as a design-build brand.</p></div>
+      <span class="plus" aria-hidden="true">+</span>
+      <div class="pair"><span class="lab" style="color:var(--brass)">Authority System · in addition</span><b>One founder interview a month, multiplied</b><p>Omri’s knowledge, published consistently in every format the market uses.</p></div>
+      <p class="loc"><b>Recorded on location in Orange County.</b>Interviews are captured during production sessions already scheduled for Enclave, with the same lighting and audio standard as our studio. Omri never needs to come to us.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec dk2" id="s-journey" data-ch="2" data-title="How the Authority System works">
+  <div class="wrap">
+    <div class="aj-head"><div><span class="ey"><span>02</span><i>How it works</i></span><h2 class="h2" style="margin-top:20px">From founder expertise to <b>a steady stream of content.</b></h2></div><p class="body">Six stages, run every month. Select a stage to see what happens inside it.</p></div>
+    <div class="aj" id="aj">
+      <div class="aj-steps" role="tablist" aria-label="Authority System stages">
+        <button role="tab" id="aj-t1" aria-controls="aj-p1" aria-selected="true" data-aj="1"><i>01</i><span><b>Discovery &amp; research</b><small>Homeowner, market, questions</small></span></button>
+        <button role="tab" id="aj-t2" aria-controls="aj-p2" aria-selected="false" data-aj="2"><i>02</i><span><b>Preproduction blueprint</b><small>Topics, outline, hooks, CTAs</small></span></button>
+        <button role="tab" id="aj-t3" aria-controls="aj-p3" aria-selected="false" data-aj="3"><i>03</i><span><b>Premium production</b><small>One interview a month, on location</small></span></button>
+        <button role="tab" id="aj-t4" aria-controls="aj-p4" aria-selected="false" data-aj="4"><i>04</i><span><b>Extraction &amp; repurposing</b><small>One recording, many assets</small></span></button>
+        <button role="tab" id="aj-t5" aria-controls="aj-p5" aria-selected="false" data-aj="5"><i>05</i><span><b>The Authority Blueprint</b><small>The strategy layer behind it</small></span></button>
+        <button role="tab" id="aj-t6" aria-controls="aj-p6" aria-selected="false" data-aj="6"><i>06</i><span><b>Cross-platform distribution</b><small>Five channels, one library</small></span></button>
+      </div>
+      <div class="aj-panel">
+        <div class="aj-p on" role="tabpanel" id="aj-p1" aria-labelledby="aj-t1">
+          <div class="t"><span class="lab">Stage 01</span><h3>Discovery &amp; research</h3><p>We start with Enclave’s ideal homeowner, the competitive landscape, the <b>Clarity</b> methodology, the sales process and market positioning.</p><p>Then we find the questions high-value homeowners actually ask, using search-demand, keyword and purchase-intent research. Topics are prioritized by commercial relevance, <b>not search volume alone.</b></p><button class="aj-next" data-aj-next>Next stage →</button></div>
+          <div class="aj-v"><div class="vh"><span class="lab">Question bank · illustrative</span><span class="lab">Intent</span></div>
+            <div class="qb">
+              <div><span>What does pre-construction include, and why pay for it?</span><em class="hi">Clarity · high</em></div>
+              <div><span>Design-build, or an architect plus a contractor?</span><em class="hi">Comparison · high</em></div>
+              <div><span>Which decisions should be final before construction starts?</span><em>Clarity</em></div>
+              <div><span>What drives the cost of a whole-home remodel on the coast?</span><em class="hi">Budget · high</em></div>
+              <div><span>How long does a major remodel or addition take?</span><em>Planning</em></div>
+            </div>
+            <p class="vf">Examples only. The real list comes from research into what Enclave’s homeowners search and ask.</p></div>
+        </div>
+        <div class="aj-p off" role="tabpanel" id="aj-p2" aria-labelledby="aj-t2" aria-hidden="true">
+          <div class="t"><span class="lab">Stage 02</span><h3>Preproduction blueprint</h3><p>Research becomes a plan before the cameras roll: <b>interview topics, an episode outline, strategic questions, content pillars, hooks, CTAs,</b> and the moments we intend to extract.</p><p>Omri gets the outline ahead of time, so the conversation feels natural and still covers what homeowners need to hear.</p><button class="aj-next" data-aj-next>Next stage →</button></div>
+          <div class="aj-v"><div class="vh"><span class="lab">Episode outline · concept</span><span class="lab" style="color:var(--brass)">Before the First Wall</span></div>
+            <div class="ol">
+              <div><i>00</i><span>Cold open<q>The most expensive decision is the one made too late.</q></span><em>Hook</em></div>
+              <div><i>01</i><span>What homeowners ask before they hire anyone</span><em>Reel</em></div>
+              <div><i>02</i><span>Inside Clarity: how decisions get made</span><em>Reel</em></div>
+              <div><i>03</i><span>One project, one consequential decision</span><em>Reel</em></div>
+              <div><i>04</i><span>What to ask any builder before you sign</span><em>Carousel</em></div>
+              <div class="cta"><i>CTA</i><span>Request a project review</span><em>CTA</em></div>
+            </div>
+            <div class="chips"><span>Pillars</span><span>Strategic questions</span><span>Hook library</span><span>Extraction plan</span></div></div>
+        </div>
+        <div class="aj-p off" role="tabpanel" id="aj-p3" aria-labelledby="aj-t3" aria-hidden="true">
+          <div class="t"><span class="lab">Stage 03</span><h3>Premium production</h3><p>One founder interview of <b>about 60 minutes each month,</b> built into Orange County production sessions already on the calendar.</p><p>It can be conversational, with DGM interviewing off camera, so Omri talks the way he does with clients rather than reading to a lens.</p><button class="aj-next" data-aj-next>Next stage →</button></div>
+          <div class="aj-v aj-ph"><div class="frame"><img src="/enclave-assets/studio-chair.jpg" alt="The guest chair in the DGM studio, beside lit shelving" loading="lazy" style="object-position:50% 58%"></div>
+            <div class="facts3"><div><b>~60 min</b><span>Founder interview, monthly</span></div><div><b>On location</b><span>During scheduled Orange County shoots</span></div><div><b>Off camera</b><span>DGM leads the conversation</span></div></div></div>
+        </div>
+        <div class="aj-p off" role="tabpanel" id="aj-p4" aria-labelledby="aj-t4" aria-hidden="true">
+          <div class="t"><span class="lab">Stage 04</span><h3>Extraction &amp; repurposing</h3><p>One recording becomes a professionally edited long-form episode, <b>five premium reels,</b> additional AI-assisted clips through OpusClip, educational insights, quotes, carousels and supporting creative.</p><p>Every AI-generated clip is <b>reviewed and refined by our editors</b> before it’s published.</p><button class="aj-next" data-aj-next>Next stage →</button></div>
+          <div class="aj-v"><div class="tree">
+            <div class="src"><b>1 recording</b><span>~60 minutes with Omri</span></div>
+            <div class="kids">
+              <div><b>1</b><span>Edited long-form episode</span></div>
+              <div><b>5</b><span>Premium short-form reels</span></div>
+              <div><b>+</b><span>AI-assisted clips, reviewed</span></div>
+              <div><b>+</b><span>Educational insights &amp; posts</span></div>
+              <div><b>+</b><span>Quotes &amp; carousels</span></div>
+              <div><b>+</b><span>Supporting creative</span></div>
+            </div></div>
+            <p class="vf">The next slide shows where each asset goes.</p></div>
+        </div>
+        <div class="aj-p off" role="tabpanel" id="aj-p5" aria-labelledby="aj-t5" aria-hidden="true">
+          <div class="t"><span class="lab">Stage 05</span><h3>The Authority Blueprint</h3><p>Behind every recording sits DGM’s existing <b>Podcast + Authority System</b>: the strategy that turns Omri’s knowledge into a coordinated monthly program, not a pile of separate deliverables.</p><p>Each layer feeds the next, so the episode, the reels, the written content and the calendar all say the same thing.</p><button class="aj-next" data-aj-next>Next stage →</button></div>
+          <div class="aj-v"><div class="layers">
+            <div><b>Strategy</b><span>Premium Authority Blueprint · Master Knowledge Extraction · market and content research · content strategy and pillars</span></div>
+            <div><b>Creative toolkit</b><span>Hook and CTA libraries · story content ideas · future episode recommendations</span></div>
+            <div><b>Written content</b><span>LinkedIn and Facebook posts · SEO blog article drafts · email campaign concepts</span></div>
+            <div><b>Planning</b><span>Monthly content calendar · supporting marketing concepts</span></div>
+          </div></div>
+        </div>
+        <div class="aj-p off" role="tabpanel" id="aj-p6" aria-labelledby="aj-t6" aria-hidden="true">
+          <div class="t"><span class="lab">Stage 06</span><h3>Cross-platform distribution</h3><p>Approved assets go into one central library, then out to <b>Instagram, Facebook, LinkedIn, YouTube and Google Business,</b> each formatted for the channel.</p><p>The result is substantial volume and consistent visibility, paced by the monthly calendar rather than a posting quota.</p><button class="aj-next" data-aj-next>Back to stage 01 ↺</button></div>
+          <div class="aj-v"><div class="dist">
+            <div class="hub"><b>Content library</b><span class="lab">Approved assets</span></div>
+            <div class="ch"><b>Instagram</b><span>Reels, carousels, stories</span></div>
+            <div class="ch"><b>Facebook</b><span>Reels, posts, longer video</span></div>
+            <div class="ch"><b>LinkedIn</b><span>Written insights, clips, carousels</span></div>
+            <div class="ch"><b>YouTube</b><span>Full episodes and Shorts</span></div>
+            <div class="ch"><b>Google Business</b><span>Updates, project posts, video</span></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="s-multiply" data-ch="2" data-title="One recording, a library of content">
+  <div class="wrap">
+    <div class="mx-head"><div><span class="ey"><span>02</span><i>Content multiplication</i></span><h2 class="h2" style="margin-top:20px">One recording.<br><b>A library of content.</b></h2></div><p class="body">Select an asset to see where it’s published, or a channel to see what it receives. The format changes by platform; the message stays consistent.</p></div>
+    <div class="mx" id="mx">
+      <div class="mx-col"><span class="lab">Source</span>
+        <div class="mx-src"><div class="frame wave" aria-hidden="true"><div class="wv" id="wv"></div><span class="tcode num">00:00 — ~60:00</span><span class="rec"><i></i>Rec</span></div><div class="cap"><b>Founder interview</b><span>About 60 minutes · monthly · on location</span></div></div>
+      </div>
+      <div class="mx-arrow" aria-hidden="true">→</div>
+      <div class="mx-col"><span class="lab">Assets</span>
+        <button class="mx-a" data-to="yt fb li"><b>1</b><span><strong>Long-form episode</strong><span>Professionally edited and chaptered</span></span></button>
+        <button class="mx-a" data-to="ig fb li yt gb"><b>5</b><span><strong>Premium reels</strong><span>Edited by DGM from the strongest moments</span></span></button>
+        <button class="mx-a" data-to="ig fb li yt"><b>+</b><span><strong>AI-assisted clips</strong><span>Generated with OpusClip, reviewed and refined before publishing</span></span></button>
+        <button class="mx-a" data-to="li fb gb"><b>+</b><span><strong>Educational insights</strong><span>Written posts and social content from Omri’s answers</span></span></button>
+        <button class="mx-a" data-to="ig li fb"><b>+</b><span><strong>Quotes &amp; carousels</strong><span>Designed in Enclave’s visual language</span></span></button>
+        <button class="mx-a" data-to="ig fb yt gb"><b>+</b><span><strong>Supporting creative</strong><span>Thumbnails, stories and graphics</span></span></button>
+      </div>
+      <div class="mx-arrow" aria-hidden="true">→</div>
+      <div class="mx-col"><span class="lab">Channels</span>
+        <button class="mx-c" data-ch-id="ig"><strong>Instagram</strong><span>Reels, carousels, stories</span></button>
+        <button class="mx-c" data-ch-id="fb"><strong>Facebook</strong><span>Reels, posts, longer video</span></button>
+        <button class="mx-c" data-ch-id="li"><strong>LinkedIn</strong><span>Written insights, clips, carousels</span></button>
+        <button class="mx-c" data-ch-id="yt"><strong>YouTube</strong><span>Full episodes and Shorts</span></button>
+        <button class="mx-c" data-ch-id="gb"><strong>Google Business</strong><span>Updates, project posts, video</span></button>
+      </div>
+    </div>
+    <div class="mx-foot"><p>The same approved assets are used across the channels where they fit. Volume and pacing are set in the monthly content calendar. Beyond the episode and five reels, counts depend on each recording.</p><div class="chips" style="margin-top:0"><span>Also feeds: website blog</span><span>Email</span><span>Sales follow-up</span></div></div>
+  </div>
+</section>
+
 
 <!-- ======================= CH3 · FLAGSHIP ======================= -->
 <section class="sec lt" id="s-flagship" data-ch="3" data-title="The Digital Flagship">
@@ -1595,6 +1920,69 @@ body.pres #s-bridge{min-height:0}
     <p class="ap-note">Not every service is needed from day one. Most strong partnerships start with the highest-value priorities and expand as results justify it.</p>
   </div>
 </section>
+
+<!-- ======================= CH6 · YOUR FIRST 90 DAYS (V6) ======================= -->
+<section class="sec lt paper" id="s-roadmap" data-ch="6" data-title="Your first 90 days">
+  <div class="wrap">
+    <div class="rm-head"><div><span class="ey"><span>06</span><i>Your first 90 days</i></span><h2 class="h2" style="margin-top:20px">Three months. <b>Every one of them working.</b></h2></div>
+      <div class="rm-pos"><p>We believe Enclave’s immediate priority is a strong organic presence, premium brand credibility, search visibility and conversion infrastructure.</p><p>Months 1 and 2 are active growth, not a waiting period. Alongside them, we evaluate Enclave’s advertising thoroughly, so paid acquisition is built on evidence, with resources put where they’ll work rather than repeating approaches that haven’t performed.</p></div></div>
+    <div class="rm-axis" aria-hidden="true"><span>Day 1</span><span>Day 30</span><span>Day 60<i></i></span></div>
+    <div class="rm-months">
+      <div class="rm-m rv up"><div class="n"><b>01</b><span>Month</span></div><h3>Establish the foundation</h3><p>The new site, search foundations and brand presence get built, production starts, and we audit everything already in place.</p>
+        <dl><div><dt>Production sessions</dt><dd><span class="dots"><i class="f"></i><i class="f"></i><i class="f"></i></span>Three</dd></div><div><dt>Founder interview</dt><dd>First</dd></div><div><dt>By day 30</dt><dd>Publishing begins; GHL and advertising audits complete</dd></div></dl></div>
+      <div class="rm-m rv up"><div class="n"><b>02</b><span>Month</span></div><h3>Build authority &amp; momentum</h3><p>Content runs across all five platforms, the conversion pathways take shape, and the advertising strategy is prepared.</p>
+        <dl><div><dt>Production sessions</dt><dd><span class="dots"><i class="f"></i><i class="f"></i><i></i></span>Two</dd></div><div><dt>Founder interview</dt><dd>Second</dd></div><div><dt>By day 60</dt><dd>Three conversion pathways; ad strategy and tracking ready</dd></div></dl></div>
+      <div class="rm-m rv up"><div class="n"><b>03</b><span>Month</span></div><h3>Activate &amp; optimize</h3><p>The approved paid strategy is planned to launch, results are reviewed through to Clarity, and the next quarter is planned.</p>
+        <dl><div><dt>Production sessions</dt><dd><span class="dots"><i class="f"></i><i></i><i></i></span>One</dd></div><div><dt>Founder interview</dt><dd>Third</dd></div><div><dt>By day 90</dt><dd>Pipeline review and next-quarter recommendations</dd></div></dl></div>
+    </div>
+    <div class="rm-note"><span>Evaluating existing campaigns doesn’t mean pausing them.</span><span>Paid launch is subject to account readiness and agreed investment.</span><span>No promises of immediate SEO results, lead volumes or campaign ROI.</span></div>
+  </div>
+</section>
+
+<section class="sec dk2" id="s-roadmap-plan" data-ch="6" data-title="The 90-day plan in detail">
+  <div class="wrap">
+    <div class="rmg-head"><div><span class="ey"><span>06</span><i>The plan in detail</i></span><h2 class="h2" style="margin-top:20px">Five workstreams. <b>One sequence.</b></h2></div>
+      <div class="rm-tabs" role="group" aria-label="Focus a month"><button aria-pressed="true" data-rm="all">All</button><button aria-pressed="false" data-rm="1">Month 1</button><button aria-pressed="false" data-rm="2">Month 2</button><button aria-pressed="false" data-rm="3">Month 3</button></div></div>
+    <div class="rmg" id="rmg" data-focus="all">
+      <div class="mh"><span>Workstream</span></div>
+      <div class="mh c m1"><span>Month 01</span><b>Establish the foundation</b></div>
+      <div class="mh c m2"><span>Month 02</span><b>Build authority &amp; momentum</b></div>
+      <div class="mh c m3"><span>Month 03</span><b>Activate &amp; optimize</b></div>
+
+      <div class="ws"><b>Production &amp; authority</b><span>Flagship creative and founder interviews</span></div>
+      <div class="c m1"><span class="ml">Month 1</span><ul><li>Three Orange County production sessions</li><li class="rmk">First founder authority interview</li><li>Initial Authority Blueprint and content library</li></ul></div>
+      <div class="c m2"><span class="ml">Month 2</span><ul><li>Two additional production sessions</li><li class="rmk">Second founder interview</li><li>Expanded premium creative and authority content</li></ul></div>
+      <div class="c m3"><span class="ml">Month 3</span><ul><li>One additional production session</li><li class="rmk">Third founder interview</li></ul></div>
+
+      <div class="ws"><b>Website, SEO &amp; GEO</b><span>The flagship and how it’s found</span></div>
+      <div class="c m1"><span class="ml">Month 1</span><ul><li>Full premium website rebuild, targeting 5–7 core pages</li><li>Technical SEO, local SEO and GEO foundations</li></ul></div>
+      <div class="c m2"><span class="ml">Month 2</span><ul><li>SEO and GEO development</li><li>Website optimization</li></ul></div>
+      <div class="c m3"><span class="ml">Month 3</span><ul><li>Continued SEO and GEO</li><li>Continued website optimization</li></ul></div>
+
+      <div class="ws"><b>Brand &amp; organic presence</b><span>Consistent visibility across platforms</span></div>
+      <div class="c m1"><span class="ml">Month 1</span><ul><li>Brand and digital presence optimization</li><li>Consistent cross-platform publishing begins</li></ul></div>
+      <div class="c m2"><span class="ml">Month 2</span><ul><li>Consistent organic distribution across all five platforms</li></ul></div>
+      <div class="c m3"><span class="ml">Month 3</span><ul><li>Premium and authority content distribution continues</li></ul></div>
+
+      <div class="ws"><b>Conversion &amp; GHL</b><span>From inquiry to Clarity</span></div>
+      <div class="c m1"><span class="ml">Month 1</span><ul><li>Audit existing GHL systems and conversion processes</li></ul></div>
+      <div class="c m2"><span class="ml">Month 2</span><ul><li>Build or refine three conversion pathways, based on Enclave’s actual sales process</li><li>Improve GHL lead qualification, follow-up and attribution</li></ul></div>
+      <div class="c m3"><span class="ml">Month 3</span><ul><li>Review qualified inquiries, consultations, Clarity opportunities and pipeline performance</li></ul></div>
+
+      <div class="ws"><b>Advertising</b><span>Evaluate, prepare, then activate</span></div>
+      <div class="c m1"><span class="ml">Month 1</span><ul><li>Audit current and historical campaigns, accounts, tracking and results</li></ul></div>
+      <div class="c m2"><span class="ml">Month 2</span><ul><li>Strategy research, targeting and creative planning</li><li>Landing-page alignment and tracking preparation</li></ul></div>
+      <div class="c m3"><span class="ml">Month 3</span><ul><li class="rmk">Planned launch of the approved paid strategy, subject to account readiness and agreed investment</li><li>Campaign monitoring and optimization</li></ul></div>
+
+      <div class="ws"><b>Outcome</b><span>What each month hands to the next</span></div>
+      <div class="c m1"><span class="ml">Month 1</span><p class="ms">A rebuilt foundation, live publishing and a clear picture of what’s working today.</p></div>
+      <div class="c m2"><span class="ml">Month 2</span><p class="ms">Authority building across platforms, conversion pathways in place, an ad strategy ready to approve.</p></div>
+      <div class="c m3"><span class="ml">Month 3</span><p class="ms">Next-quarter growth recommendations, grounded in three months of evidence.</p></div>
+    </div>
+    <div class="rmg-foot"><span>Sequencing adapts to the partnership approach chosen.</span><span>No pricing or advertising budget is set here; investment is recommended after discovery.</span></div>
+  </div>
+</section>
+
 
 <section class="sec lt" id="s-invest" data-ch="6" data-title="The investment">
   <div class="wrap">
@@ -2056,6 +2444,48 @@ setCh(chFromScroll());
 setStep('ad');renderAll(false);updateChrome();cur=currentFromScroll();navSolid();parallax();
 })();
 
+</script>
+<script>
+/* V6 · Authority System journey, content multiplication, 90-day roadmap */
+(function(){
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* journey */
+const aj=$('#aj');
+if(aj){
+  const tabs=$$('[data-aj]',aj),panels=$$('.aj-p',aj);
+  const show=n=>{tabs.forEach(t=>{const on=t.dataset.aj===String(n);t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1});
+    panels.forEach((p,i)=>{const on=i+1===n;p.classList.toggle('on',on);p.classList.toggle('off',!on);p.setAttribute('aria-hidden',!on)})};
+  let curStep=1;
+  tabs.forEach(t=>t.addEventListener('click',()=>{curStep=+t.dataset.aj;show(curStep)}));
+  $$('[data-aj-next]',aj).forEach(b=>b.addEventListener('click',()=>{curStep=curStep%6+1;show(curStep);tabs[curStep-1].focus({preventScroll:true})}));
+  aj.addEventListener('keydown',e=>{if(!e.target.matches('[data-aj]'))return;if(e.key!=='ArrowDown'&&e.key!=='ArrowUp')return;e.preventDefault();e.stopPropagation();curStep=e.key==='ArrowDown'?curStep%6+1:(curStep+4)%6+1;show(curStep);tabs[curStep-1].focus()});
+  show(1);
+}
+/* multiplication */
+const wv=$('#wv');if(wv){let s=7;const rnd=()=>(s=(s*9301+49297)%233280)/233280;const marks=[9,18,27,36,45];for(let i=0;i<56;i++){const b=document.createElement('i');b.style.height=(18+Math.round((Math.sin(i*.55)*.5+.5)*48+rnd()*34))+'%';b.style.animationDelay=(-rnd()*2.4).toFixed(2)+'s';if(marks.includes(i))b.className='m';wv.appendChild(b)}}
+const mx=$('#mx');
+if(mx){
+  const as=$$('.mx-a',mx),cs=$$('.mx-c',mx);let touched=false,ai=0,timer=0,vis=false;
+  const clear=()=>{mx.classList.remove('focus');as.concat(cs).forEach(x=>{x.classList.remove('on');x.setAttribute('aria-pressed','false')})};
+  const pickA=a=>{clear();mx.classList.add('focus');a.classList.add('on');a.setAttribute('aria-pressed','true');const to=a.dataset.to.split(' ');cs.forEach(c=>c.classList.toggle('on',to.includes(c.dataset.chId)))};
+  const pickC=c=>{clear();mx.classList.add('focus');c.classList.add('on');c.setAttribute('aria-pressed','true');as.forEach(a=>a.classList.toggle('on',a.dataset.to.split(' ').includes(c.dataset.chId)))};
+  const stop=()=>{touched=true;clearInterval(timer)};
+  as.forEach(a=>a.addEventListener('click',()=>{stop();a.classList.contains('on')&&a.getAttribute('aria-pressed')==='true'?clear():pickA(a)}));
+  cs.forEach(c=>c.addEventListener('click',()=>{stop();c.getAttribute('aria-pressed')==='true'?clear():pickC(c)}));
+  as.concat(cs).forEach(x=>x.setAttribute('aria-pressed','false'));
+  const cycle=()=>{if(touched||!vis||document.hidden)return;pickA(as[ai]);ai=(ai+1)%as.length};
+  if(!reduce&&'IntersectionObserver' in window){new IntersectionObserver(es=>es.forEach(e=>{vis=e.isIntersecting;if(vis&&!touched&&!timer){cycle();timer=setInterval(cycle,2600)}if(!vis&&!touched){clearInterval(timer);timer=0;clear()}}),{threshold:.35}).observe(mx)}
+}
+/* roadmap month focus */
+const rmg=$('#rmg');
+if(rmg){
+  const bs=$$('[data-rm]');
+  const set=v=>{rmg.dataset.focus=v;bs.forEach(b=>b.setAttribute('aria-pressed',b.dataset.rm===v))};
+  bs.forEach(b=>b.addEventListener('click',()=>set(b.dataset.rm)));
+  if(window.matchMedia('(max-width:860px)').matches)set('1');
+}
+})();
 </script>
 
 </body>
