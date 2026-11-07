@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600&family=Barlow:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap">
 <style>
 /* === DGM design system: tokens + base + components === */
-/* Layout: dark cinematic deck — cover, pause statement, two-up photo packages, dedicated Authority chapter, closing pause. Single dark theme by design. */
+/* Layout: dark cinematic deck — cover, pause statement, two-up package comparison, dedicated Package 03 chapter, closing pause. Single dark theme by design. */
 :root{
   --black:#080808; --card:#111111; --border:#1E1E1E; --border-mid:#2A2A2A;
   --copper:#BB725A; --copper-light:#D4937D; --copper-dark:#8A4F3B;
@@ -223,44 +223,19 @@ body.present .divider-block{display:none}
 .prog .ar svg{width:22px;height:14px;fill:none;stroke:var(--copper);stroke-width:1.4}
 
 /* impact block on package cards */
+.opt-note{margin:14px 0 0;font-family:var(--f-label);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);line-height:1.5}
 .impact{margin-top:26px;padding-top:22px;border-top:1px solid var(--border-mid)}
 .impact .micro{color:var(--copper)}
 .impact .it{font-family:var(--f-serif);font-style:italic;font-size:clamp(1.15rem,1.9vw,1.35rem);color:var(--copper-light);line-height:1.3;margin:8px 0 10px}
 .impact p{margin:0;font-size:.88rem;line-height:1.6;color:var(--body-2)}
 
-/* authority intro + podcast why */
+/* Package 03 intro + trainer spotlight note */
 .auth-tag{margin-top:16px}
 .auth-focus{font-family:var(--f-label);font-weight:500;font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--body-2);margin-top:26px}
 .auth-head .lead{margin-top:12px}
 .why{margin:0 0 14px;padding-left:14px;border-left:1px solid var(--copper-dark);font-size:.86rem;line-height:1.6;color:var(--body-2)}
 
-/* Authority Blueprint feature */
-.bpx{position:relative;margin-top:clamp(40px,5vw,60px);border:1px solid rgba(187,114,90,.5);background:linear-gradient(120deg,rgba(187,114,90,.16),transparent 70%),var(--card);padding:clamp(26px,4.4vw,56px)}
-.bpx::before{content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:2px;background:linear-gradient(90deg,var(--copper),transparent)}
-.bpx-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px 20px}
-.bpx-top .micro{color:var(--copper);letter-spacing:.3em}
-.bpx h3{font-family:var(--f-display);font-weight:400;font-size:clamp(2.5rem,6.4vw,4.8rem);line-height:.88;letter-spacing:.005em;text-transform:uppercase;margin:24px 0 0;text-wrap:balance}
-.bpx .bp-lead{font-size:clamp(.98rem,1.8vw,1.08rem);color:var(--body-1);max-width:64ch;margin:22px 0 0;line-height:1.6}
-.bpx .nc{display:block;font-family:var(--f-label);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
-.eco{display:grid;grid-template-columns:minmax(0,.82fr) auto minmax(0,2fr);align-items:center;gap:clamp(14px,2.4vw,28px);margin-top:clamp(36px,5vw,52px)}
-.eco-src{position:relative;border:1px solid var(--copper);background:#17110e;padding:26px 22px;text-align:center}
-.eco-src .ring{width:58px;height:58px;margin:0 auto 14px;border:1px solid var(--copper);border-radius:50%;display:flex;align-items:center;justify-content:center}
-.eco-src .ring svg{width:24px;height:24px;fill:none;stroke:var(--copper-light);stroke-width:1.4;stroke-linecap:round}
-.eco-src .micro{display:block;color:var(--copper)}
-.eco-src .t{font-family:var(--f-display);font-size:clamp(1.8rem,3vw,2.3rem);line-height:.95;margin-top:8px}
-.eco-src .s{font-family:var(--f-label);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-top:8px;line-height:1.5}
-.eco-arw{display:flex;align-items:center;justify-content:center}
-.eco-arw svg{width:34px;height:16px;fill:none;stroke:var(--copper);stroke-width:1.4}
-.eco-apps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--border-mid);background:var(--black)}
-.eco-app{padding:clamp(18px,2.4vw,26px);min-width:0;border-color:var(--border);border-style:solid;border-width:0}
-.eco-app:nth-child(2n){border-left-width:1px}
-.eco-app:nth-child(n+3){border-top-width:1px}
-.eco-app .h{display:flex;align-items:center;gap:12px}
-.eco-app .node{flex:none;width:30px;height:30px;border:1px solid var(--copper-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-label);font-size:.66rem;letter-spacing:.06em;color:var(--copper-light)}
-.eco-app.hot .node{background:var(--copper);border-color:var(--copper);color:var(--black)}
-.eco-app .t{font-family:var(--f-display);font-size:1.35rem;letter-spacing:.04em;line-height:1}
-.eco-app p{margin:12px 0 0;font-size:.86rem;line-height:1.55;color:var(--body-2)}
-.guard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(30px,4vw,44px);border-top:1px solid var(--border-mid)}
+.guard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(34px,4.4vw,52px);border-top:1px solid var(--border-mid)}
 .guard .g{padding:20px 20px 4px 0;min-width:0}
 .guard .g + .g{padding-left:20px;border-left:1px solid var(--border)}
 .guard .gt{font-family:var(--f-label);font-weight:600;font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--copper)}
@@ -294,8 +269,6 @@ footer{border-top:1px solid var(--border);padding-block:38px calc(44px + env(saf
   .auth-head{grid-template-columns:minmax(0,1fr);align-items:start}
 }
 @media (max-width:860px){
-  .eco{grid-template-columns:minmax(0,1fr)}
-  .eco-arw svg{transform:rotate(90deg)}
   .guard{grid-template-columns:minmax(0,1fr)}
   .guard .g{padding:16px 0 4px}
   .guard .g + .g{padding-left:0;border-left:0;border-top:1px solid var(--border)}
@@ -312,11 +285,6 @@ footer{border-top:1px solid var(--border);padding-block:38px calc(44px + env(saf
   .tb-meta{display:none}
 }
 @media (max-width:520px){
-  .bpx-top .chip{white-space:normal;line-height:1.4}
-  .bpx h3{font-size:clamp(2.1rem,10.5vw,2.5rem)}
-  .eco-apps{grid-template-columns:minmax(0,1fr)}
-  .eco-app:nth-child(2n){border-left-width:0}
-  .eco-app:nth-child(n+2){border-top-width:1px}
   .glance{grid-template-columns:minmax(0,1fr)}
   .glance > div{padding:12px 0;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
   .glance > div + div{padding-left:0;border-left:0;border-top:1px solid var(--border)}
@@ -414,18 +382,18 @@ footer{border-top:1px solid var(--border);padding-block:38px calc(44px + env(saf
   </div>
 </section>
 
-<!-- 03 PHOTOGRAPHY PACKAGES -->
-<section id="photography" data-nav="Photography">
+<!-- 03 THE PACKAGES -->
+<section id="packages" data-nav="Packages">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="sec-num">03</span> Photography Packages</div>
-    <h2 class="section-title reveal">Two Ways To<br><span class="c">Refresh</span> The Brand.</h2>
-    <p class="lead reveal">Start with the gym floor, or pair it with a dedicated studio session and custom website visuals.</p>
+    <div class="eyebrow reveal"><span class="sec-num">03</span> The Packages</div>
+    <h2 class="section-title reveal">Show The Team.<br>Tell The <span class="c">Story.</span></h2>
+    <p class="lead reveal">Start with professional imagery of the team and facility, or pair it with a founder-led video that introduces Kool Body in your own words.</p>
     <div class="prog reveal" aria-label="Package progression">
-      <div class="st"><span class="micro">Package 01</span><div class="t">Elevate the Presentation</div><div class="pr">$750</div></div>
+      <div class="st"><span class="micro">Package 01</span><div class="t">Professional Imagery</div><div class="pr">$750</div></div>
       <div class="ar"><svg viewBox="0 0 22 14" aria-hidden="true"><path d="M1 7h18M14 2l6 5-6 5"/></svg></div>
-      <div class="st"><span class="micro">Package 02</span><div class="t">Elevate the Brand</div><div class="pr">$1,500</div></div>
+      <div class="st hot"><span class="micro">Package 02 · Recommended</span><div class="t">The Founder's Introduction</div><div class="pr">$1,500</div></div>
       <div class="ar"><svg viewBox="0 0 22 14" aria-hidden="true"><path d="M1 7h18M14 2l6 5-6 5"/></svg></div>
-      <div class="st hot"><span class="micro">Package 03</span><div class="t">Build Authority &amp; Momentum</div><div class="pr">$3,250</div></div>
+      <div class="st"><span class="micro">Package 03</span><div class="t">Founder + Every Trainer</div><div class="pr">$2,000</div></div>
     </div>
 
     <div class="compare">
@@ -433,54 +401,57 @@ footer{border-top:1px solid var(--border);padding-block:38px calc(44px + env(saf
       <article class="card opt reveal">
         <div class="opt-head"><span class="opt-num">Package 01</span></div>
         <h3>The Essentials</h3>
-        <p class="focus">Professional Photography Refresh</p>
+        <p class="focus">Professional Photography</p>
         <div class="price"><span class="u">$</span>750</div>
         <div class="glance">
-          <div><span class="micro">Edited Images</span><div class="gv">15<small>Total</small></div></div>
-          <div><span class="micro">Sessions</span><div class="gv">On-Location</div></div>
+          <div><span class="micro">Edited Photos</span><div class="gv">15<small>Total</small></div></div>
+          <div><span class="micro">Video</span><div class="gv absent">—</div></div>
           <div><span class="micro">Web Graphics</span><div class="gv absent">—</div></div>
         </div>
         <div class="micro tl-label">Includes</div>
         <ul class="tick-list">
-          <li>On-location photography at Kool Body Training</li>
-          <li>Professional trainer headshots</li>
-          <li>Action photography featuring trainers and clients</li>
-          <li>Facility and environmental photography</li>
-          <li><span class="q">15</span> professionally edited images total</li>
-          <li>High-resolution and web-optimized exports</li>
+          <li>One on-location photography session at Kool Body</li>
+          <li><span class="q">15</span> professionally edited photos total</li>
+          <li>Individual headshots for all four trainers</li>
+          <li>Team portrait</li>
+          <li>Training, action, and facility photography</li>
+          <li>High-resolution and web-ready photo exports</li>
         </ul>
+        <p class="opt-note">Photography only. Video and custom banner graphics begin with Package 02.</p>
         <div class="impact">
           <span class="micro">The Impact</span>
-          <p class="it">Elevate the presentation.</p>
-          <p>Your online presence should reflect the quality of the experience you provide in person. Professional photography gives Kool Body a stronger first impression, showcasing the trainers, facility, and training experience through polished, authentic imagery. It is the first step: an immediate visual upgrade for your website and a stronger foundation for future marketing.</p>
+          <p class="it">Professional imagery for the team and facility.</p>
+          <p>Your online presence should reflect the quality of the experience you provide in person. Polished, authentic photography of your trainers, facility, and sessions gives Kool Body a stronger first impression and an immediate visual upgrade for the website.</p>
         </div>
       </article>
 
       <!-- Package 02 -->
       <article class="card accent opt reveal" style="transition-delay:.12s">
         <div class="opt-head"><span class="opt-num">Package 02</span><span class="chip">Recommended</span></div>
-        <h3>The Brand Refresh</h3>
-        <p class="focus">Photography + Studio Headshots + Website Visuals</p>
+        <h3>The Brand Introduction</h3>
+        <p class="focus">Photography + Founder Hero Video + Brand Banners</p>
         <div class="price"><span class="u">$</span>1,500</div>
         <div class="glance">
-          <div><span class="micro">Edited Images</span><div class="gv hot">25<small>Total</small></div></div>
-          <div><span class="micro">Sessions</span><div class="gv">On-Location<small>+ Studio</small></div></div>
-          <div><span class="micro">Web Graphics</span><div class="gv">Hero<small>+ Banners</small></div></div>
+          <div><span class="micro">Edited Photos</span><div class="gv hot">20<small>Total</small></div></div>
+          <div><span class="micro">Video</span><div class="gv">Founder<small>Hero Video</small></div></div>
+          <div><span class="micro">Web Graphics</span><div class="gv">Hero<small>+ Social Banners</small></div></div>
         </div>
         <div class="micro tl-label">Includes</div>
         <ul class="tick-list">
-          <li><b>Everything included in The Essentials</b></li>
-          <li>Dedicated studio photography session at DGM's Del Mar studio</li>
-          <li>Professional individual trainer headshots and team portraits</li>
-          <li>Consistent lighting, backgrounds, and visual styling</li>
-          <li>Enhanced creative direction</li>
-          <li>Custom website hero and banner graphics</li>
-          <li><span class="q">25</span> professionally edited images total</li>
+          <li><b>Everything in The Essentials</b>, upgraded to <span class="q">20</span> professionally edited photos total</li>
+          <li>One 45–60 second founder-led hero video featuring Scott</li>
+          <li>Guided founder interview with cinematic footage of the trainers, facility, and training experience</li>
+          <li>Professional editing, color, audio finishing, and licensed music</li>
+          <li>Website-ready and social-ready exports of the finished video</li>
+          <li>One custom website hero banner graphic</li>
+          <li>Matching social profile banners for Kool Body's active platforms</li>
+          <li>One coordinated on-location production session, up to 3 hours</li>
+          <li>One consolidated revision round for the video</li>
         </ul>
         <div class="impact">
           <span class="micro">The Impact</span>
-          <p class="it">Elevate the brand.</p>
-          <p>Beyond updating the photography, this package creates a cohesive, recognizable brand presentation. Studio headshots, team portraits, and custom website visuals bring consistency across your digital presence, communicating the professionalism, personality, and quality behind Kool Body. The result is a polished brand experience that builds confidence before a prospective client ever walks through the door.</p>
+          <p class="it">Photography plus a founder-led introduction.</p>
+          <p>People choose a gym based on trust. A hero video lets you explain, in your own words, what Kool Body stands for and how your approach is different, while matching website and social banners carry the same look everywhere people first find you.</p>
         </div>
       </article>
     </div>
@@ -489,102 +460,74 @@ footer{border-top:1px solid var(--border);padding-block:38px calc(44px + env(saf
 
 <div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
 
-<!-- 04 THE BRAND AUTHORITY EXPERIENCE -->
-<section id="authority" data-nav="Brand Authority">
+<!-- 04 THE COMPLETE BRAND STORY -->
+<section id="complete" data-nav="Complete Story">
   <div class="wrap">
     <div class="auth-head">
       <div>
         <div class="eyebrow reveal"><span class="sec-num">04</span> Package 03</div>
-        <h2 class="section-title reveal">The Brand <span class="c">Authority</span><br>Experience.</h2>
-        <p class="serif auth-tag reveal">Build authority and marketing momentum.</p>
-        <div class="auth-focus reveal">Complete Brand Refresh + Video + Podcast Authority</div>
-        <p class="lead reveal">Your brand is more than your facility and the services you offer. It's the experience you've built, the philosophy behind your training, and the expertise of the people who deliver it. This experience captures that story and turns it into content designed to build trust, establish authority, and create ongoing marketing opportunities.</p>
+        <h2 class="section-title reveal">The Complete<br>Brand <span class="c">Story.</span></h2>
+        <p class="serif auth-tag reveal">A complete introduction to the founder, all four trainers, and the Kool Body training experience.</p>
+        <div class="auth-focus reveal">Photography + Founder Hero Video + Four Trainer Spotlights</div>
+        <p class="lead reveal">Clients don't only choose a facility. They choose the people who will train them. This package adds a short spotlight on each of your four trainers to the founder story, so prospective clients can get to know the whole team before their first session.</p>
       </div>
       <div class="inv reveal" style="transition-delay:.12s">
         <div class="micro">Investment</div>
-        <div class="big"><span class="u">$</span>3,250</div>
-        <div class="sub">Photography · Brand Video · Podcast</div>
+        <div class="big"><span class="u">$</span>2,000</div>
+        <div class="sub">Photography · Founder Video · Trainer Spotlights</div>
       </div>
     </div>
 
     <div class="eng-band reveal">
-      <div class="eng-pill"><div class="n">25</div><div class="l">Edited Images<br>Total</div></div>
-      <div class="eng-pill"><div class="n">60–90<small>sec</small></div><div class="l">Brand<br>Video</div></div>
-      <div class="eng-pill"><div class="n">60<small>min</small></div><div class="l">Podcast Episode<br>Up To</div></div>
-      <div class="eng-pill"><div class="n">5</div><div class="l">Short-Form<br>Video Clips</div></div>
+      <div class="eng-pill"><div class="n">20</div><div class="l">Edited Photos<br>Total</div></div>
+      <div class="eng-pill"><div class="n">5</div><div class="l">Finished<br>Videos</div></div>
+      <div class="eng-pill"><div class="n">4</div><div class="l">Trainer<br>Spotlights</div></div>
+      <div class="eng-pill"><div class="n">4<small>hr</small></div><div class="l">Production Session<br>Up To</div></div>
     </div>
 
     <div class="comp-grid">
       <article class="card comp reveal">
         <div class="rm-h"><span class="rm-n">01</span><span class="rm-t">Photography &amp;<br>Brand Visuals</span></div>
-        <p class="rm-o">Everything included in The Brand Refresh.</p>
+        <p class="rm-o">Everything in The Brand Introduction.</p>
         <ul class="tick-list">
-          <li>Gym-floor and studio photography</li>
-          <li>Trainer headshots and team portraits</li>
-          <li>Website hero and banner graphics</li>
-          <li><span class="q">25</span> professionally edited images total</li>
+          <li><span class="q">20</span> professionally edited photos total</li>
+          <li>Trainer headshots, team portrait, and training and facility photography</li>
+          <li>Custom website hero banner and matching social profile banners</li>
         </ul>
       </article>
       <article class="card comp reveal" style="transition-delay:.1s">
-        <div class="rm-h"><span class="rm-n">02</span><span class="rm-t">Brand<br>Video</span></div>
-        <p class="rm-o">The story of Kool Body, told by its owner.</p>
+        <div class="rm-h"><span class="rm-n">02</span><span class="rm-t">Founder<br>Hero Video</span></div>
+        <p class="rm-o">Your story, told in your own words.</p>
         <ul class="tick-list">
-          <li>One professionally produced 60–90 second brand video</li>
-          <li>Owner interview and gym-floor B-roll</li>
-          <li>Professional editing, color grading, and sound design</li>
-          <li>Website and social-ready exports</li>
+          <li>One 45–60 second founder-led hero video</li>
+          <li>Guided interview with cinematic footage of the team and facility</li>
+          <li>Website-ready and social-ready exports</li>
         </ul>
       </article>
       <article class="card comp reveal" style="transition-delay:.2s">
-        <div class="rm-h"><span class="rm-n">03</span><span class="rm-t">Podcast<br>Production</span></div>
-        <p class="rm-o">A long-form conversation, recorded in our studio.</p>
-        <p class="why">A guided discussion goes beyond surface-level marketing, capturing your expertise, philosophy, training approach, and the stories that make Kool Body different. One recording becomes the foundation for many pieces of content, letting prospective clients connect with the people and purpose behind the brand.</p>
+        <div class="rm-h"><span class="rm-n">03</span><span class="rm-t">Trainer<br>Spotlights</span></div>
+        <p class="rm-o">A short introduction to each trainer.</p>
+        <p class="why">Prospective clients want to know who they'll be working with. A spotlight lets each trainer's personality and approach come through before a first session.</p>
         <ul class="tick-list">
-          <li>One professionally produced podcast episode (up to 60 minutes)</li>
-          <li>Pre-production discussion planning</li>
-          <li>Multi-camera recording at DGM's Del Mar studio</li>
-          <li>Fully edited episode</li>
-          <li><span class="q">5</span> professionally edited short-form video clips</li>
+          <li><span class="q">4</span> individual trainer spotlight videos, approximately 20–30 seconds each</li>
+          <li>A brief guided interview paired with training footage</li>
+          <li>Website-ready and social-ready formats, horizontal and vertical as appropriate</li>
         </ul>
       </article>
     </div>
 
-    <div class="bpx reveal">
-      <div class="bpx-top">
-        <span class="micro">Complimentary Inclusion · DGM Authority Blueprint</span>
-        <span class="chip">Included at no additional cost</span>
-      </div>
-      <h3>One Conversation.<br>A <span class="c">Month</span> of Marketing<br>Opportunities.</h3>
-      <p class="bp-lead">Following your podcast recording, we'll develop a personalized DGM Authority Blueprint that breaks the conversation down into a strategic content roadmap. By identifying key insights, educational topics, compelling stories, and valuable talking points, it shows how a single episode can provide source material for approximately 30 days of coordinated marketing across your website, social platforms, and other digital channels.</p>
-
-      <div class="eco" aria-label="How one episode supports multiple marketing opportunities">
-        <div class="eco-src">
-          <div class="ring" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg></div>
-          <span class="micro">Source Material</span>
-          <div class="t">The Episode</div>
-          <div class="s">Up to 60 minutes<br>Recorded at DGM's Del Mar studio</div>
-        </div>
-        <div class="eco-arw"><svg viewBox="0 0 22 14" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><path d="M1 7h18M14 2l6 5-6 5"/></svg></div>
-        <div class="eco-apps">
-          <div class="eco-app"><div class="h"><span class="node">01</span><span class="t">Short-Form Content</span></div><p>Educational clips, expert insights, and engaging moments for Instagram, Facebook, TikTok, and YouTube Shorts.</p></div>
-          <div class="eco-app"><div class="h"><span class="node">02</span><span class="t">Website &amp; Search</span></div><p>Opportunities to turn the conversation into website content, educational articles, and search-focused topics.</p></div>
-          <div class="eco-app"><div class="h"><span class="node">03</span><span class="t">Brand Storytelling</span></div><p>Personal stories, training philosophies, and differentiators that show prospective clients why Kool Body is different.</p></div>
-          <div class="eco-app hot"><div class="h"><span class="node">04</span><span class="t">Content Roadmap</span></div><p>A structured plan for repurposing the episode into approximately one month of consistent marketing opportunities.</p></div>
-        </div>
-      </div>
-
-      <div class="guard">
-        <div class="g"><div class="gt">Produced for You</div><p>One fully edited podcast episode and five professionally edited short-form clips.</p></div>
-        <div class="g"><div class="gt">Mapped for You</div><p>One complimentary DGM Authority Blueprint identifying opportunities for additional content, repurposing, and distribution.</p></div>
-        <div class="g"><div class="gt">Ready to Extend</div><p>Production and publishing of the additional assets it suggests can be explored separately.</p></div>
-      </div>
+    <div class="guard reveal">
+      <div class="g"><div class="gt">Five Finished Videos</div><p>One founder hero video and four trainer spotlights. Website and social formats are alternate exports of each approved edit.</p></div>
+      <div class="g"><div class="gt">One Production Session</div><p>Up to 4 hours on location at Kool Body, with all four trainers available during the session.</p></div>
+      <div class="g"><div class="gt">One Revision Round</div><p>One consolidated round of revisions for each finished video.</p></div>
     </div>
 
     <div class="value-close">
       <div class="divider reveal"></div>
-      <h3 class="reveal">More Than a Content Shoot.<br>A Foundation for <span class="c">What's Next.</span></h3>
-      <p class="reveal" style="transition-delay:.1s">The Brand Authority Experience brings together professional photography, cinematic storytelling, and expertise-driven content to give Kool Body a stronger brand presence and a versatile collection of assets for future marketing. Combined with the DGM Authority Blueprint, it provides a clear direction for turning one meaningful conversation into ongoing opportunities to connect with prospective clients.</p>
-    </div>  </div>
+      <h3 class="reveal">Meet The Team<br>Before The First <span class="c">Session.</span></h3>
+      <p class="reveal" style="transition-delay:.1s">The Complete Brand Story brings together professional photography, a founder-led introduction, and a spotlight on every trainer. Prospective clients get a clear picture of the people and the experience behind Kool Body, ready to use across your website and social channels.</p>
+    </div>
+  </div>
 </section>
 
 <!-- 05 NEXT STEPS -->
@@ -592,7 +535,7 @@ footer{border-top:1px solid var(--border);padding-block:38px calc(44px + env(saf
   <div class="wrap">
     <div class="eyebrow reveal"><span class="sec-num">05</span> Next Steps</div>
     <h2 class="pause-line reveal" style="transition-delay:.1s">Let's Bring It<br>To <span class="c">Life.</span></h2>
-    <p class="lead reveal" style="transition-delay:.2s">Once you've selected the package that best fits your needs, we'll coordinate the production schedule and finalize the creative direction.</p>
+    <p class="lead reveal" style="transition-delay:.2s">Once you've selected the package that best fits your needs, we'll schedule the on-location session around your four trainers and finalize the creative direction.</p>
     <div class="reveal" style="transition-delay:.3s">
       <a class="cta" href="mailto:lo@dailygrindmediapro.com?subject=Kool%20Body%20Training%20Proposal%20%E2%80%94%20Let%27s%20Get%20Started">Let's Get Started <svg viewBox="0 0 22 14" aria-hidden="true"><path d="M1 7h18M14 2l6 5-6 5"/></svg></a>
       <div class="mail">Email <span id="mailAddr">lo@dailygrindmediapro.com</span><button class="copy" id="copyBtn" type="button">Copy</button></div>
