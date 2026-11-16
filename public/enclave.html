@@ -1941,6 +1941,7 @@ body.pres #s-part2{min-height:0;position:fixed;overflow-y:auto}
       <a href="#s-authority-system" data-goto="s-authority-system"><i>03</i><b>The DGM Podcast + Authority System</b></a>
       <a href="#s-roadmap" data-goto="s-roadmap"><i>04</i><b>Your first 90 days</b></a>
       <a href="#s-investment" data-goto="s-investment"><i>05</i><b>Your investment</b></a>
+      <a href="#p3-p3"><i>III</i><b>The statement of work</b></a>
     </nav>
   </div>
 </section>
@@ -2288,6 +2289,465 @@ body.pres #s-part2{min-height:0;position:fixed;overflow-y:auto}
 <!-- ======================= CH7 · DISCOVERY ======================= -->
 
 
+<!-- PART III: STATEMENT OF WORK -->
+<style>
+#p3{
+  --night:#0B0C0D;--night-2:#121315;--night-3:#1A1C1F;
+  --bone:#EDEAE3;--bone-2:#E3DFD6;--paper:#F7F5F0;
+  --ink:#121212;--ink-soft:#67645E;--on-night:#ECE9E2;--on-night-soft:#8F8C86;
+  --brass:#B8975E;--brass-lt:#D3BA89;--bronze:#A2834F;
+  --hair:rgba(18,18,18,.14);--hair-n:rgba(236,233,226,.14);
+  --f:"Archivo","Helvetica Neue",Arial,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --gl:max(24px,env(safe-area-inset-left,0px));--gr:max(24px,env(safe-area-inset-right,0px));
+}
+#p3, #p3 *{box-sizing:border-box;margin:0;padding:0}
+#p3{background:var(--night);color:var(--on-night);font-family:var(--f);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+#p3 a{color:inherit}
+#p3 .p3-wrap{max-width:1120px;margin:0 auto;padding:0 var(--gr) 0 var(--gl)}
+#p3 .p3-sec{padding:112px 0}
+#p3 .p3-sec.p3-dk2{background:var(--night-2)}
+#p3 .p3-sec.p3-lt{background:var(--bone);color:var(--ink)}
+#p3 .p3-sec.p3-paper{background:var(--paper);color:var(--ink)}
+#p3 .p3-eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);display:flex;gap:14px;align-items:center;margin-bottom:22px}
+#p3 .p3-lt .p3-eyebrow,#p3 .p3-paper .p3-eyebrow{color:var(--bronze)}
+#p3 .p3-eyebrow i{font-style:normal;opacity:.8}
+#p3 h1,#p3 h2,#p3 h3{font-weight:300;font-stretch:88%;letter-spacing:-.02em;line-height:1.04}
+#p3 h2{font-size:clamp(36px,5.4vw,64px);margin-bottom:24px;max-width:15ch}
+#p3 h2 b{font-weight:700;color:var(--brass)}
+#p3 .p3-lt h2 b,#p3 .p3-paper h2 b{color:var(--bronze)}
+#p3 h3{font-size:22px;font-weight:600;font-stretch:100%;letter-spacing:-.005em;margin:44px 0 14px}
+#p3 .p3-lede{font-size:20px;line-height:1.55;max-width:62ch;color:var(--on-night-soft);margin-bottom:40px}
+#p3 .p3-lt .p3-lede,#p3 .p3-paper .p3-lede{color:var(--ink-soft)}
+#p3 p{max-width:68ch;margin-bottom:16px}
+#p3 strong{font-weight:650}
+#p3 .p3-hero{min-height:88vh;display:flex;align-items:center;padding:120px 0 96px;border-bottom:1px solid var(--hair-n)}
+#p3 .p3-track{display:flex;flex-wrap:wrap;align-items:center;gap:14px;font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-night-soft);margin-bottom:48px}
+#p3 .p3-track span i{font-style:normal;display:inline-grid;place-items:center;width:26px;height:26px;border:1px solid var(--hair-n);border-radius:50%;margin-right:10px;font-size:11px}
+#p3 .p3-track .p3-now{color:var(--brass)}
+#p3 .p3-track .p3-now i{border-color:var(--brass)}
+#p3 .p3-track .p3-rule{width:36px;height:1px;background:var(--hair-n)}
+#p3 .p3-hero h1{font-size:clamp(46px,8vw,104px);max-width:12ch;margin-bottom:28px}
+#p3 .p3-hero h1 b{font-weight:700;color:var(--brass)}
+#p3 .p3-draft{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--brass);color:var(--brass-lt);font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;border-radius:2px;margin-bottom:36px}
+#p3 .p3-draft::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--brass)}
+#p3 .p3-toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0;border-top:1px solid var(--hair-n);margin-top:56px}
+#p3 .p3-toc a{display:flex;gap:16px;align-items:baseline;padding:18px 4px;border-bottom:1px solid var(--hair-n);text-decoration:none;transition:color .2s}
+#p3 .p3-toc a:hover{color:var(--brass-lt)}
+#p3 .p3-toc i{font-family:var(--f-mono);font-style:normal;font-size:12px;color:var(--brass)}
+#p3 .p3-toc b{font-weight:500}
+#p3 .p3-tbl{width:100%;overflow-x:auto;margin:8px 0 28px;-webkit-overflow-scrolling:touch}
+#p3 table{width:100%;border-collapse:collapse;font-size:15.5px;min-width:560px}
+#p3 th{font-family:var(--f-mono);font-weight:500;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;text-align:left;padding:12px 14px 12px 0;border-bottom:1px solid currentColor;opacity:.75}
+#p3 td{padding:14px 14px 14px 0;border-bottom:1px solid var(--hair-n);vertical-align:top}
+#p3 .p3-lt td,#p3 .p3-paper td{border-bottom-color:var(--hair)}
+#p3 td.p3-num,#p3 th.p3-num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+#p3 tr.p3-total td{border-bottom:none;border-top:1px solid currentColor;font-weight:700;padding-top:16px}
+#p3 .p3-tag{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+#p3 .p3-dk2 .p3-tag,#p3 .p3-sec:not(.p3-lt):not(.p3-paper) .p3-tag{color:var(--on-night-soft)}
+#p3 .p3-tbc{background:rgba(184,151,94,.18);color:inherit;padding:1px 7px;border-radius:2px;font-family:var(--f-mono);font-size:.82em;white-space:nowrap}
+#p3 ul.p3-clean,#p3 ol.p3-clean{list-style:none;max-width:72ch}
+#p3 ul.p3-clean li,#p3 ol.p3-clean li{position:relative;padding:12px 0 12px 30px;border-bottom:1px solid var(--hair-n)}
+#p3 .p3-lt ul.p3-clean li,#p3 .p3-paper ul.p3-clean li,#p3 .p3-lt ol.p3-clean li,#p3 .p3-paper ol.p3-clean li{border-bottom-color:var(--hair)}
+#p3 ul.p3-clean li::before{content:"";position:absolute;left:4px;top:24px;width:10px;height:1px;background:var(--brass)}
+#p3 ol.p3-clean{counter-reset:n}
+#p3 ol.p3-clean li{counter-increment:n}
+#p3 ol.p3-clean li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:13px;font-family:var(--f-mono);font-size:12px;color:var(--brass)}
+#p3 .p3-lt ol.p3-clean li::before,#p3 .p3-paper ol.p3-clean li::before{color:var(--bronze)}
+#p3 .p3-grid2{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+#p3 .p3-card{border:1px solid var(--hair-n);padding:28px;border-radius:2px}
+#p3 .p3-lt .p3-card,#p3 .p3-paper .p3-card{border-color:var(--hair);background:rgba(255,255,255,.35)}
+#p3 .p3-card h4{font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin-bottom:12px}
+#p3 .p3-lt .p3-card h4,#p3 .p3-paper .p3-card h4{color:var(--bronze)}
+#p3 .big{font-size:clamp(40px,6vw,72px);font-weight:300;font-stretch:88%;letter-spacing:-.02em;line-height:1}
+#p3 .big b{font-weight:700}
+#p3 .p3-note{font-size:14.5px;color:var(--ink-soft);max-width:72ch}
+#p3 .p3-sec:not(.p3-lt):not(.p3-paper) .p3-note{color:var(--on-night-soft)}
+#p3 .callout{border-left:2px solid var(--brass);padding:4px 0 4px 22px;margin:28px 0;max-width:68ch;font-size:19px;line-height:1.5}
+#p3 .p3-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--hair);margin:8px 0 40px}
+#p3 .p3-stats div{padding:24px 20px 24px 0;border-bottom:1px solid var(--hair)}
+#p3 .p3-stats .p3-k{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+#p3 .p3-stats .p3-v{font-size:30px;font-weight:600;font-stretch:90%;letter-spacing:-.01em}
+#p3 .close{padding:120px 0;text-align:left;border-top:1px solid var(--hair-n)}
+#p3 .close h2{max-width:18ch}
+#p3 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:40px 0;border-top:1px solid var(--hair-n)}
+#p3 .steps div{padding:22px 18px 22px 0;border-bottom:1px solid var(--hair-n)}
+#p3 .steps i{display:block;font-family:var(--f-mono);font-style:normal;font-size:12px;color:var(--brass);margin-bottom:8px}
+#p3 .sig{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-night-soft);line-height:2}
+#p3 .sig b{color:var(--on-night);font-weight:500}
+#p3 footer{padding:36px 0 56px;font-size:13px;color:var(--on-night-soft);border-top:1px solid var(--hair-n)}
+@media (max-width:820px){#p3 .p3-sec{padding:80px 0}
+#p3 .p3-grid2{grid-template-columns:1fr;gap:28px}
+#p3 .p3-stats{grid-template-columns:1fr}
+#p3 .steps{grid-template-columns:1fr 1fr}
+#p3{font-size:16px}
+#p3 .p3-lede{font-size:18px}}
+
+
+#p3{display:block}
+</style>
+<div id="p3">
+<!-- HERO / PART III OPENER -->
+<section class="p3-hero" id="p3-p3">
+  <div class="p3-wrap">
+    <div class="p3-track" aria-label="Part III of III">
+      <span><i>I</i>The original vision</span><span class="p3-rule" aria-hidden="true"></span>
+      <span><i>II</i>Following our conversation</span><span class="p3-rule" aria-hidden="true"></span>
+      <span class="p3-now"><i>III</i>The statement of work</span>
+    </div>
+    <div class="p3-draft">Draft for discussion · Not a binding agreement</div>
+    <h1>Your questions, <b>answered.</b></h1>
+    <p class="p3-lede">Part II set the direction. Part III puts it in writing: what we deliver, when, what it costs, who owns what, and how we measure progress. It answers the ten questions you sent on November 13. Items marked <span class="p3-tbc">to confirm</span> are open and will be settled together before anything is signed.</p>
+    <nav class="p3-toc" aria-label="Part III contents">
+      <a href="#p3-scope"><i>01</i><b>Scope and deliverables</b></a>
+      <a href="#p3-website"><i>02</i><b>The website</b></a>
+      <a href="#p3-timeline"><i>03</i><b>Timeline and your current campaign</b></a>
+      <a href="#p3-investment"><i>04</i><b>Investment</b></a>
+      <a href="#p3-paid"><i>05</i><b>Paid acquisition and the specialist</b></a>
+      <a href="#p3-ongoing"><i>06</i><b>After 90 days</b></a>
+      <a href="#p3-ownership"><i>07</i><b>Ownership and responsibilities</b></a>
+      <a href="#p3-targets"><i>08</i><b>Reporting and targets</b></a>
+      <a href="#p3-next"><i>09</i><b>Assumptions and next steps</b></a>
+    </nav>
+  </div>
+</section>
+
+<!-- 01 SCOPE + DELIVERABLES -->
+<section class="p3-sec p3-lt" id="p3-scope">
+  <div class="p3-wrap">
+    <div class="p3-eyebrow"><i>01</i>Scope and deliverables</div>
+    <h2>About ten pieces a week. <b>In writing.</b></h2>
+    <p class="p3-lede">From month 2, Enclave publishes about ten finished pieces a week, adapted for each platform. Month 1 starts in week 2, using your existing photo and video library before the first shoot.</p>
+
+    <div class="p3-tbl"><table>
+      <thead><tr><th>Deliverable</th><th class="p3-num">Per month</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Reels and Shorts</td><td class="p3-num">16</td><td>From sessions, founder interviews and your existing library</td></tr>
+        <tr><td>Carousels</td><td class="p3-num">8</td><td>Process, Clarity education, project stories</td></tr>
+        <tr><td>Graphic and quote posts</td><td class="p3-num">8</td><td>In Enclave's visual language</td></tr>
+        <tr><td>LinkedIn thought-leadership posts</td><td class="p3-num">8</td><td>Written from Omri's interview answers</td></tr>
+        <tr><td>Google Business Profile posts</td><td class="p3-num">4</td><td>Projects, updates, video</td></tr>
+        <tr><td>SEO/GEO articles</td><td class="p3-num">2</td><td>The questions homeowners search for and ask AI tools</td></tr>
+        <tr><td>Full founder episode</td><td class="p3-num">1</td><td>About 60 minutes, on YouTube with an audio version</td></tr>
+        <tr><td>Edited photographs</td><td class="p3-num">40</td><td>Per production month</td></tr>
+        <tr><td>Flagship project films</td><td class="p3-num">2 total</td><td>One each in months 2 and 3</td></tr>
+        <tr><td>Homeowner stories</td><td class="p3-num">2+ total</td><td>With homeowner consent, arranged by Enclave</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="p3-grid2">
+      <div>
+        <h3>How it runs</h3>
+        <ul class="p3-clean">
+          <li><strong>Five on-location sessions,</strong> scheduled 2 / 2 / 1. Each runs up to four hours in Orange County and includes about one hour of Omri on camera.</li>
+          <li><strong>Channels:</strong> Instagram, Facebook, LinkedIn, YouTube and Google Business Profile, scheduled through your GoHighLevel.</li>
+          <li><strong>Revisions:</strong> two rounds on films and website pages. Social content is approved in weekly batches, with one round of edits per batch.</li>
+          <li><strong>Your team's footage:</strong> we edit up to four clips a month that meet a basic spec (1080p or better, steady, clean audio).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Out of scope</h3>
+        <ul class="p3-clean">
+          <li>Advertising media spend, which Enclave pays directly to the platforms.</li>
+          <li>Third-party software and hosting in Enclave's name.</li>
+          <li>Production beyond five sessions, or travel outside Orange County.</li>
+          <li>Print, signage, PR and events.</li>
+          <li>New ad platforms beyond Google Search and limited Meta retargeting, unless agreed in writing.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Production, defined</h3>
+    <p>Each session runs up to four hours on location in Orange County, with about one hour of Omri on camera. Every deliverable is defined so there's no gray area.</p>
+    <div class="p3-tbl"><table>
+      <thead><tr><th>Deliverable</th><th>What's included</th><th class="p3-num">90-day total</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Flagship project film</strong></td><td>One finished project told through its decisions: a 60–120 second hero film, a 30-second cutdown and a vertical 15–30 second version. Color-graded, licensed music, captions, drone where cleared</td><td class="p3-num">2</td></tr>
+        <tr><td><strong>Homeowner story</strong></td><td>A 60–90 second testimonial film plus two vertical cutdowns</td><td class="p3-num">2</td></tr>
+        <tr><td><strong>Founder episode</strong></td><td>A 45–60 minute edited interview, multi-camera with cleaned audio, for YouTube plus an audio version</td><td class="p3-num">3</td></tr>
+        <tr><td><strong>Reels and Shorts</strong></td><td>15–60 second vertical videos, captioned and made for each platform. About half from founder interviews, half from project, craft and build footage</td><td class="p3-num">44</td></tr>
+        <tr><td><strong>Edited photographs</strong></td><td>Finished projects, details, Omri and team portraits, sized for web and social. 40 a month</td><td class="p3-num">120</td></tr>
+        <tr><td><strong>Website video loops</strong></td><td>Short background loops for the homepage and Clarity page, ready by day 30</td><td class="p3-num">2–3</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Session plan</h3>
+    <div class="p3-tbl"><table>
+      <thead><tr><th>Session</th><th>Month</th><th>What we capture</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>1</td><td>Founder interview 1, filming for project film A, Omri portraits, website loops</td></tr>
+        <tr><td>2</td><td>1</td><td>Build in progress, craft details, photography of a second project, website loops</td></tr>
+        <tr><td>3</td><td>2</td><td>Founder interview 2, homeowner story 1, drone (cleared in advance)</td></tr>
+        <tr><td>4</td><td>2</td><td>Filming for project film B, craft details, drone</td></tr>
+        <tr><td>5</td><td>3</td><td>Founder interview 3, homeowner story 2, pickups</td></tr>
+      </tbody>
+    </table></div>
+    <p class="p3-note">Projects filmed depend on Enclave's site and homeowner availability.</p>
+
+    <h3>Production terms</h3>
+    <ul class="p3-clean">
+      <li><strong>Turnaround:</strong> social content in weekly batches; a founder episode within 7 business days of its session; the first cut of a film within 10 business days of its final session.</li>
+      <li><strong>Approvals:</strong> feedback on social within 2 business days, and on films and site pages within 5. With no feedback by then, the piece counts as approved.</li>
+      <li><strong>Scheduling:</strong> sessions are booked at least 7 days ahead and can be rescheduled with 48 hours' notice. A cancellation inside 48 hours counts as a used session, unless it's for weather, safety or drone restrictions.</li>
+      <li><strong>Drone:</strong> subject to FAA airspace authorization and weather. Locations near airports need 2–3 weeks' notice, so drone filming is planned for months 2 and 3.</li>
+      <li><strong>Rollover:</strong> anything delayed on Enclave's side rolls over within the 90 days. It extends past the term only if agreed in writing.</li>
+      <li><strong>Music:</strong> licensed for both organic and paid use.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 02 WEBSITE -->
+<section class="p3-sec" id="p3-website">
+  <div class="p3-wrap">
+    <div class="p3-eyebrow"><i>02</i>The website</div>
+    <h2>Seven core pages. <b>Yours outright.</b></h2>
+    <p class="p3-lede">We design and build a custom site with a simple editor, so your team can add projects, articles and testimonials without us. The core site is live by day 30, built from your existing photography.</p>
+
+    <div class="p3-tbl"><table>
+      <thead><tr><th>Page</th><th>How it counts</th><th>At launch</th></tr></thead>
+      <tbody>
+        <tr><td>Home</td><td>Core page</td><td>Yes</td></tr>
+        <tr><td>Clarity, the process</td><td>Core page</td><td>Yes</td></tr>
+        <tr><td>Projects overview</td><td>Core page</td><td>Yes</td></tr>
+        <tr><td>Studio and About Omri</td><td>Core page</td><td>Yes</td></tr>
+        <tr><td>Where We Build</td><td>Core page</td><td>Yes</td></tr>
+        <tr><td>Journal</td><td>Core page</td><td>Yes</td></tr>
+        <tr><td>Start a Project, with qualification</td><td>Core page</td><td>Yes</td></tr>
+        <tr><td>Individual project pages</td><td><span class="p3-tag">Template, not counted</span></td><td>6 at launch, more as projects are shot</td></tr>
+        <tr><td>City pages</td><td><span class="p3-tag">Template, not counted</span></td><td>Only where Enclave has real projects nearby: 2–3 at launch</td></tr>
+        <tr><td>Journal articles</td><td><span class="p3-tag">Template, not counted</span></td><td>Added through the monthly SEO/GEO work</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="p3-grid2">
+      <div class="p3-card"><h4>Domain</h4><p><span class="p3-tbc">enclavedesignbuild.com, to confirm</span>, with redirects from enclaveremodeling.com so existing search rankings carry over.</p></div>
+      <div class="p3-card"><h4>Hosting and ownership</h4><p>Hosted in an account in Enclave's name and paid by Enclave, with DGM added as a collaborator. You own the domain, the code and every piece of content.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TIMELINE + CURRENT CAMPAIGN -->
+<section class="p3-sec p3-paper" id="p3-timeline">
+  <div class="p3-wrap">
+    <div class="p3-eyebrow"><i>03</i>Timeline and your current campaign</div>
+    <h2>Live by day 30. <b>Paid by month 3.</b></h2>
+    <p class="p3-lede">The core site launches by day 30. The paid plan is presented by day 60, and paid search activates in month 3 once you approve it.</p>
+
+    <div class="p3-tbl"><table>
+      <thead><tr><th>When</th><th>What happens</th><th>Milestone</th></tr></thead>
+      <tbody>
+        <tr><td>Week 1</td><td>Kickoff, account access, tracking baseline, content plan approved, first two sessions scheduled</td><td>Access complete</td></tr>
+        <tr><td>Week 2</td><td>First posts live from your library. Finalist specialists audit your current Google Ads account, with your approval</td><td>Publishing begins</td></tr>
+        <tr><td>Weeks 2–4</td><td>Sessions 1–2 and founder interview 1. Google Business Profile rebuild, SEO/GEO technical launch, GoHighLevel audit, Clarity landing page</td><td><strong>Day 30:</strong> core site live, ad history reviewed, tracking in place</td></tr>
+        <tr><td>Month 2</td><td>Sessions 3–4 and founder interview 2. Specialist selected with your approval. Campaign structure and conversion tracking built</td><td><strong>Day 60:</strong> paid plan and testing budget presented for approval</td></tr>
+        <tr><td>Month 3</td><td>Session 5 and founder interview 3. Paid activation once approved. Lead-quality reporting</td><td><strong>Day 90:</strong> performance review and next-quarter plan</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Your current Google campaign: keep it, fix it, then rebuild it</h3>
+    <p>Pausing now would cut off your main lead source while the foundation is built, and its history is exactly the data the rebuild needs.</p>
+    <ol class="p3-clean">
+      <li><strong>Weeks 1–4.</strong> It keeps running at its current budget. With your approval, we make low-risk fixes such as removing wasted searches, tightening locations and correcting conversion tracking. Nothing that's working gets paused.</li>
+      <li><strong>Month 2.</strong> The selected specialist builds the new structure, the tracking and the offline conversions from GoHighLevel.</li>
+      <li><strong>Month 3.</strong> The rebuilt campaign launches on the new site and Clarity landing page. Spend increases only once the cost per qualified consultation is stable.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 04 INVESTMENT -->
+<section class="p3-sec p3-lt" id="p3-investment">
+  <div class="p3-wrap">
+    <div class="p3-eyebrow"><i>04</i>Investment</div>
+    <h2>Where the $30,000 <b>goes.</b></h2>
+    <p class="p3-lede">About $9,250 of the 90-day investment covers one-time builds that don't repeat. That's why the ongoing fee drops to $8,000 a month from month 4.</p>
+
+    <div class="p3-stats">
+      <div><div class="p3-k">90-day program</div><div class="p3-v">$30,000</div></div>
+      <div><div class="p3-k">Installments</div><div class="p3-v">3 × $10,000</div></div>
+      <div><div class="p3-k">Ongoing, from month 4</div><div class="p3-v">$8,000 / mo</div></div>
+    </div>
+
+    <div class="p3-tbl"><table>
+      <thead><tr><th>Component</th><th>Type</th><th class="p3-num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td>Custom website: 7 core pages, templates, editor</td><td><span class="p3-tag">One-time build</span></td><td class="p3-num">$4,500</td></tr>
+        <tr><td>SEO/GEO launch: technical setup, structured data, Google Business Profile rebuild, AI search</td><td><span class="p3-tag">One-time build</span></td><td class="p3-num">$1,500</td></tr>
+        <tr><td>GoHighLevel optimization, Clarity landing page, tracking</td><td><span class="p3-tag">One-time build</span></td><td class="p3-num">$1,500</td></tr>
+        <tr><td>Paid audit and campaign build, including specialist audits</td><td><span class="p3-tag">One-time build</span></td><td class="p3-num">$1,750</td></tr>
+        <tr><td>Production: five sessions, editing, photography</td><td><span class="p3-tag">Operating, 3 months</span></td><td class="p3-num">$9,000</td></tr>
+        <tr><td>Founder Authority System, social management and publishing</td><td><span class="p3-tag">Operating, 3 months</span></td><td class="p3-num">$5,000</td></tr>
+        <tr><td>SEO/GEO ongoing: articles, local search, optimization</td><td><span class="p3-tag">Operating, 3 months</span></td><td class="p3-num">$1,750</td></tr>
+        <tr><td>Strategy, reporting and paid management, including the specialist's fee</td><td><span class="p3-tag">Operating, 3 months</span></td><td class="p3-num">$5,000</td></tr>
+        <tr class="p3-total"><td>Total</td><td></td><td class="p3-num">$30,000</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="p3-grid2">
+      <div class="p3-card"><h4>Payment schedule</h4><p>$10,000 at signing, $10,000 at day 30 and $10,000 at day 60.</p></div>
+      <div class="p3-card"><h4>Paid separately by Enclave</h4><p>Advertising media spend, paid directly to Google (and Meta, if used). A testing budget is recommended after the audit, and no new spend starts without your written approval. Hosting and domain costs in your name, estimated at under $50 a month.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 PAID -->
+<section class="p3-sec p3-dk2" id="p3-paid">
+  <div class="p3-wrap">
+    <div class="p3-eyebrow"><i>05</i>Paid acquisition and the specialist</div>
+    <h2>You see the work <b>before you approve.</b></h2>
+    <p class="p3-lede">The specialist's fee is included in ours, during the 90 days and in both ongoing options. You never hire or manage them; we coordinate and oversee their work.</p>
+
+    <h3>How the specialist is chosen</h3>
+    <ol class="p3-clean">
+      <li>We've vetted more than thirty candidates and narrowed to a shortlist. No one is named or presented until their results are verified.</li>
+      <li>With your approval and account access, up to two finalists each complete a paid audit of your current Google Ads account in month 1.</li>
+      <li>We present the audits side by side, with verifiable examples of each finalist's own work, credited to them rather than to DGM. If a closely relevant verified example isn't available, we'll tell you.</li>
+      <li>You approve the selection before management begins.</li>
+    </ol>
+
+    <div class="p3-grid2" style="margin-top:40px">
+      <div class="p3-card"><h4>What we optimize for</h4><p>Qualified consultations, signed Clarity engagements and signed Builds, tracked in GoHighLevel and fed back to Google. Calls and form fills alone don't count as results.</p></div>
+      <div class="p3-card"><h4>What we won't promise</h4><p>A particular cost per lead, a number of leads, a return on ad spend, or that a larger budget means better results.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 ONGOING -->
+<section class="p3-sec p3-lt" id="p3-ongoing">
+  <div class="p3-wrap">
+    <div class="p3-eyebrow"><i>06</i>After 90 days</div>
+    <h2>Three-month terms. <b>Earned every quarter.</b></h2>
+    <p class="p3-lede">The partnership continues in three-month terms. Each term opens with a performance review and an updated quarterly plan, and either side can choose not to renew with 30 days' written notice before a term ends. Ad spend stays separate; the specialist's fee stays included.</p>
+
+    <div class="p3-tbl"><table>
+      <thead><tr><th></th><th>Core · $8,000 / mo</th><th>Growth · $10,000 / mo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Production</strong></td><td>2 sessions a month, including the founder interview</td><td>2 sessions plus 1 flagship project film a month</td></tr>
+        <tr><td><strong>Authority and social</strong></td><td>Volumes as in section 01, all channels</td><td>Higher volume, plus email content</td></tr>
+        <tr><td><strong>SEO/GEO</strong></td><td>2 articles a month, Google Business Profile, local search</td><td>Adds new city pages and conversion testing</td></tr>
+        <tr><td><strong>Paid</strong></td><td>Google Search management, specialist included</td><td>Google Search plus Meta, specialist included</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>The 12-month roadmap</h3>
+    <div class="p3-tbl"><table>
+      <thead><tr><th>Months</th><th>Focus</th><th>What changes</th></tr></thead>
+      <tbody>
+        <tr><td>1–3</td><td><strong>Foundation</strong></td><td>Site, content library, search setup and tracking. Paid search activated in month 3</td></tr>
+        <tr><td>4–6</td><td><strong>Prove paid</strong></td><td>Optimize to a stable cost per qualified consultation. Raise spend only once it holds for 60+ days. Add city pages</td></tr>
+        <tr><td>7–12</td><td><strong>Compound</strong></td><td>Search and AI visibility build on the content library. Homeowner stories accumulate. Retargeting and nurture expand</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="p3-grid2">
+      <div class="p3-card"><h4>We keep running</h4><p>Strategy, production, social, SEO/GEO, GoHighLevel optimization, paid oversight and reporting.</p></div>
+      <div class="p3-card"><h4>You run</h4><p>Lead response, consultations, Clarity and The Build, plus weekly content approvals. Your team can add projects and articles through the site's editor whenever it likes, and can take everything in-house at any time.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 OWNERSHIP + RESPONSIBILITIES -->
+<section class="p3-sec" id="p3-ownership">
+  <div class="p3-wrap">
+    <div class="p3-eyebrow"><i>07</i>Ownership and responsibilities</div>
+    <h2>Your accounts. Your data. <b>Your work.</b></h2>
+    <p class="p3-lede">Enclave owns its accounts, data and finished work. We and the specialist work inside your accounts, with access you can remove at any time.</p>
+
+    <div class="p3-tbl"><table>
+      <thead><tr><th>Asset</th><th>Owner</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Google Ads, Meta, Google Business Profile, Analytics</td><td>Enclave</td><td>DGM and the specialist added as managers</td></tr>
+        <tr><td>GoHighLevel account, contacts and pipeline data</td><td>Enclave</td><td><span class="p3-tbc">confirm the account is in Enclave's name</span></td></tr>
+        <tr><td>Domain, hosting, website code and editor</td><td>Enclave</td><td>DGM added as a collaborator</td></tr>
+        <tr><td>Landing pages and final creative</td><td>Enclave</td><td>Films, photos, posts, articles, episodes</td></tr>
+        <tr><td>Raw footage from Enclave sessions</td><td>Enclave</td><td>Delivered on request at the end of each term; DGM keeps an archive copy</td></tr>
+        <tr><td>DGM's own tools and methods</td><td>DGM</td><td>The Authority System process, content frameworks, automation templates and reusable site components. You keep permanent use of everything built with them for Enclave</td></tr>
+      </tbody>
+    </table></div>
+    <p class="p3-note">You own each deliverable once the installment covering it is paid. We may show the work in our portfolio and, with your approval, publish a results case study; anything identifying a homeowner or their home needs your approval first. If the partnership ends, we hand over all logins, files and work in progress within 10 business days.</p>
+
+    <h3>What we'll need from you</h3>
+    <ul class="p3-clean">
+      <li><strong>Access within five business days of signing:</strong> Google Ads, Analytics and Tag Manager, Google Business Profile, Meta, GoHighLevel, the domain registrar, the current website, and your photo and video library.</li>
+      <li><strong>One decision-maker</strong> for approvals, with a named backup. Social batches approved within 2 business days; website pages and films within 5.</li>
+      <li><strong>On shoot days:</strong> site access, homeowner permissions for filming, and about one hour of Omri on camera per session.</li>
+      <li><strong>Prompt follow-up on new leads</strong> <span class="p3-tbc">target time to confirm</span>, with consultation, Clarity and Build outcomes recorded in GoHighLevel so reporting reflects real results.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 08 TARGETS -->
+<section class="p3-sec p3-paper" id="p3-targets">
+  <div class="p3-wrap">
+    <div class="p3-eyebrow"><i>08</i>Reporting and targets</div>
+    <h2>Targets, <b>not guarantees.</b></h2>
+    <p class="p3-lede">These are working numbers, finalized after the audit using your own close rates and average Clarity fee <span class="p3-tbc">to confirm</span>. A monthly report and call cover spend, inquiries, qualified leads, held consultations, signed Clarity and signed Builds, with the cost of each by source.</p>
+
+    <h3>What's realistic, by phase</h3>
+    <div class="p3-tbl"><table>
+      <thead><tr><th>Months</th><th>Qualified meetings a month (target)</th><th>What drives it</th></tr></thead>
+      <tbody>
+        <tr><td>1–3</td><td><strong>Hold about 3</strong> (today's level)</td><td>Your current campaign keeps running while the foundation is built. New paid search starts in month 3, with a 4–6 week learning period</td></tr>
+        <tr><td>4–6</td><td><strong>5–7</strong></td><td>The rebuilt paid search stabilizes. Early local search and Google Business Profile gains</td></tr>
+        <tr><td>7–12</td><td><strong>8–10</strong></td><td>Search and AI visibility compound on the content library. Homeowner stories build trust</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Paid search benchmarks</h3>
+    <div class="p3-tbl"><table>
+      <thead><tr><th>Measure</th><th>Strong result</th><th>Warning sign</th></tr></thead>
+      <tbody>
+        <tr><td>Cost per held qualified consultation</td><td>Under $1,000 by months 4–6</td><td>Over $2,000 after 60 days of optimization</td></tr>
+        <tr><td>Cost per signed Clarity</td><td>Under $5,000</td><td>Over $10,000</td></tr>
+        <tr><td>Cost per signed Build</td><td colspan="2"><span class="p3-tbc">set from your Clarity-to-Build rate</span></td></tr>
+        <tr><td>Share of inquiries that qualify</td><td>30% or more</td><td>Under 15%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="p3-note">Calls are weekly in month 1, every two weeks in months 2–3, then monthly. If a warning sign appears, we bring a written diagnosis and a corrective plan to the next call.</p>
+  </div>
+</section>
+
+<!-- 09 ASSUMPTIONS + NEXT STEPS -->
+<section class="p3-sec p3-lt" id="p3-next">
+  <div class="p3-wrap">
+    <div class="p3-eyebrow"><i>09</i>Assumptions and next steps</div>
+    <h2>Agree it together. <b>Then begin.</b></h2>
+    <div class="p3-grid2">
+      <div>
+        <h3>Assumptions</h3>
+        <ul class="p3-clean">
+          <li>All production takes place in Orange County, within the four-hour session windows.</li>
+          <li>Your existing photo and video library may be used for the website and early content.</li>
+          <li>Paid activation in month 3 depends on the audit findings, readiness and an approved budget.</li>
+          <li>Search and AI visibility build over months, not weeks.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Changes</h3>
+        <p>Any change to scope, quantities or timing is agreed in writing before work starts, with its price and its effect on the timeline. Work outside this scope is quoted separately.</p>
+        <h3>References</h3>
+        <p>Two current clients and one former client, shared separately once each has confirmed they're happy to take your call.</p>
+      </div>
+    </div>
+
+    <h3>Where your questions are answered</h3>
+    <div class="p3-tbl"><table>
+      <thead><tr><th>Your question</th><th>Answered in</th></tr></thead>
+      <tbody>
+        <tr><td>1. The long-term plan</td><td><a href="#p3-ongoing">06 · After 90 days</a></td></tr>
+        <tr><td>2. What's realistic</td><td><a href="#p3-targets">08 · Reporting and targets</a></td></tr>
+        <tr><td>3. Investment breakdown</td><td><a href="#p3-investment">04 · Investment</a></td></tr>
+        <tr><td>4. Lead flow during setup</td><td><a href="#p3-timeline">03 · Your current campaign</a></td></tr>
+        <tr><td>5. Website</td><td><a href="#p3-website">02 · The website</a></td></tr>
+        <tr><td>6. Deliverables</td><td><a href="#p3-scope">01 · Scope and deliverables</a></td></tr>
+        <tr><td>7. Paid ads and the specialist</td><td><a href="#p3-paid">05 · Paid acquisition</a></td></tr>
+        <tr><td>8. Targets</td><td><a href="#p3-targets">08 · Reporting and targets</a></td></tr>
+        <tr><td>9. Ownership</td><td><a href="#p3-ownership">07 · Ownership</a></td></tr>
+        <tr><td>10. References</td><td>Shared separately once confirmed</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+</div>
+<!-- END PART III -->
 <section class="sec full" id="s-close" data-ch="7" data-title="Next steps">
   <div class="bgimg"><img src="/enclave-assets/lounge.jpg" alt="Enclave indoor–outdoor lounge opening to the yard" loading="lazy"></div>
   <div class="wrap">
