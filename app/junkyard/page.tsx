@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Junkyard Sports Bar & Grill × Daily Grind Media — Marketing Partnership Proposal',
+  title: 'Junkyard Sports Bar & Grill × Daily Grind Media — Partnership Scope',
 }
 
 export default function JunkyardProposal() {
